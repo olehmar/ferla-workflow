@@ -1,0 +1,65 @@
+@mixin shadow {
+    box-shadow: -2px 2px 10px 0px #29292940;
+
+    box-shadow: 2px -2px 10px 0px #29292940;
+
+}
+
+@mixin group {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 70px;
+
+    padding: 20px;
+    border-radius: 5px;
+    @include shadow();
+    width: fit-content;
+}
+
+@mixin group_title {
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 20px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
+
+@mixin radius {
+    border-radius: 5px;
+}
+
+@mixin active_shadow {
+    box-shadow: -2px 2px 10px 0px #f938225e  !important;
+
+    box-shadow: 2px -2px 10px 0px #f938225e   !important;
+}
+
+@mixin sub_title_o_wheels {
+    font-family: Visby Round CF;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 14px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
+
+@mixin sub_title_o_wheels_style {
+    position: absolute;
+    top: 38px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+@mixin price_font {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 14px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+
+}

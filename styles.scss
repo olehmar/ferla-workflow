@@ -1,0 +1,553 @@
+@import './utils.scss';
+
+@font-face {
+    font-family: 'Visby Round CF';
+    src: url('/fonts/VisbyRoundCF-Regular.otf') format('woff2');
+}
+
+body {
+    font-family: 'Visby Round CF', sans-serif;
+}
+
+.ar_filter {
+    width: min(600px, 50%) !important;
+    padding: 20px !important;
+
+    &_header {
+        margin: 0 !important;
+    }
+
+    &_group {
+        width: 100% !important;
+        @include group_title;
+        @include group;
+    }
+
+    &_number {
+        display: none;
+    }
+
+    &_caption {
+        margin-bottom: 30px;
+    }
+
+    &_options {
+        margin: 0 !important;
+
+        &> :not(:last-child) {
+            margin-right: 16px;
+        }
+
+        &_result {
+            display: none !important;
+        }
+    }
+}
+
+.type_select {
+    display: flex;
+    flex-wrap: nowrap !important;
+
+    .ar_option_description_tooltip {
+        content: url(https://3d.ferlabikes.info/wp-content/uploads/2024/11/ph_info-light.svg) !important;
+        position: absolute !important;
+        top: 0 !important;
+        right: 0 !important;
+        cursor: pointer;
+        z-index: 1 !important;
+        transform: translate(-45%, 65%) !important;
+    }
+
+    &>.active {
+        @include active_shadow;
+
+        .component_title {
+            &::before {
+                content: url(https://3d.ferlabikes.info/wp-content/uploads/2024/11/active_options_wheels.svg) !important;
+                display: flex;
+                width: 20px;
+                height: 20px;
+                margin-right: $margin-title-o;
+            }
+        }
+    }
+
+    .option {
+        position: relative;
+        box-sizing: border-box;
+        padding: 10px 9px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between !important;
+        height: $option-height;
+        flex-direction: column-reverse !important;
+        width: fit-content !important;
+
+
+        @include shadow;
+        @include radius;
+
+        .customer_value_input {
+            display: none !important;
+        }
+
+        .component_title {
+            display: flex;
+            width: 100% !important;
+            justify-content: left !important;
+            align-items: center;
+            font-family: Visby Round CF;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 14px;
+            text-align: center;
+            text-underline-position: from-font;
+            text-decoration-skip-ink: none;
+
+            &::first-letter {
+                background-color: red;
+            }
+
+            // &::after {
+            //     content: url(https://3d.ferlabikes.info/wp-content/uploads/2024/11/ph_info-light.svg);
+            //     display: flex;
+            //     width: 18px;
+            //     height: 18px;
+            //     margin-left: $margin-title-o;
+            // }
+
+            &::before {
+                content: url(https://3d.ferlabikes.info/wp-content/uploads/2024/11/empty-select.svg);
+                display: flex;
+                width: 20px;
+                height: 20px;
+                margin-right: $margin-title-o;
+            }
+        }
+
+        .image {
+            width: $width-o-img !important;
+            height: auto !important;
+            border-radius: 5px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: none !important;
+            margin: 0 !important;
+
+            &::before {
+                display: none !important;
+            }
+
+            &>img {
+                width: auto !important;
+                height: auto !important;
+            }
+        }
+
+        // &>.ar_no_image {
+        //     width: $width-o-img;
+        //     height: $height-o-img;
+        //     background-image: url(./pictures/option2.svg);
+        //     background-size: cover;
+
+        //     &::before {
+        //         content: "Included";
+        //         @include sub_title_o_wheels_style;
+        //         @include sub_title_o_wheels;
+        //         color: $gray_color;
+        //     }
+        // }
+    }
+}
+
+.type_checkbox {
+    margin: 0;
+    padding: 0;
+
+    .ar_option_description_tooltip {
+        content: url(https://3d.ferlabikes.info/wp-content/uploads/2024/11/ph_info-light.svg) !important;
+        position: absolute !important;
+        top: 0 !important;
+        right: 0 !important;
+        cursor: pointer;
+        z-index: 1 !important;
+    }
+
+    &>.active {
+        opacity: 1 !important;
+
+        .component_title {
+            &::before {
+                content: url(https://3d.ferlabikes.info/wp-content/uploads/2024/11/ion_checkbox.svg) !important;
+                display: flex;
+                width: 20px;
+                height: 20px;
+                margin-right: $margin-title-o;
+            }
+        }
+    }
+
+    &> :not(:last-child) {
+        margin-bottom: 30px !important;
+    }
+
+    .option {
+        position: relative;
+        opacity: 0.5;
+        margin: 0;
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: space-between;
+        align-items: center;
+        width: $branding-img;
+
+        .image :first-child {
+            box-sizing: border-box;
+            background-color: #333;
+            width: 305px;
+            @include radius;
+        }
+
+        .component {
+
+            &_title {
+                position: relative;
+                text-align: left;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                font-family: Visby Round CF;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 14px;
+                text-underline-position: from-font;
+                text-decoration-skip-ink: none;
+                margin-bottom: 16px;
+
+                &::before {
+                    content: url(https://3d.ferlabikes.info/wp-content/uploads/2024/11/ion_checkbox-outline.svg);
+                    display: flex;
+                    width: 20px;
+                    height: 20px;
+                    margin-right: $margin-title-o;
+                }
+            }
+        }
+
+        .image {
+            width: auto !important;
+            height: auto !important;
+            border-radius: 5px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: none !important;
+            margin: 0 !important;
+
+            &::before {
+                display: none !important;
+            }
+
+            &>img {
+                width: 100% !important;
+                height: 100% !important;
+            }
+        }
+    }
+}
+
+.type_select_no_photo {
+    display: block !important;
+
+    &>:not(:last-child) {
+        margin-bottom: 16px !important;
+    }
+
+    .ar_option_description_tooltip {
+        content: url(https://3d.ferlabikes.info/wp-content/uploads/2024/11/ph_info-light.svg) !important;
+        position: absolute !important;
+        top: 0 !important;
+        right: 0 !important;
+        cursor: pointer;
+        z-index: 1 !important;
+    }
+
+    &>.active {
+        opacity: 1 !important;
+
+        .component_title {
+            &::before {
+                content: url(https://3d.ferlabikes.info/wp-content/uploads/2024/11/active_options_wheels.svg) !important;
+                display: flex;
+                width: 20px;
+                height: 20px;
+                margin-right: $margin-title-o;
+                position: static !important;
+            }
+        }
+    }
+
+    .option {
+        position: relative;
+        margin: 0;
+        display: flex;
+        flex-direction: row-reverse;
+        width: $branding-img;
+
+
+        .image :first-child {
+            box-sizing: border-box;
+            height: 180px;
+            background-image: url(./pictures/branding.png);
+            width: 305px;
+            @include radius;
+        }
+
+        .component {
+            &_title {
+                text-align: left;
+                width: 100%;
+                display: flex;
+                padding: 0 !important;
+                justify-content: left !important;
+                align-items: center;
+                font-family: Visby Round CF;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 14px;
+                text-underline-position: from-font;
+                text-decoration-skip-ink: none;
+                border: none !important;
+
+                &::before {
+                    content: url(https://3d.ferlabikes.info/wp-content/uploads/2024/11/empty-select.svg);
+                    display: flex;
+                    width: 20px;
+                    height: 20px;
+                    margin-right: $margin-title-o;
+                }
+            }
+        }
+    }
+}
+
+.type_checkbox_with_add_img {
+    .custom_id-branding {
+        padding-bottom: 40px;
+
+        .image {
+            &::after {
+                content: url(https://3d.ferlabikes.info/wp-content/uploads/2024/11/plus.svg) ' Add Your Image ';
+                display: inline-flex;
+                align-items: center;
+                position: absolute;
+                bottom: 0;
+                width: auto;
+                left: 50%;
+                transform: translate(-50%, 150%);
+                font-size: 14px;
+                color: #333;
+                text-decoration: underline;
+                text-underline-offset: 8px;
+                gap: 5px;
+            }
+        }
+    }
+}
+
+.type_checkbox_no_photo {
+    margin: 0;
+    padding: 0;
+
+    &>.active {
+        opacity: 1 !important;
+
+        .component_title {
+            &::before {
+                content: url(/icons/ion_checkbox.svg) !important;
+                display: flex;
+                width: 20px;
+                height: 20px;
+                margin-right: $margin-title-o;
+            }
+        }
+
+
+        .component_options {
+            &::before {
+                opacity: 1 !important;
+            }
+        }
+    }
+
+    &> :not(:last-child) {
+        margin-bottom: 30px !important;
+    }
+
+    .option {
+        position: relative;
+        opacity: 0.5;
+        margin: 0;
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: space-between;
+        align-items: center;
+        width: $branding-img;
+
+        .image :first-child {
+            box-sizing: border-box;
+            background-color: #333;
+            width: 305px;
+            @include radius;
+        }
+
+        .component {
+
+            &_title {
+                position: relative;
+                text-align: left;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                font-family: Visby Round CF;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 14px;
+                text-underline-position: from-font;
+                text-decoration-skip-ink: none;
+                margin-bottom: 16px;
+
+                &::before {
+                    content: url(/icons/ion_checkbox-outline.svg);
+                    display: flex;
+                    width: 20px;
+                    height: 20px;
+                    margin-right: $margin-title-o;
+                }
+            }
+
+            &_options {
+                position: absolute;
+                top: 0;
+                right: 0;
+                display: flex;
+                align-items: center;
+                height: fit-content;
+
+                &::before {
+                    content: '200$';
+                    opacity: 0.5;
+                    display: inline-block;
+                    font-size: 14px;
+                    color: #333;
+                    margin-left: 5px;
+                    font-family: Visby Round CF;
+
+                    @include price_font;
+                }
+
+                &::after {
+                    content: "";
+                    background-image: url(./icons/ph_info-light.svg);
+                    margin-left: 10px;
+                    background-size: cover;
+                    display: flex;
+                    align-items: center;
+                    height: 20px;
+                    width: 20px;
+                }
+            }
+        }
+    }
+}
+
+.ar_summary {
+    display: none !important;
+}
+
+.group_custom_id-colors {
+    .ar_filter {
+        &_header {
+            width: 100% !important;
+            margin: 0 !important;
+        }
+
+        &_caption {
+            display: flex;
+            width: auto !important;
+
+            &::after {
+                content: url(https://3d.ferlabikes.info/wp-content/uploads/2024/11/ph_info-light.svg) !important;
+                cursor: pointer;
+                margin-left: 8px;
+
+                &:hover {
+                    background-color: black;
+                }
+            }
+        }
+    }
+
+    .type_select {
+        flex-wrap: wrap !important;
+        column-gap: 0 !important;
+
+        .ar_option_description_tooltip {
+            content: url(https://3d.ferlabikes.info/wp-content/uploads/2024/11/ph_info-light.svg) !important;
+            position: absolute !important;
+            top: 0 !important;
+            right: 0 !important;
+            cursor: pointer;
+            z-index: 1 !important;
+            transform: translate(-45%, 65%) !important;
+        }
+
+        &>.active {
+            border: 2px solid rgba(255, 255, 255, 1);
+            box-shadow: 0 0 25px 10px rgba(255, 255, 255, 1);
+
+            &::after {
+                content: "";
+                position: absolute;
+                bottom: -3px;
+                display: flex;
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                border: 1px solid $red_color;
+            }
+        }
+
+        .option {
+            border-radius: 50%;
+            position: relative;
+            box-sizing: border-box;
+            padding: 10px 9px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between !important;
+            height: $option-height;
+            flex-direction: column-reverse !important;
+            width: 34px !important;
+            height: 34px !important;
+            transition: all 0.3s;
+
+            &:hover {
+                opacity: 0.6;
+            }
+
+            .customer_value_input {
+                display: none !important;
+            }
+
+            .component_title {
+                display: none !important;
+            }
+        }
+    }
+}
