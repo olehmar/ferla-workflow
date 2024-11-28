@@ -9,7 +9,33 @@
     <link rel="stylesheet" href="styles.css">
 
     <script>
-       
+        document.addEventListener("DOMContentLoaded", () => {
+            function listenerFocusOptions() {
+                const groupWheelsOptions = document
+                    .getElementsByClassName('group_custom_id-Wheels')[0]
+                    .getElementsByClassName('ar_filter_options')[0];
+
+                // Проходимо по всім опціям у контейнері
+                for (const option of groupWheelsOptions.children) { // Використовуємо `children` для перебору
+                    // Знаходимо клас, який починається з "custom_id-"
+                    const customIdClass = Array.from(option.classList).find(cls => cls.startsWith('custom_id-'));
+
+                    if (customIdClass) {
+                        const value = customIdClass.split('-')[1];
+                        console.log(value);
+
+                        option.addEventListener('click', () => {
+                            console.log(`Option clicked: ${value}`);
+
+                        });
+                    } else {
+                        console.warn('Option without custom_id class:', option);
+                    }
+                }
+            }
+
+            listenerFocusOptions();
+        })
     </script>
 </head>
 
@@ -19,92 +45,98 @@
         <div class="ar_filter_group ar_filter_group_13 group_custom_id-colors" id="group-13" data-assign_group="">
             <div class="ar_filter_header">
                 <div class="ar_filter_number">00</div>
-                <div class="ar_filter_caption">Color</div>
+                <div class="ar_filter_caption">Color<span class="span_price"><br>Included</span></div>
                 <div class="ar_filter_group_toggle"></div>
+                <div class="ar_filter_options_result_item_in_header"><span
+                        class="ar_filter_options_result_name_in_header">green</span><span
+                        class="ar_filter_options_result_price_in_header"></span></div>
             </div>
             <div class="ar_group_config">
             </div>
 
             <div class="ar_filter_inputs type_select">
             </div>
-
             <div class="ar_filter_options type_select" data-default="1">
-                <div class="option option_13-0 custom_id-#fff active" data-group_id="13" data-component_id="0"
-                    data-price="0" data-exclude_items="" data-value="red" data-product_id="">
+                <div class="option option_13-0 custom_id-#d92809" data-group_id="13" data-component_id="0"
+                    data-price="0" data-exclude_items="" data-value="red" data-product_id=""
+                    style="background-color: rgb(217, 40, 9);">
                     <div class="image ar_no_image"></div>
                     <div class="component_options" id="options_13_0">
                     </div>
 
 
-                    <div class="component_title">red</div>
+                    <div class="component_title">red<span class="span_price"><br>Included</span></div>
 
 
                 </div>
-
-                <div class="option option_13-1 custom_id-#32a852" data-group_id="13" data-component_id="1"
+                <div class="option option_13-1 active custom_id-#60b362" data-group_id="13" data-component_id="1"
                     data-price="0" data-exclude_items="" data-value="green" data-product_id="">
                     <div class="image ar_no_image"></div>
                     <div class="component_options" id="options_13_1">
                     </div>
 
 
-                    <div class="component_title">green</div>
+                    <div class="component_title">green<span class="span_price"><br>Included</span></div>
 
 
                 </div>
-
-                <div class="option option_13-2 custom_id-#a168cc" data-group_id="13" data-component_id="2"
-                    data-price="0" data-exclude_items="" data-value="black" data-product_id="">
+                <div class="option option_13-2 custom_id-#343634" data-group_id="13" data-component_id="2"
+                    data-price="0" data-exclude_items="" data-value="black" data-product_id=""
+                    style="background-color: rgb(52, 54, 52);">
                     <div class="image ar_no_image"></div>
                     <div class="component_options" id="options_13_2">
                     </div>
 
 
-                    <div class="component_title">black</div>
+                    <div class="component_title">black<span class="span_price"><br>Included</span></div>
 
 
                 </div>
-                <div class="option option_13-3" data-group_id="13" data-component_id="3" data-price="0"
-                    data-exclude_items="" data-value="white" data-product_id="">
+                <div class="option option_13-3 custom_id-#ededed" data-group_id="13" data-component_id="3"
+                    data-price="0" data-exclude_items="" data-value="white" data-product_id=""
+                    style="background-color: rgb(237, 237, 237);">
                     <div class="image ar_no_image"></div>
                     <div class="component_options" id="options_13_3">
                     </div>
 
 
-                    <div class="component_title">white</div>
+                    <div class="component_title">white<span class="span_price"><br>Included</span></div>
 
 
                 </div>
-                <div class="option option_13-4 custom_id-purple" data-group_id="13" data-component_id="4" data-price="0"
-                    data-exclude_items="" data-value="purple" data-product_id="">
+                <div class="option option_13-4 custom_id-#94579c" data-group_id="13" data-component_id="4"
+                    data-price="0" data-exclude_items="" data-value="purple" data-product_id=""
+                    style="background-color: rgb(148, 87, 156);">
                     <div class="image ar_no_image"></div>
                     <div class="component_options" id="options_13_4">
                     </div>
 
 
-                    <div class="component_title">purple</div>
+                    <div class="component_title">purple<span class="span_price"><br>Included</span></div>
 
 
                 </div>
-                <div class="option option_13-5 custom_id-pink" data-group_id="13" data-component_id="5" data-price="0"
-                    data-exclude_items="" data-value="pink" data-product_id="">
+                <div class="option option_13-5 custom_id-#f3d5f7" data-group_id="13" data-component_id="5"
+                    data-price="0" data-exclude_items="" data-value="pink" data-product_id=""
+                    style="background-color: rgb(243, 213, 247);">
                     <div class="image ar_no_image"></div>
                     <div class="component_options" id="options_13_5">
                     </div>
 
 
-                    <div class="component_title">pink</div>
+                    <div class="component_title">pink<span class="span_price"><br>Included</span></div>
 
 
                 </div>
-                <div class="option option_13-6 custom_id-yellow" data-group_id="13" data-component_id="6" data-price="0"
-                    data-exclude_items="" data-value="yellow" data-product_id="">
+                <div class="option option_13-6 custom_id-#f5ed84" data-group_id="13" data-component_id="6"
+                    data-price="0" data-exclude_items="" data-value="yellow" data-product_id=""
+                    style="background-color: rgb(245, 237, 132);">
                     <div class="image ar_no_image"></div>
                     <div class="component_options" id="options_13_6">
                     </div>
 
 
-                    <div class="component_title">yellow</div>
+                    <div class="component_title">yellow<span class="span_price"><br>Included</span></div>
 
 
                 </div>
@@ -115,17 +147,20 @@
                 <div class="ar_filter_options_result_caption">Selected</div>
                 <div class="ar_filter_options_result_list">
                     <div class="ar_filter_options_result_item">
-                        <div class="ar_filter_options_result_name">red</div>
+                        <div class="ar_filter_options_result_name">green</div>
                         <div class="ar_filter_options_result_price"></div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="ar_filter_group ar_filter_group_2" id="group-2" data-assign_group="">
+        <div class="ar_filter_group ar_filter_group_2 group_custom_id-Wheels" id="group-2" data-assign_group="">
             <div class="ar_filter_header">
                 <div class="ar_filter_number">01</div>
                 <div class="ar_filter_caption">Wheels</div>
                 <div class="ar_filter_group_toggle"></div>
+                <div class="ar_filter_options_result_item_in_header"><span
+                        class="ar_filter_options_result_name_in_header">4 casters</span><span
+                        class="ar_filter_options_result_price_in_header"></span></div>
             </div>
             <div class="ar_group_config">
             </div>
@@ -133,8 +168,8 @@
             <div class="ar_filter_inputs type_select">
             </div>
             <div class="ar_filter_options type_select" data-default="0">
-                <div class="option option_2-0" data-group_id="2" data-component_id="0" data-price="0"
-                    data-exclude_items="" data-value="4 casters" data-product_id="">
+                <div class="option option_2-0 active custom_id-Small_wheels" data-group_id="2" data-component_id="0"
+                    data-price="0" data-exclude_items="" data-value="4 casters" data-product_id="">
                     <div class="ar_option_description_tooltip"></div>
                     <div class="ar_option_description">
                         Test text info </div>
@@ -199,12 +234,12 @@
                     </div>
 
 
-                    <div class="component_title">4 casters</div>
+                    <div class="component_title">4 casters<span class="span_price"><br>Included</span></div>
 
 
                 </div>
-                <div class="option option_2-1 active" data-group_id="2" data-component_id="1" data-price="300"
-                    data-exclude_items="" data-value="2 casters 200$" data-product_id="">
+                <div class="option option_2-1 custom_id-Big_Wheels" data-group_id="2" data-component_id="1"
+                    data-price="300" data-exclude_items="" data-value="2 casters" data-product_id="">
                     <div class="ar_option_description_tooltip"></div>
                     <div class="ar_option_description">
                         Text info </div>
@@ -269,7 +304,7 @@
                     </div>
 
 
-                    <div class="component_title">2 casters 200$</div>
+                    <div class="component_title">2 casters<span class="span_price"><br>$300</span></div>
 
 
                 </div>
@@ -280,48 +315,51 @@
                 <div class="ar_filter_options_result_caption">Selected</div>
                 <div class="ar_filter_options_result_list">
                     <div class="ar_filter_options_result_item">
-                        <div class="ar_filter_options_result_name">2 casters 200$</div>
-                        <div class="ar_filter_options_result_price">300</div>
+                        <div class="ar_filter_options_result_name">4 casters</div>
+                        <div class="ar_filter_options_result_price"></div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="ar_filter_group ar_filter_group_5" id="group-5" data-assign_group="">
+        <div class="ar_filter_group ar_filter_group_5 group_custom_id-branding" id="group-5" data-assign_group="">
             <div class="ar_filter_header">
                 <div class="ar_filter_number">02</div>
                 <div class="ar_filter_caption">Branding</div>
                 <div class="ar_filter_group_toggle"></div>
+                <div class="ar_filter_options_result_item_in_header"><span
+                        class="ar_filter_options_result_name_in_header"></span><span
+                        class="ar_filter_options_result_price_in_header"></span></div>
             </div>
             <div class="ar_group_config">
             </div>
 
             <div class="ar_filter_inputs type_checkbox">
             </div>
-            <div class="ar_filter_options type_checkbox" data-default="">
-                <div class="option option_5-1" data-group_id="5" data-component_id="1" data-price="200"
-                    data-exclude_items="" data-value="Logo Decal Branding" data-product_id="">
+            <div class="ar_filter_options type_checkbox type_checkbox_with_add_img" data-default="">
+                <div class="option option_5-1 custom_id-branding" data-group_id="5" data-component_id="1"
+                    data-price="200" data-exclude_items="" data-value="Logo Decal Branding" data-product_id="">
                     <div class="ar_option_description_tooltip"></div>
                     <div class="ar_option_description">
                         Text info </div>
                     <div class="image">
                         <img decoding="async"
-                            src="https://3d.ferlabikes.info/wp-content/uploads/2024/11/branding-option.png">
+                            src="https://3d.ferlabikes.info/wp-content/uploads/2024/11/Logo-Decal-Branding.png">
                     </div>
                     <div class="component_options" id="options_5_1">
                     </div>
 
 
-                    <div class="component_title">Logo Decal Branding</div>
+                    <div class="component_title">Logo Decal Branding<span class="span_price"><br>$200</span></div>
 
 
                 </div>
-                <div class="option option_5-2" data-group_id="5" data-component_id="2" data-price="200"
-                    data-exclude_items="" data-value="LED Sign" data-product_id="">
+                <div class="option option_5-2 custom_id-LED_Logo_Sign" data-group_id="5" data-component_id="2"
+                    data-price="200" data-exclude_items="" data-value="LED Sign" data-product_id="">
                     <div class="ar_option_description_tooltip"></div>
                     <div class="ar_option_description">
                         Text info </div>
                     <div class="image">
-                        <img decoding="async" src="https://3d.ferlabikes.info/wp-content/uploads/2024/11/led.png">
+                        <img decoding="async" src="https://3d.ferlabikes.info/wp-content/uploads/2024/11/Led-Sign.png">
                     </div>
                     <div class="component_options" id="options_5_2">
                         <div class="option_settings option-LED_Logo_Sign" data-color="" data-disable_color=""
@@ -330,7 +368,7 @@
                     </div>
 
 
-                    <div class="component_title">LED Sign</div>
+                    <div class="component_title">LED Sign<span class="span_price"><br>$200</span></div>
 
 
                 </div>
@@ -340,13 +378,13 @@
                     <div class="ar_option_description">
                         Text info </div>
                     <div class="image">
-                        <img decoding="async" src="https://3d.ferlabikes.info/wp-content/uploads/2024/11/wrap.png">
+                        <img decoding="async" src="https://3d.ferlabikes.info/wp-content/uploads/2024/11/Full-Wrap.png">
                     </div>
                     <div class="component_options" id="options_5_3">
                     </div>
 
 
-                    <div class="component_title">Full Wrap</div>
+                    <div class="component_title">Full Wrap<span class="span_price"><br>Included</span></div>
 
 
                 </div>
@@ -363,6 +401,9 @@
                 <div class="ar_filter_number">03</div>
                 <div class="ar_filter_caption">Refregiration</div>
                 <div class="ar_filter_group_toggle"></div>
+                <div class="ar_filter_options_result_item_in_header"><span
+                        class="ar_filter_options_result_name_in_header">No Refrigiration</span><span
+                        class="ar_filter_options_result_price_in_header"></span></div>
             </div>
             <div class="ar_group_config">
             </div>
@@ -379,7 +420,7 @@
                     </div>
 
 
-                    <div class="component_title">No Refrigiration</div>
+                    <div class="component_title">No Refrigiration<span class="span_price"><br>Included</span></div>
 
 
                 </div>
@@ -401,7 +442,7 @@
                     </div>
 
 
-                    <div class="component_title">Compact</div>
+                    <div class="component_title">Compact<span class="span_price"><br>$1200</span></div>
 
 
                 </div>
@@ -423,7 +464,7 @@
                     </div>
 
 
-                    <div class="component_title">Large</div>
+                    <div class="component_title">Large<span class="span_price"><br>$1600</span></div>
 
 
                 </div>
@@ -445,6 +486,9 @@
                 <div class="ar_filter_number">04</div>
                 <div class="ar_filter_caption">Add-ons</div>
                 <div class="ar_filter_group_toggle"></div>
+                <div class="ar_filter_options_result_item_in_header"><span
+                        class="ar_filter_options_result_name_in_header"></span><span
+                        class="ar_filter_options_result_price_in_header"></span></div>
             </div>
             <div class="ar_group_config">
             </div>
@@ -452,9 +496,11 @@
             <div class="ar_filter_inputs type_checkbox">
             </div>
             <div class="ar_filter_options type_checkbox" data-default="">
-                <div class="option option_7-1" data-group_id="7" data-component_id="1" data-price="1200"
-                    data-exclude_items="" data-value="Tap/Cold Brew" data-product_id="">
-                    <div class="image ar_no_image"></div>
+                <div class="option option_7-1 custom_id-Cold_brew" data-group_id="7" data-component_id="1"
+                    data-price="1200" data-exclude_items="" data-value="Tap/Cold Brew" data-product_id="">
+                    <div class="image">
+                        <img decoding="async" src="https://3d.ferlabikes.info/wp-content/uploads/2024/11/option2.svg">
+                    </div>
                     <div class="component_options" id="options_7_1">
                         <div class="option_settings option-Mesh008" data-color="" data-disable_color="" data-map=""
                             data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="7"
@@ -465,11 +511,11 @@
                     </div>
 
 
-                    <div class="component_title">Tap/Cold Brew</div>
+                    <div class="component_title">Tap/Cold Brew<span class="span_price"><br>$1200</span></div>
 
 
                 </div>
-                <div class="option option_7-2" data-group_id="7" data-component_id="2" data-price="500"
+                <div class="option option_7-2 custom_id-Sink" data-group_id="7" data-component_id="2" data-price="500"
                     data-exclude_items="" data-value="Sink/Hot Water" data-product_id="">
                     <div class="image ar_no_image"></div>
                     <div class="component_options" id="options_7_2">
@@ -482,12 +528,12 @@
                     </div>
 
 
-                    <div class="component_title">Sink/Hot Water</div>
+                    <div class="component_title">Sink/Hot Water<span class="span_price"><br>$500</span></div>
 
 
                 </div>
-                <div class="option option_7-3" data-group_id="7" data-component_id="3" data-price="200"
-                    data-exclude_items="" data-value="Extendable Serving Table" data-product_id="">
+                <div class="option option_7-3 custom_id-Extendable_table_wood" data-group_id="7" data-component_id="3"
+                    data-price="200" data-exclude_items="" data-value="Extendable Serving Table" data-product_id="">
                     <div class="image ar_no_image"></div>
                     <div class="component_options" id="options_7_3">
                         <div class="option_settings option-Mesh014" data-color="" data-disable_color="" data-map=""
@@ -502,12 +548,12 @@
                     </div>
 
 
-                    <div class="component_title">Extendable Serving Table</div>
+                    <div class="component_title">Extendable Serving Table<span class="span_price"><br>$200</span></div>
 
 
                 </div>
-                <div class="option option_7-4" data-group_id="7" data-component_id="4" data-price="1000"
-                    data-exclude_items="" data-value="Solar Panel" data-product_id="">
+                <div class="option option_7-4 custom_id-Solar_panel" data-group_id="7" data-component_id="4"
+                    data-price="1000" data-exclude_items="" data-value="Solar Panel" data-product_id="">
                     <div class="image ar_no_image"></div>
                     <div class="component_options" id="options_7_4">
                         <div class="option_settings option-Mesh007" data-color="" data-disable_color="" data-map=""
@@ -519,7 +565,7 @@
                     </div>
 
 
-                    <div class="component_title">Solar Panel</div>
+                    <div class="component_title">Solar Panel<span class="span_price"><br>$1000</span></div>
 
 
                 </div>
@@ -537,6 +583,9 @@
                 <div class="ar_filter_number">05</div>
                 <div class="ar_filter_caption">Instant Nitrogeration</div>
                 <div class="ar_filter_group_toggle"></div>
+                <div class="ar_filter_options_result_item_in_header"><span
+                        class="ar_filter_options_result_name_in_header"></span><span
+                        class="ar_filter_options_result_price_in_header"></span></div>
             </div>
             <div class="ar_group_config">
             </div>
@@ -551,7 +600,7 @@
                     </div>
 
 
-                    <div class="component_title">Instant Nitrogeration</div>
+                    <div class="component_title">Instant Nitrogeration<span class="span_price"><br>Included</span></div>
 
 
                 </div>
@@ -569,6 +618,9 @@
                 <div class="ar_filter_number">06</div>
                 <div class="ar_filter_caption">Equipment</div>
                 <div class="ar_filter_group_toggle"></div>
+                <div class="ar_filter_options_result_item_in_header"><span
+                        class="ar_filter_options_result_name_in_header"></span><span
+                        class="ar_filter_options_result_price_in_header"></span></div>
             </div>
             <div class="ar_group_config">
             </div>
@@ -583,7 +635,7 @@
                     </div>
 
 
-                    <div class="component_title">Ecoflow</div>
+                    <div class="component_title">Ecoflow<span class="span_price"><br>Included</span></div>
 
 
                 </div>
@@ -594,7 +646,7 @@
                     </div>
 
 
-                    <div class="component_title">Iceco</div>
+                    <div class="component_title">Iceco<span class="span_price"><br>Included</span></div>
 
 
                 </div>
@@ -612,6 +664,9 @@
                 <div class="ar_filter_number">07</div>
                 <div class="ar_filter_caption">Espresso Machine</div>
                 <div class="ar_filter_group_toggle"></div>
+                <div class="ar_filter_options_result_item_in_header"><span
+                        class="ar_filter_options_result_name_in_header"></span><span
+                        class="ar_filter_options_result_price_in_header"></span></div>
             </div>
             <div class="ar_group_config">
             </div>
@@ -626,7 +681,7 @@
                     </div>
 
 
-                    <div class="component_title">Espresso Machine</div>
+                    <div class="component_title">Espresso Machine<span class="span_price"><br>Included</span></div>
 
 
                 </div>
@@ -644,6 +699,9 @@
                 <div class="ar_filter_number">08</div>
                 <div class="ar_filter_caption">Assembly</div>
                 <div class="ar_filter_group_toggle"></div>
+                <div class="ar_filter_options_result_item_in_header"><span
+                        class="ar_filter_options_result_name_in_header">Assembly</span><span
+                        class="ar_filter_options_result_price_in_header">(+400)</span></div>
             </div>
             <div class="ar_group_config">
             </div>
@@ -657,7 +715,7 @@
                     </div>
 
 
-                    <div class="component_title">Assembly</div>
+                    <div class="component_title">Assembly<span class="span_price"><br>$400</span></div>
 
 
                 </div>
@@ -674,21 +732,28 @@
                 </div>
             </div>
         </div>
-        <div class="ar_filter_group ar_filter_group_10" id="group-10" data-assign_group="">
+        <div class="ar_filter_group ar_filter_group_10 group_custom_id-hidden" id="group-10" data-assign_group=""
+            style="display: none;">
             <div class="ar_filter_header">
                 <div class="ar_filter_number">10</div>
                 <div class="ar_filter_caption">Cup Holders and Cash Drawer (hidden)</div>
                 <div class="ar_filter_group_toggle"></div>
+                <div class="ar_filter_options_result_item_in_header"><span
+                        class="ar_filter_options_result_name_in_header">Cup Holders</span><span
+                        class="ar_filter_options_result_price_in_header"></span></div>
             </div>
+            <div class="ar_filter_description">hidden_from_DOM</div>
             <div class="ar_group_config">
             </div>
 
-            <div class="ar_filter_inputs type_select">
+            <div class="ar_filter_inputs type_checkbox">
             </div>
-            <div class="ar_filter_options type_select" data-default="0">
-                <div class="option option_10-0 active" data-group_id="10" data-component_id="0" data-price="0"
-                    data-exclude_items="" data-value="Cup Holders" data-product_id="">
-                    <div class="image ar_no_image"></div>
+            <div class="ar_filter_options type_checkbox" data-default="0">
+                <div class="option option_10-0 active custom_id-cup_holder" data-group_id="10" data-component_id="0"
+                    data-price="0" data-exclude_items="" data-value="Cup Holders" data-product_id="">
+                    <div class="image">
+                        <img decoding="async" src="https://3d.ferlabikes.info/wp-content/uploads/2024/11/option1.svg">
+                    </div>
                     <div class="component_options" id="options_10_0">
                         <div class="option_settings option-cup_holder" data-color="" data-disable_color="" data-map=""
                             data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="10"
@@ -705,7 +770,7 @@
                     </div>
 
 
-                    <div class="component_title">Cup Holders</div>
+                    <div class="component_title">Cup Holders<span class="span_price"><br>Included</span></div>
 
 
                 </div>
@@ -722,12 +787,17 @@
                 </div>
             </div>
         </div>
-        <div class="ar_filter_group ar_filter_group_11" id="group-11" data-assign_group="">
+        <div class="ar_filter_group ar_filter_group_11 group_custom_id-hidden" id="group-11" data-assign_group=""
+            style="display: none;">
             <div class="ar_filter_header">
                 <div class="ar_filter_number">10</div>
                 <div class="ar_filter_caption">Sink top (hidden)</div>
                 <div class="ar_filter_group_toggle"></div>
+                <div class="ar_filter_options_result_item_in_header"><span
+                        class="ar_filter_options_result_name_in_header">Sink top</span><span
+                        class="ar_filter_options_result_price_in_header"></span></div>
             </div>
+            <div class="ar_filter_description">hidden_from_DOM</div>
             <div class="ar_group_config">
             </div>
 
@@ -744,7 +814,7 @@
                     </div>
 
 
-                    <div class="component_title">Sink top</div>
+                    <div class="component_title">Sink top<span class="span_price"><br>Included</span></div>
 
 
                 </div>
@@ -761,12 +831,17 @@
                 </div>
             </div>
         </div>
-        <div class="ar_filter_group ar_filter_group_12" id="group-12" data-assign_group="">
+        <div class="ar_filter_group ar_filter_group_12 group_custom_id-hidden" id="group-12" data-assign_group=""
+            style="display: none;">
             <div class="ar_filter_header">
                 <div class="ar_filter_number">10</div>
                 <div class="ar_filter_caption">Clear top (hidden)</div>
                 <div class="ar_filter_group_toggle"></div>
+                <div class="ar_filter_options_result_item_in_header"><span
+                        class="ar_filter_options_result_name_in_header">Clear top</span><span
+                        class="ar_filter_options_result_price_in_header"></span></div>
             </div>
+            <div class="ar_filter_description">hidden_from_DOM</div>
             <div class="ar_group_config">
             </div>
 
@@ -783,7 +858,7 @@
                     </div>
 
 
-                    <div class="component_title">Clear top</div>
+                    <div class="component_title">Clear top<span class="span_price"><br>Included</span></div>
 
 
                 </div>

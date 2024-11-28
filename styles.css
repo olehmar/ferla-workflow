@@ -1,20 +1,320 @@
 @font-face {
   font-family: "Visby Round CF";
-  src: url("/fonts/VisbyRoundCF-Regular.otf") format("woff2");
+  src: url("https://raw.githubusercontent.com/olehmar/ferla-workflow/main/fonts/VisbyRoundCF-Regular.otf");
 }
-body {
-  font-family: "Visby Round CF", sans-serif;
+body::-webkit-scrollbar {
+  display: none;
+}
+
+#marevo_model {
+  display: none;
+}
+
+.menu-visible {
+  opacity: 1 !important;
+  transition: opacity 0.3s ease;
+}
+
+.hide-visible {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+  z-index: -1111;
+}
+
+.additional-info {
+  position: absolute;
+  width: 345px;
+  height: 582px;
+  background-color: white;
+  right: 0;
+  transform: translateX(-100%);
+  margin-right: 67px;
+  box-shadow: -2px 2px 10px 0px rgba(181, 180, 180, 0.2509803922);
+  box-shadow: 2px -2px 10px 0px rgba(181, 180, 180, 0.2509803922);
+  border-radius: 5px;
+}
+
+.ar_option_description {
+  display: block;
+  position: absolute;
+  left: none !important;
+  top: none !important;
+  right: 0;
+  width: 100% !important;
+  transform: translate(-50%, 50px);
+  padding: 20px !important;
+  background-color: #FFFFFF !important;
+  border-radius: 5px !important;
+  box-shadow: -2px 2px 10px 0px rgba(181, 180, 180, 0.2509803922);
+  box-shadow: 2px -2px 10px 0px rgba(181, 180, 180, 0.2509803922);
+  filter: 0 !important;
+  color: #111111 !important;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500 !important;
+  line-height: normal;
+  transition: opacity 0.3s ease;
+}
+.ar_option_description::after {
+  display: none !important;
+}
+
+.page-content {
+  position: relative;
+}
+
+.ar_filter_options_result_item_in_header {
+  display: none !important;
+}
+
+.body {
+  font-family: "Visby Round CF", sans-serif !important;
+}
+
+.ar_filter .ar_filter_group .ar_filter_options.type_checkbox .option .component_title {
+  font-family: "Visby Round CF", sans-serif !important;
+}
+
+.ar_summary {
+  display: none !important;
+}
+
+.elementor-4117 .elementor-element.elementor-element-70340bb {
+  width: 100% !important;
+  box-shadow: none !important;
+  transition: all 0.3s;
+}
+
+.elementor-motion-effects-container.scrolled {
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+  margin: 0 !important;
+  font-family: Visby Round CF !important;
+  font-size: 28px !important;
+  font-weight: 600 !important;
+  line-height: 33.6px !important;
+  letter-spacing: 0.02em !important;
+  text-align: center !important;
+  text-underline-position: from-font !important;
+  text-decoration-skip-ink: none !important;
+}
+
+.page-header {
+  text-align: center;
+  position: absolute;
+  right: 0;
+  top: 40px;
+  right: 40px;
+  width: 345px !important;
+  z-index: 1;
+  margin: 0 !important;
+  font-family: Visby Round CF !important;
+  font-size: 28px !important;
+  font-weight: 600 !important;
+  line-height: 33.6px !important;
+  letter-spacing: 0.02em !important;
+  text-align: center !important;
+  text-underline-position: from-font !important;
+  text-decoration-skip-ink: none !important;
+}
+.page-header .entry-title {
+  line-height: 20px !important;
+}
+
+.add-info {
+  cursor: pointer;
+  left: 50%;
+  transform: translate(-50%);
+  padding-bottom: 6px;
+  width: fit-content;
+  position: relative;
+  margin-top: 16px;
+  font-family: Visby Round CF;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.6px;
+  letter-spacing: 0.02em;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #747474;
+  border: 1px solid transparent;
+  transition: all 0.3s;
+}
+.add-info::before {
+  content: url(https://3d.ferlabikes.info/wp-content/uploads/2024/11/simple-line-icons_arrow-up.svg);
+  width: 14px;
+  height: 14px;
+  margin-right: 10px;
+}
+.add-info:hover {
+  border-bottom: 1px solid #747474;
+}
+
+.configurator3d_post {
+  border: none !important;
+  padding-top: 40px !important;
+}
+.configurator3d_post .ar_filter {
+  width: min(600px, 50%) !important;
+  overflow-x: hidden !important;
+  padding-right: 30px !important;
+  box-shadow: none !important;
+}
+.configurator3d_post .ar_conf_container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.configurator3d_post .ar_conf_container::after {
+  content: "Images may differ from the actual product";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 148px;
+  text-align: center;
+  font-family: Visby Round CF;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14.4px;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #747474;
+}
+.configurator3d_post .ar_conf_container .share-button {
+  content: "share";
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-120%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  font-family: Visby Round CF;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 16px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #000000;
+  background-image: url(https://3d.ferlabikes.info/wp-content/uploads/2024/11/solar_share-linear-1.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left center;
+  height: 20px;
+  padding-left: 26px;
+  transition: all 0.3s;
+}
+.configurator3d_post .ar_conf_container .share-button:hover {
+  opacity: 0.8;
+}
+.configurator3d_post .ar_conf_container .ar-button {
+  content: "ar";
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 50%;
+  transform: translate(120%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  font-family: Visby Round CF;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 16px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #000000;
+  background-image: url(https://3d.ferlabikes.info/wp-content/uploads/2024/11/mynaui_ar-2.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left center;
+  padding-left: 26px;
+  height: 20px;
+}
+.configurator3d_post .ar_conf_container .ar-button:hover {
+  opacity: 0.8;
+}
+.configurator3d_post .ar_model_viewer {
+  display: flex;
+  align-items: center;
+  width: 100% !important;
+  height: 90% !important;
+}
+
+.exclude_item {
+  display: none;
+}
+
+.option {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.option:hover {
+  z-index: 1111;
+  transform: translateY(-2px);
 }
 
 .ar_filter {
-  width: min(600px, 50%) !important;
-  padding: 20px !important;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 20px 0 !important;
+  font-family: "Visby Round CF", sans-serif !important;
+  margin-top: 114px;
+  box-shadow: -2px 2px 10px 0px rgba(181, 180, 180, 0.2509803922);
+  box-shadow: 2px -2px 10px 0px rgba(181, 180, 180, 0.2509803922);
+  overflow-x: hidden !important;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgb(0, 0, 0) 8%, rgb(0, 0, 0) 80%, rgba(0, 0, 0, 0));
+}
+.ar_filter .group_custom_id-last_group {
+  margin-bottom: 132px !important;
+}
+.ar_filter::-webkit-scrollbar {
+  width: 2px;
+}
+.ar_filter::-webkit-scrollbar-track {
+  background: #E0E0E0;
+  height: 300px;
+}
+.ar_filter::-webkit-scrollbar-thumb {
+  width: 2px !important;
+  height: 90px !important;
+  background-color: #747474;
+  border-radius: 5px;
+  border: 3px solid transparent;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+.ar_filter::-webkit-scrollbar-thumb :hover {
+  background: #555;
+  transform: scale(1.2);
+}
+.ar_filter::-webkit-scrollbar-thumb:hover {
+  background: #555;
+  transform: scale(1.2) !important;
+}
+.ar_filter::-webkit-scrollbar {
+  position: absolute;
+  left: 50%;
 }
 .ar_filter_header {
   margin: 0 !important;
 }
 .ar_filter_group {
-  width: 100% !important;
+  margin-top: 0 !important;
+  width: 345px !important;
   font-size: 20px;
   font-weight: 800;
   line-height: 20px;
@@ -26,29 +326,35 @@ body {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 70px;
-  padding: 20px;
+  padding: 20px 22.5px !important;
   border-radius: 5px;
-  box-shadow: -2px 2px 10px 0px rgba(41, 41, 41, 0.2509803922);
-  box-shadow: 2px -2px 10px 0px rgba(41, 41, 41, 0.2509803922);
+  box-shadow: -2px 2px 10px 0px rgba(181, 180, 180, 0.2509803922);
+  box-shadow: 2px -2px 10px 0px rgba(181, 180, 180, 0.2509803922);
   width: fit-content;
 }
 .ar_filter_number {
   display: none;
 }
 .ar_filter_caption {
+  font-family: Visby Round CF;
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  line-height: 20px !important;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  position: relative;
   margin-bottom: 30px;
 }
 .ar_filter_options {
   margin: 0 !important;
-}
-.ar_filter_options > :not(:last-child) {
-  margin-right: 16px;
 }
 .ar_filter_options_result {
   display: none !important;
 }
 
 .type_select {
+  gap: 0 !important;
   display: flex;
   flex-wrap: nowrap !important;
 }
@@ -61,9 +367,15 @@ body {
   z-index: 1 !important;
   transform: translate(-45%, 65%) !important;
 }
+.type_select > :not(:last-child) {
+  margin-right: 16px;
+}
 .type_select > .active {
   box-shadow: -2px 2px 10px 0px rgba(249, 56, 34, 0.368627451) !important;
   box-shadow: 2px -2px 10px 0px rgba(249, 56, 34, 0.368627451) !important;
+}
+.type_select > .active .component_title {
+  font-weight: 600 !important;
 }
 .type_select > .active .component_title::before {
   content: url(https://3d.ferlabikes.info/wp-content/uploads/2024/11/active_options_wheels.svg) !important;
@@ -79,28 +391,46 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between !important;
-  height: 182px;
+  height: 180px;
   flex-direction: column-reverse !important;
   width: fit-content !important;
-  box-shadow: -2px 2px 10px 0px rgba(41, 41, 41, 0.2509803922);
-  box-shadow: 2px -2px 10px 0px rgba(41, 41, 41, 0.2509803922);
+  box-shadow: -2px 2px 10px 0px rgba(181, 180, 180, 0.2509803922);
+  box-shadow: 2px -2px 10px 0px rgba(181, 180, 180, 0.2509803922);
   border-radius: 5px;
 }
 .type_select .option .customer_value_input {
   display: none !important;
 }
+.type_select .option .span_price {
+  left: 50%;
+  transform: translate(-50%, 100%);
+  position: absolute;
+  color: #747474;
+  font-size: 14px;
+  font-family: Visby Round CF !important;
+  font-size: 14px !important;
+  font-weight: 500;
+  line-height: 14px !important;
+  text-align: center !important;
+  text-underline-position: from-font !important;
+  text-decoration-skip-ink: none !important;
+  color: #747474 !important;
+}
 .type_select .option .component_title {
+  display: flex;
+  align-items: flex-end;
+  position: relative;
   display: flex;
   width: 100% !important;
   justify-content: left !important;
-  align-items: center;
-  font-family: Visby Round CF;
-  font-size: 14px;
+  color: #111111 !important;
+  font-family: Visby Round CF !important;
+  font-size: 14px !important;
   font-weight: 500;
-  line-height: 14px;
-  text-align: center;
-  text-underline-position: from-font;
-  text-decoration-skip-ink: none;
+  line-height: 14px !important;
+  text-align: center !important;
+  text-underline-position: from-font !important;
+  text-decoration-skip-ink: none !important;
 }
 .type_select .option .component_title::first-letter {
   background-color: red;
@@ -139,13 +469,16 @@ body {
 .type_checkbox .ar_option_description_tooltip {
   content: url(https://3d.ferlabikes.info/wp-content/uploads/2024/11/ph_info-light.svg) !important;
   position: absolute !important;
-  top: 0 !important;
+  top: 1.5px !important;
   right: 0 !important;
   cursor: pointer;
   z-index: 1 !important;
 }
 .type_checkbox > .active {
-  opacity: 1 !important;
+  color: #111111 !important;
+}
+.type_checkbox > .active .component_title {
+  font-weight: 600 !important;
 }
 .type_checkbox > .active .component_title::before {
   content: url(https://3d.ferlabikes.info/wp-content/uploads/2024/11/ion_checkbox.svg) !important;
@@ -154,18 +487,34 @@ body {
   height: 20px;
   margin-right: 13.5px;
 }
+.type_checkbox > .active .span_price {
+  right: 30px;
+  transform: translateY(-25%);
+  position: absolute;
+  color: #111111 !important;
+  font-size: 14px;
+}
 .type_checkbox > :not(:last-child) {
   margin-bottom: 30px !important;
 }
+.type_checkbox .disabled {
+  opacity: 0.5;
+}
 .type_checkbox .option {
   position: relative;
-  opacity: 0.5;
-  margin: 0;
+  margin-top: 0 !important;
   display: flex;
   flex-direction: column-reverse;
   justify-content: space-between;
   align-items: center;
   width: 305px;
+}
+.type_checkbox .option .span_price {
+  right: 30px;
+  transform: translateY(-25%);
+  position: absolute;
+  color: #747474;
+  font-size: 14px;
 }
 .type_checkbox .option .image :first-child {
   box-sizing: border-box;
@@ -173,7 +522,11 @@ body {
   width: 305px;
   border-radius: 5px;
 }
+.type_checkbox .option .span_price {
+  position: absolute;
+}
 .type_checkbox .option .component_title {
+  color: #111111 !important;
   position: relative;
   text-align: left;
   width: 100%;
@@ -195,8 +548,8 @@ body {
   margin-right: 13.5px;
 }
 .type_checkbox .option .image {
-  width: auto !important;
-  height: auto !important;
+  width: 100% !important;
+  height: 180px !important;
   border-radius: 5px;
   position: relative;
   display: flex;
@@ -223,13 +576,16 @@ body {
 .type_select_no_photo .ar_option_description_tooltip {
   content: url(https://3d.ferlabikes.info/wp-content/uploads/2024/11/ph_info-light.svg) !important;
   position: absolute !important;
-  top: 0 !important;
+  top: 1.5px !important;
   right: 0 !important;
   cursor: pointer;
   z-index: 1 !important;
 }
 .type_select_no_photo > .active {
   opacity: 1 !important;
+}
+.type_select_no_photo > .active .component_title {
+  font-weight: 600 !important;
 }
 .type_select_no_photo > .active .component_title::before {
   content: url(https://3d.ferlabikes.info/wp-content/uploads/2024/11/active_options_wheels.svg) !important;
@@ -238,6 +594,9 @@ body {
   height: 20px;
   margin-right: 13.5px;
   position: static !important;
+}
+.type_select_no_photo > .active .span_price {
+  color: #111111 !important;
 }
 .type_select_no_photo .option {
   position: relative;
@@ -253,7 +612,15 @@ body {
   width: 305px;
   border-radius: 5px;
 }
+.type_select_no_photo .option .span_price {
+  right: 30px;
+  transform: translateY(-25%);
+  position: absolute;
+  color: #747474;
+  font-size: 14px;
+}
 .type_select_no_photo .option .component_title {
+  color: #111111 !important;
   text-align: left;
   width: 100%;
   display: flex;
@@ -293,110 +660,41 @@ body {
   text-decoration: underline;
   text-underline-offset: 8px;
   gap: 5px;
-}
-
-.type_checkbox_no_photo {
-  margin: 0;
-  padding: 0;
-}
-.type_checkbox_no_photo > .active {
-  opacity: 1 !important;
-}
-.type_checkbox_no_photo > .active .component_title::before {
-  content: url(/icons/ion_checkbox.svg) !important;
-  display: flex;
-  width: 20px;
-  height: 20px;
-  margin-right: 13.5px;
-}
-.type_checkbox_no_photo > .active .component_options::before {
-  opacity: 1 !important;
-}
-.type_checkbox_no_photo > :not(:last-child) {
-  margin-bottom: 30px !important;
-}
-.type_checkbox_no_photo .option {
-  position: relative;
-  opacity: 0.5;
-  margin: 0;
-  display: flex;
-  flex-direction: column-reverse;
-  justify-content: space-between;
-  align-items: center;
-  width: 305px;
-}
-.type_checkbox_no_photo .option .image :first-child {
-  box-sizing: border-box;
-  background-color: #333;
-  width: 305px;
-  border-radius: 5px;
-}
-.type_checkbox_no_photo .option .component_title {
-  position: relative;
-  text-align: left;
-  width: 100%;
-  display: flex;
-  align-items: center;
   font-family: Visby Round CF;
   font-size: 14px;
-  font-weight: 500;
-  line-height: 14px;
-  text-underline-position: from-font;
-  text-decoration-skip-ink: none;
-  margin-bottom: 16px;
-}
-.type_checkbox_no_photo .option .component_title::before {
-  content: url(/icons/ion_checkbox-outline.svg);
-  display: flex;
-  width: 20px;
-  height: 20px;
-  margin-right: 13.5px;
-}
-.type_checkbox_no_photo .option .component_options {
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: flex;
-  align-items: center;
-  height: fit-content;
-}
-.type_checkbox_no_photo .option .component_options::before {
-  content: "200$";
-  opacity: 0.5;
-  display: inline-block;
-  font-size: 14px;
-  color: #333;
-  margin-left: 5px;
-  font-family: Visby Round CF;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 14px;
+  font-weight: 400;
+  line-height: 16.8px;
   text-align: center;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
 }
-.type_checkbox_no_photo .option .component_options::after {
-  content: "";
-  background-image: url(./icons/ph_info-light.svg);
-  margin-left: 10px;
-  background-size: cover;
-  display: flex;
-  align-items: center;
-  height: 20px;
-  width: 20px;
-}
 
-.ar_summary {
-  display: none !important;
+.group_custom_id-colors {
+  padding: 30px 22.5px !important;
 }
-
+.group_custom_id-colors .span_price {
+  top: 0;
+  right: 0;
+  line-height: 6px;
+  position: absolute;
+  color: #747474;
+  font-size: 14px;
+}
 .group_custom_id-colors .ar_filter_header {
   width: 100% !important;
   margin: 0 !important;
 }
+.group_custom_id-colors .ar_filter .span_price {
+  top: 0;
+  right: 0;
+  line-height: 6px;
+  transform: translateX(-50%);
+  position: absolute;
+  color: #747474;
+  font-size: 14px;
+}
 .group_custom_id-colors .ar_filter_caption {
   display: flex;
-  width: auto !important;
 }
 .group_custom_id-colors .ar_filter_caption::after {
   content: url(https://3d.ferlabikes.info/wp-content/uploads/2024/11/ph_info-light.svg) !important;
@@ -407,33 +705,30 @@ body {
   background-color: black;
 }
 .group_custom_id-colors .type_select {
-  flex-wrap: wrap !important;
-  column-gap: 0 !important;
-}
-.group_custom_id-colors .type_select .ar_option_description_tooltip {
-  content: url(https://3d.ferlabikes.info/wp-content/uploads/2024/11/ph_info-light.svg) !important;
-  position: absolute !important;
-  top: 0 !important;
-  right: 0 !important;
-  cursor: pointer;
-  z-index: 1 !important;
-  transform: translate(-45%, 65%) !important;
+  display: grid !important;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 24px !important;
 }
 .group_custom_id-colors .type_select > .active {
-  border: 2px solid rgb(255, 255, 255);
-  box-shadow: 0 0 25px 10px rgb(255, 255, 255);
+  border: 1px solid rgb(255, 255, 255);
+  box-shadow: 0px 2px 10px 4px rgba(249, 56, 34, 0.768627451) !important;
 }
 .group_custom_id-colors .type_select > .active::after {
   content: "";
   position: absolute;
-  bottom: -3px;
+  bottom: -4px;
   display: flex;
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  border: 1px solid rgba(249, 56, 34, 0.368627451);
+  border: 1px solid rgb(249, 56, 34);
+}
+.group_custom_id-colors .type_select .active + .option {
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.1490196078);
+  backdrop-filter: blur(10px);
 }
 .group_custom_id-colors .type_select .option {
+  margin: 0 !important;
   border-radius: 50%;
   position: relative;
   box-sizing: border-box;
@@ -441,20 +736,235 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between !important;
-  height: 182px;
+  height: 180px;
   flex-direction: column-reverse !important;
-  width: 34px !important;
-  height: 34px !important;
+  width: 30px !important;
+  height: 30px !important;
   transition: all 0.3s;
-}
-.group_custom_id-colors .type_select .option:hover {
-  opacity: 0.6;
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.1490196078);
 }
 .group_custom_id-colors .type_select .option .customer_value_input {
   display: none !important;
 }
 .group_custom_id-colors .type_select .option .component_title {
   display: none !important;
+}
+
+.configurator3d_configurator_auth .ar_filter {
+  visibility: hidden;
+}
+
+.configurator3d_configurator_auth {
+  font-family: "Visby Round CF", sans-serif !important;
+}
+.configurator3d_configurator_auth_title {
+  width: 100%;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  margin-bottom: 30px;
+  margin-top: 80px;
+}
+.configurator3d_configurator_auth .ar_model_viewer {
+  width: 600px !important;
+  height: 450px !important;
+}
+.configurator3d_configurator_auth .ar_model_viewer::before {
+  color: #BDBDBD;
+  background-image: url(https://3d.ferlabikes.info/wp-content/uploads/2024/11/solar_share-linear.svg);
+}
+.configurator3d_configurator_auth .ar_model_viewer::after {
+  color: #BDBDBD;
+  background-image: url(https://3d.ferlabikes.info/wp-content/uploads/2024/11/mynaui_ar.svg);
+}
+.configurator3d_configurator_auth form {
+  z-index: 1;
+  box-sizing: content-box;
+  background-color: transparent;
+  width: 345px;
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background-color: #FFFFFF;
+  padding-right: 32px;
+}
+.configurator3d_configurator_auth form::before {
+  content: "Ferla Vendor Bike";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #BDBDBD;
+  margin: 0 !important;
+  font-family: Visby Round CF !important;
+  font-size: 28px !important;
+  font-weight: 600 !important;
+  line-height: 33.6px !important;
+  letter-spacing: 0.02em !important;
+  text-align: center !important;
+  text-underline-position: from-font !important;
+  text-decoration-skip-ink: none !important;
+}
+.configurator3d_configurator_auth form input:not(:last-child) {
+  margin-bottom: 20px;
+}
+.configurator3d_configurator_auth form input {
+  font-family: Visby Round CF;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 14.8px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  justify-content: left;
+  box-sizing: border-box;
+  width: 100%;
+  height: Fixed 42px px;
+  padding: 12.5px 20px;
+  gap: 20px;
+  border-radius: 5px;
+  border: 1px 0px 0px 0px;
+  opacity: 0px;
+  border: 1px solid #747474;
+  outline: 0;
+  transition: all 0.3s;
+}
+.configurator3d_configurator_auth form input:focus {
+  background-color: rgba(17, 17, 17, 0.05);
+  border: 1px solid black;
+}
+.configurator3d_configurator_auth form input:hover {
+  background-color: rgba(17, 17, 17, 0.05);
+}
+.configurator3d_configurator_auth form input:nth-last-of-type(2) {
+  width: 18px;
+  height: 18px;
+  margin-bottom: 12px !important;
+}
+.configurator3d_configurator_auth form input:last-child {
+  display: flex;
+  position: relative;
+  border: none !important;
+  width: 100%;
+  height: auto;
+  gap: 10px;
+  border-radius: 5px 5px 24px 5px;
+  opacity: 0px;
+  background-color: #747474;
+  color: #FFFFFF;
+  text-align: center;
+  transition: all 0.3s;
+}
+.configurator3d_configurator_auth form input:last-child:hover {
+  opacity: 0.8;
+}
+.configurator3d_configurator_auth form input:last-child:focus {
+  opacity: 0.4;
+}
+.configurator3d_configurator_auth form label {
+  display: flex;
+  padding-left: 32px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16.8px;
+  text-align: left;
+  transform: translateY(-100%);
+}
+.configurator3d_configurator_auth .sum-button_price {
+  color: #BDBDBD !important;
+}
+.configurator3d_configurator_auth .sum-button_button {
+  background-color: #BDBDBD !important;
+  pointer-events: none !important;
+}
+
+.sum-button {
+  cursor: pointer;
+  z-index: 1111;
+  width: 345px;
+  height: 82px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-right: 32px;
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  box-shadow: -2px 2px 10px 0px rgba(181, 180, 180, 0.2509803922);
+  box-shadow: 2px -2px 10px 0px rgba(181, 180, 180, 0.2509803922);
+  display: flex;
+  padding: 20px;
+  align-items: center;
+  justify-content: space-between;
+}
+.sum-button_price {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 28.8px;
+  letter-spacing: 0.02em;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #111111;
+}
+.sum-button_button {
+  width: Fixed 160px px;
+  height: Fixed 42px px;
+  padding: 11.5px 42px;
+  background-color: #111111;
+  border-radius: 5px 5px 24px 5px;
+  color: #FFFFFF;
+  transition: all 0.3s;
+}
+.sum-button_button:hover {
+  opacity: 0.8;
+}
+
+#content {
+  position: relative;
+  padding: 0 10px 0 40px;
+}
+
+@media (min-width: 1200px) {
+  .page-header .entry-title,
+  .site-footer .footer-inner,
+  .site-footer:not(.dynamic-footer),
+  .site-header .header-inner,
+  .site-header:not(.dynamic-header),
+  body:not([class*=elementor-page-]) .site-main {
+    max-width: 1none !important;
+  }
+}
+@media (min-width: 992px) {
+  .page-header .entry-title,
+  .site-footer .footer-inner,
+  .site-footer:not(.dynamic-footer),
+  .site-header .header-inner,
+  .site-header:not(.dynamic-header),
+  body:not([class*=elementor-page-]) .site-main {
+    max-width: 1none !important;
+  }
+}
+@media (min-width: 768px) {
+  .page-header .entry-title,
+  .site-footer .footer-inner,
+  .site-footer:not(.dynamic-footer),
+  .site-header .header-inner,
+  .site-header:not(.dynamic-header),
+  body:not([class*=elementor-page-]) .site-main {
+    max-width: none !important;
+  }
+}
+@media (min-width: 576px) {
+  .page-header .entry-title,
+  .site-footer .footer-inner,
+  .site-footer:not(.dynamic-footer),
+  .site-header .header-inner,
+  .site-header:not(.dynamic-header),
+  body:not([class*=elementor-page-]) .site-main {
+    max-width: none !important;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */
