@@ -10,871 +10,1125 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            function listenerFocusOptions() {
-                const groupWheelsOptions = document
-                    .getElementsByClassName('group_custom_id-Wheels')[0]
-                    .getElementsByClassName('ar_filter_options')[0];
+            const allPopInfo = document.getElementsByClassName('ar_option_description_tooltip');
 
-                // Проходимо по всім опціям у контейнері
-                for (const option of groupWheelsOptions.children) { // Використовуємо `children` для перебору
-                    // Знаходимо клас, який починається з "custom_id-"
-                    const customIdClass = Array.from(option.classList).find(cls => cls.startsWith('custom_id-'));
+            Array.from(allPopInfo).forEach(pop => {
 
-                    if (customIdClass) {
-                        const value = customIdClass.split('-')[1];
-                        console.log(value);
+                pop.addEventListener('click', () => {
+                    const arFilter = document.querySelector('.configurator3d_post');
+                    const text = pop.nextSibling.nextSibling.textContent;
 
-                        option.addEventListener('click', () => {
-                            console.log(`Option clicked: ${value}`);
+                    // Додаємо текст і клас для стилізації
+                    arFilter.setAttribute('data-text', text);
+                    arFilter.classList.add('show-content');
 
-                        });
-                    } else {
-                        console.warn('Option without custom_id class:', option);
-                    }
-                }
-            }
-
-            listenerFocusOptions();
+                    // Додаємо подію для видалення класу при кліку
+                    arFilter.addEventListener('click', (e) => {
+                        if (e.target === arFilter) {
+                            // Перевіряємо, що клік саме в область елемента
+                            arFilter.classList.remove('show-content');
+                            arFilter.removeAttribute('data-text');
+                        }
+                    });
+                });
+            })
         })
     </script>
 </head>
 
 <body>
-    <div class="ar_filter" id="ar_filter">
-        <div id="ar_filter_toggle" class="ar_filter_toggle"></div>
-        <div class="ar_filter_group ar_filter_group_13 group_custom_id-colors" id="group-13" data-assign_group="">
-            <div class="ar_filter_header">
-                <div class="ar_filter_number">00</div>
-                <div class="ar_filter_caption">Color<span class="span_price"><br>Included</span></div>
-                <div class="ar_filter_group_toggle"></div>
-                <div class="ar_filter_options_result_item_in_header"><span
-                        class="ar_filter_options_result_name_in_header">green</span><span
-                        class="ar_filter_options_result_price_in_header"></span></div>
+    <div class="page-content no-loader">
+        <div class="configurator3d_post product-type-3dmodel" style="pointer-events: auto;"><input type="hidden"
+                id="ar_model_url" name="vr_model_url"
+                value="https://3d.ferlabikes.info/wp-content/uploads/2024/11/Grand_Cart_Wood-FIX_THREE.gltf">
+            <div class="ar_conf_container">
+                <div class="ar_model_viewer" id="ar_model_viewer">
+                    <canvas class="ar_model_view" id="ar_model_view" data-engine="three.js r146" width="667"
+                        height="368" style="touch-action: none;"></canvas>
+                    <div class="viewer-loader" id="viewer-loader" style="display: none">
+                        <div class="viewer-loader-img"></div>
+                    </div>
+                </div>
+                <div class="exclude_item exclude_5-3 summary entry-summary" data-target_group="5"
+                    data-target_option="1"></div>
+                <div class="share-button">share</div>
+                <div class="ar-button">ar</div>
             </div>
-            <div class="ar_group_config">
+            <div class="exclude_item exclude_5-1" data-target_group="5" data-target_option="3"></div>
+
+            <div class="exclude_group exclude_6-0" data-target_group="12"></div>
+            <div class="exclude_group exclude_6-1" data-target_group="10"></div>
+            <div class="exclude_group exclude_6-1" data-target_group="12"></div>
+            <div class="include_group include_7-1" data-target_group="8"></div>
+            <div class="exclude_group exclude_7-2" data-target_group="11"></div>
+
+            <div class="ar_filter" id="ar_filter">
+                <div id="ar_filter_toggle" class="ar_filter_toggle"></div>
+                <div class="ar_filter_group ar_filter_group_13 group_custom_id-colors" id="group-13"
+                    data-assign_group="">
+                    <div class="ar_filter_header">
+                        <div class="ar_filter_number">00</div>
+                        <div class="ar_filter_caption">Color<span class="span_price"><br>Included</span></div>
+                        <div class="ar_filter_group_toggle"></div>
+                        <div class="ar_filter_options_result_item_in_header"><span
+                                class="ar_filter_options_result_name_in_header">green</span><span
+                                class="ar_filter_options_result_price_in_header"></span></div>
+                    </div>
+                    <div class="ar_group_config">
+                    </div>
+
+                    <div class="ar_filter_inputs type_select">
+                    </div>
+                    <div class="ar_filter_options type_select" data-default="1">
+                        <div class="option option_13-0 custom_id-#d92809" data-group_id="13" data-component_id="0"
+                            data-price="0" data-exclude_items="" data-value="red" data-product_id=""
+                            style="background-color: rgb(217, 40, 9);">
+                            <div class="image ar_no_image"></div>
+                            <div class="component_options" id="options_13_0">
+                            </div>
+
+
+                            <div class="component_title">red<span class="span_price"><br>Included</span></div>
+
+
+                        </div>
+                        <div class="option option_13-1 active custom_id-#60b362" data-group_id="13"
+                            data-component_id="1" data-price="0" data-exclude_items="" data-value="green"
+                            data-product_id="">
+                            <div class="image ar_no_image"></div>
+                            <div class="component_options" id="options_13_1">
+                            </div>
+
+
+                            <div class="component_title">green<span class="span_price"><br>Included</span></div>
+
+
+                        </div>
+                        <div class="option option_13-2 custom_id-#343634" data-group_id="13" data-component_id="2"
+                            data-price="0" data-exclude_items="" data-value="black" data-product_id=""
+                            style="background-color: rgb(52, 54, 52);">
+                            <div class="image ar_no_image"></div>
+                            <div class="component_options" id="options_13_2">
+                            </div>
+
+
+                            <div class="component_title">black<span class="span_price"><br>Included</span></div>
+
+
+                        </div>
+                        <div class="option option_13-3 custom_id-#ededed" data-group_id="13" data-component_id="3"
+                            data-price="0" data-exclude_items="" data-value="white" data-product_id=""
+                            style="background-color: rgb(237, 237, 237);">
+                            <div class="image ar_no_image"></div>
+                            <div class="component_options" id="options_13_3">
+                            </div>
+
+
+                            <div class="component_title">white<span class="span_price"><br>Included</span></div>
+
+
+                        </div>
+                        <div class="option option_13-4 custom_id-#94579c" data-group_id="13" data-component_id="4"
+                            data-price="0" data-exclude_items="" data-value="purple" data-product_id=""
+                            style="background-color: rgb(148, 87, 156);">
+                            <div class="image ar_no_image"></div>
+                            <div class="component_options" id="options_13_4">
+                            </div>
+
+
+                            <div class="component_title">purple<span class="span_price"><br>Included</span></div>
+
+
+                        </div>
+                        <div class="option option_13-5 custom_id-#f3d5f7" data-group_id="13" data-component_id="5"
+                            data-price="0" data-exclude_items="" data-value="pink" data-product_id=""
+                            style="background-color: rgb(243, 213, 247);">
+                            <div class="image ar_no_image"></div>
+                            <div class="component_options" id="options_13_5">
+                            </div>
+
+
+                            <div class="component_title">pink<span class="span_price"><br>Included</span></div>
+
+
+                        </div>
+                        <div class="option option_13-6 custom_id-#f5ed84" data-group_id="13" data-component_id="6"
+                            data-price="0" data-exclude_items="" data-value="yellow" data-product_id=""
+                            style="background-color: rgb(245, 237, 132);">
+                            <div class="image ar_no_image"></div>
+                            <div class="component_options" id="options_13_6">
+                            </div>
+
+
+                            <div class="component_title">yellow<span class="span_price"><br>Included</span></div>
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="ar_filter_options_result" style="display: block;">
+                        <div class="ar_filter_options_result_caption">Selected</div>
+                        <div class="ar_filter_options_result_list">
+                            <div class="ar_filter_options_result_item">
+                                <div class="ar_filter_options_result_name">green</div>
+                                <div class="ar_filter_options_result_price"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ar_filter_group ar_filter_group_2 group_custom_id-Wheels" id="group-2" data-assign_group="">
+                    <div class="ar_filter_header">
+                        <div class="ar_filter_number">01</div>
+                        <div class="ar_filter_caption">Wheels</div>
+                        <div class="ar_filter_group_toggle"></div>
+                        <div class="ar_filter_options_result_item_in_header"><span
+                                class="ar_filter_options_result_name_in_header">4 castersIncluded</span><span
+                                class="ar_filter_options_result_price_in_header"></span></div>
+                    </div>
+                    <div class="ar_group_config">
+                    </div>
+
+                    <div class="ar_filter_inputs type_select">
+                    </div>
+                    <div class="ar_filter_options type_select" data-default="0">
+                        <div class="option option_2-0 custom_id--2.419/-0.501/0.018 active" data-group_id="2"
+                            data-component_id="0" data-price="0" data-exclude_items="" data-value="4 casters"
+                            data-product_id="">
+                            <div class="ar_option_description_tooltip"></div>
+                            <div class="ar_option_description">
+                                text info 22 </div>
+                            <div class="image">
+                                <img decoding="async"
+                                    src="https://3d.ferlabikes.info/wp-content/uploads/2024/11/option2.svg">
+                            </div>
+                            <div class="component_options" id="options_2_0">
+                                <div class="option_settings option-Ferla_logo" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="2" data-name="Ferla_logo"></div>
+                                <div class="option_settings option-Ferla_logo2" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="2" data-name="Ferla_logo2"></div>
+                                <div class="option_settings option-Mesh170" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="2" data-name="Mesh170"></div>
+                                <div class="option_settings option-Mesh170_1" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="2" data-name="Mesh170_1"></div>
+                                <div class="option_settings option-Mesh170_2" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="2" data-name="Mesh170_2"></div>
+                                <div class="option_settings option-Mesh170_3" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="2" data-name="Mesh170_3"></div>
+                                <div class="option_settings option-Mesh170_4" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="2" data-name="Mesh170_4"></div>
+                                <div class="option_settings option-Mesh170_5" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="2" data-name="Mesh170_5"></div>
+                                <div class="option_settings option-Mesh002" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="2" data-name="Mesh002"></div>
+                                <div class="option_settings option-Mesh002_1" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="2" data-name="Mesh002_1"></div>
+                                <div class="option_settings option-Mesh002_2" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="2" data-name="Mesh002_2"></div>
+                                <div class="option_settings option-Mesh002_3" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="2" data-name="Mesh002_3"></div>
+                                <div class="option_settings option-Mesh002_4" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="2" data-name="Mesh002_4"></div>
+                                <div class="option_settings option-Mesh003" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="2" data-name="Mesh003"></div>
+                                <div class="option_settings option-Mesh003_1" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="2" data-name="Mesh003_1"></div>
+                                <div class="option_settings option-Mesh003_2" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="2" data-name="Mesh003_2"></div>
+                                <div class="option_settings option-Mesh003_3" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="2" data-name="Mesh003_3"></div>
+                                <div class="option_settings option-Mesh003_4" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="2" data-name="Mesh003_4"></div>
+                            </div>
+
+
+                            <div class="component_title">4 casters<span class="span_price"><br>Included</span></div>
+
+
+                        </div>
+                        <div class="option option_2-1 custom_id--2.419/-0.501/0.018" data-group_id="2"
+                            data-component_id="1" data-price="300" data-exclude_items="" data-value="2 casters"
+                            data-product_id="">
+                            <div class="ar_option_description_tooltip"></div>
+                            <div class="ar_option_description">
+                                Text info </div>
+                            <div class="image">
+                                <img decoding="async"
+                                    src="https://3d.ferlabikes.info/wp-content/uploads/2024/11/option1-1.svg">
+                            </div>
+                            <div class="component_options" id="options_2_1">
+                                <div class="option_settings option-Mesh001" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="2" data-name="Mesh001"></div>
+                                <div class="option_settings option-Mesh001_1" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="2" data-name="Mesh001_1"></div>
+                                <div class="option_settings option-Mesh001_2" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="2" data-name="Mesh001_2"></div>
+                                <div class="option_settings option-Mesh001_3" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="2" data-name="Mesh001_3"></div>
+                                <div class="option_settings option-Mesh001_4" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="2" data-name="Mesh001_4"></div>
+                                <div class="option_settings option-Ferla_logo" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="2" data-name="Ferla_logo"></div>
+                                <div class="option_settings option-Ferla_logo2" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="2" data-name="Ferla_logo2"></div>
+                                <div class="option_settings option-Mesh170" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="2" data-name="Mesh170"></div>
+                                <div class="option_settings option-Mesh170_1" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="2" data-name="Mesh170_1"></div>
+                                <div class="option_settings option-Mesh170_2" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="2" data-name="Mesh170_2"></div>
+                                <div class="option_settings option-Mesh170_3" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="2" data-name="Mesh170_3"></div>
+                                <div class="option_settings option-Mesh170_4" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="2" data-name="Mesh170_4"></div>
+                                <div class="option_settings option-Mesh170_5" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="2" data-name="Mesh170_5"></div>
+                                <div class="option_settings option-Mesh003" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="2" data-name="Mesh003"></div>
+                                <div class="option_settings option-Mesh003_1" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="2" data-name="Mesh003_1"></div>
+                                <div class="option_settings option-Mesh003_2" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="2" data-name="Mesh003_2"></div>
+                                <div class="option_settings option-Mesh003_3" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="2" data-name="Mesh003_3"></div>
+                                <div class="option_settings option-Mesh003_4" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="2" data-name="Mesh003_4"></div>
+                            </div>
+
+
+                            <div class="component_title">2 casters<span class="span_price"><br>$300</span></div>
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="ar_filter_options_result" style="display: block;">
+                        <div class="ar_filter_options_result_caption">Selected</div>
+                        <div class="ar_filter_options_result_list">
+                            <div class="ar_filter_options_result_item">
+                                <div class="ar_filter_options_result_name">4 castersIncluded</div>
+                                <div class="ar_filter_options_result_price"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ar_filter_group ar_filter_group_5 group_custom_id-branding" id="group-5"
+                    data-assign_group="">
+                    <div class="ar_filter_header">
+                        <div class="ar_filter_number">02</div>
+                        <div class="ar_filter_caption">Branding</div>
+                        <div class="ar_filter_group_toggle"></div>
+                        <div class="ar_filter_options_result_item_in_header"><span
+                                class="ar_filter_options_result_name_in_header">Logo Decal Branding$200</span><span
+                                class="ar_filter_options_result_price_in_header">(+200)</span></div>
+                    </div>
+                    <div class="ar_group_config">
+                    </div>
+
+                    <div class="ar_filter_inputs type_checkbox">
+                    </div>
+                    <div class="ar_filter_options type_checkbox type_checkbox_with_add_img" data-default="">
+                        <div class="option option_5-1 custom_id-1.873/0.162/-1.99 active" data-group_id="5"
+                            data-component_id="1" data-price="200" data-exclude_items=""
+                            data-value="Logo Decal Branding" data-product_id="">
+                            <div class="ar_option_description_tooltip"></div>
+                            <div class="ar_option_description">
+                                Ferla Vendor Bike/Tricycle was designed to create a perfect peddling machine to sell
+                                your goodsFerla Vendor Bike/Tricycle was designed to create a perfect peddling machine
+                                to sell your goodsFerla Vendor Bike/Tricycle was designed to create a perfect peddling
+                                machine to sell your goodsFerla Vendor Bike/Tricycle was designed to create a perfect
+                                peddling machine to sell your goods </div>
+                            <div class="image">
+                                <img decoding="async"
+                                    src="https://3d.ferlabikes.info/wp-content/uploads/2024/11/Logo-Decal-Branding-1.png">
+                            </div>
+                            <div class="component_options" id="options_5_1">
+                            </div>
+
+
+                            <div class="component_title">Logo Decal Branding<span class="span_price"><br>$200</span>
+                            </div>
+
+
+                        </div>
+                        <div class="option option_5-2 custom_id--1.226/1.787/-2.344" data-group_id="5"
+                            data-component_id="2" data-price="200" data-exclude_items="" data-value="LED Sign"
+                            data-product_id="">
+                            <div class="ar_option_description_tooltip"></div>
+                            <div class="ar_option_description">
+                                Text info </div>
+                            <div class="image">
+                                <img decoding="async"
+                                    src="https://3d.ferlabikes.info/wp-content/uploads/2024/11/Led-Sign.png">
+                            </div>
+                            <div class="component_options" id="options_5_2">
+                                <div class="option_settings option-Mesh" data-color="" data-disable_color="" data-map=""
+                                    data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="5"
+                                    data-name="Mesh"></div>
+                                <div class="option_settings option-Mesh_1" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="5" data-name="Mesh_1"></div>
+                            </div>
+
+
+                            <div class="component_title">LED Sign<span class="span_price"><br>$200</span></div>
+
+
+                        </div>
+                        <div class="option option_5-3 custom_id--2.591/0.549/-1.479 disabled" data-group_id="5"
+                            data-component_id="3" data-price="0" data-exclude_items="" data-value="Full Wrap"
+                            data-product_id="">
+                            <div class="ar_option_description_tooltip"></div>
+                            <div class="ar_option_description">
+                                Text info </div>
+                            <div class="image">
+                                <img decoding="async"
+                                    src="https://3d.ferlabikes.info/wp-content/uploads/2024/11/Full-Wrap.png">
+                            </div>
+                            <div class="component_options" id="options_5_3">
+                            </div>
+
+
+                            <div class="component_title">Full Wrap<span class="span_price"><br>Included</span></div>
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="ar_filter_options_result" style="display: block;">
+                        <div class="ar_filter_options_result_caption">Selected</div>
+                        <div class="ar_filter_options_result_list">
+                            <div class="ar_filter_options_result_item">
+                                <div class="ar_filter_options_result_name">Logo Decal Branding$200</div>
+                                <div class="ar_filter_options_result_price">200</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ar_filter_group ar_filter_group_6" id="group-6" data-assign_group="">
+                    <div class="ar_filter_header">
+                        <div class="ar_filter_number">03</div>
+                        <div class="ar_filter_caption">Refregiration</div>
+                        <div class="ar_filter_group_toggle"></div>
+                        <div class="ar_filter_options_result_item_in_header"><span
+                                class="ar_filter_options_result_name_in_header">No Refrigiration</span><span
+                                class="ar_filter_options_result_price_in_header"></span></div>
+                    </div>
+                    <div class="ar_group_config">
+                    </div>
+
+                    <div class="ar_filter_inputs type_select_no_photo">
+                    </div>
+                    <div class="ar_filter_options type_select_no_photo" data-default="2">
+                        <div class="option option_6-2 active" data-group_id="6" data-component_id="2" data-price="0"
+                            data-exclude_items="" data-value="No Refrigiration" data-product_id="">
+                            <div class="ar_option_description_tooltip"></div>
+                            <div class="ar_option_description">
+                                Text info </div>
+                            <div class="component_options" id="options_6_2">
+                            </div>
+
+
+                            <div class="component_title">No Refrigiration<span class="span_price"><br>Included</span>
+                            </div>
+
+
+                        </div>
+                        <div class="option option_6-0 custom_id--1.366/0.906/0.01" data-group_id="6"
+                            data-component_id="0" data-price="1200" data-exclude_items="" data-value="Compact"
+                            data-product_id="">
+                            <div class="ar_option_description_tooltip"></div>
+                            <div class="ar_option_description">
+                                Text info </div>
+                            <div class="component_options" id="options_6_0">
+                                <div class="option_settings option-Mesh183" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="6" data-name="Mesh183"></div>
+                                <div class="option_settings option-Mesh183_1" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="6" data-name="Mesh183_1"></div>
+                                <div class="option_settings option-Mesh183_2" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="6" data-name="Mesh183_2"></div>
+                            </div>
+
+
+                            <div class="component_title">Compact<span class="span_price"><br>$1200</span></div>
+
+
+                        </div>
+                        <div class="option option_6-1 custom_id--1.366/0.906/0.01" data-group_id="6"
+                            data-component_id="1" data-price="1600" data-exclude_items="" data-value="Large"
+                            data-product_id="">
+                            <div class="ar_option_description_tooltip"></div>
+                            <div class="ar_option_description">
+                                Text info </div>
+                            <div class="component_options" id="options_6_1">
+                                <div class="option_settings option-Mesh184" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="6" data-name="Mesh184"></div>
+                                <div class="option_settings option-Mesh184_1" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="6" data-name="Mesh184_1"></div>
+                                <div class="option_settings option-Mesh184_2" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="6" data-name="Mesh184_2"></div>
+                            </div>
+
+
+                            <div class="component_title">Large<span class="span_price"><br>$1600</span></div>
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="ar_filter_options_result" style="display: block;">
+                        <div class="ar_filter_options_result_caption">Selected</div>
+                        <div class="ar_filter_options_result_list">
+                            <div class="ar_filter_options_result_item">
+                                <div class="ar_filter_options_result_name">No Refrigiration</div>
+                                <div class="ar_filter_options_result_price"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ar_filter_group ar_filter_group_7" id="group-7" data-assign_group="">
+                    <div class="ar_filter_header">
+                        <div class="ar_filter_number">04</div>
+                        <div class="ar_filter_caption">Add-ons</div>
+                        <div class="ar_filter_group_toggle"></div>
+                        <div class="ar_filter_options_result_item_in_header"><span
+                                class="ar_filter_options_result_name_in_header"></span><span
+                                class="ar_filter_options_result_price_in_header"></span></div>
+                    </div>
+                    <div class="ar_group_config">
+                    </div>
+
+                    <div class="ar_filter_inputs type_checkbox">
+                    </div>
+                    <div class="ar_filter_options type_checkbox" data-default="">
+                        <div class="option option_7-1 custom_id--0.561/0.409/1.485" data-group_id="7"
+                            data-component_id="1" data-price="1200" data-exclude_items="" data-value="Tap/Cold Brew"
+                            data-product_id="">
+                            <div class="image">
+                                <img decoding="async"
+                                    src="https://3d.ferlabikes.info/wp-content/uploads/2024/11/Tap-Cold-Brew.png">
+                            </div>
+                            <div class="component_options" id="options_7_1">
+                                <div class="option_settings option-Mesh008" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="7" data-name="Mesh008"></div>
+                                <div class="option_settings option-Mesh008_1" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="7" data-name="Mesh008_1"></div>
+                            </div>
+
+
+                            <div class="component_title">Tap/Cold Brew<span class="span_price"><br>$1200</span></div>
+
+
+                        </div>
+                        <div class="option option_7-2 custom_id--0.561/0.409/1.485" data-group_id="7"
+                            data-component_id="2" data-price="500" data-exclude_items="" data-value="Sink/Hot Water"
+                            data-product_id="">
+                            <div class="image">
+                                <img decoding="async"
+                                    src="https://3d.ferlabikes.info/wp-content/uploads/2024/11/Sink.png">
+                            </div>
+                            <div class="component_options" id="options_7_2">
+                                <div class="option_settings option-Sink" data-color="" data-disable_color="" data-map=""
+                                    data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="7"
+                                    data-name="Sink"></div>
+                                <div class="option_settings option-Tap" data-color="" data-disable_color="" data-map=""
+                                    data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="7"
+                                    data-name="Tap"></div>
+                            </div>
+
+
+                            <div class="component_title">Sink/Hot Water<span class="span_price"><br>$500</span></div>
+
+
+                        </div>
+                        <div class="option option_7-3 custom_id--1.345/0.935/-1.681" data-group_id="7"
+                            data-component_id="3" data-price="200" data-exclude_items=""
+                            data-value="Extendable Serving Table" data-product_id="">
+                            <div class="image">
+                                <img decoding="async"
+                                    src="https://3d.ferlabikes.info/wp-content/uploads/2024/11/Extendable-Serving-Table.png">
+                            </div>
+                            <div class="component_options" id="options_7_3">
+                                <div class="option_settings option-Mesh014" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="7" data-name="Mesh014"></div>
+                                <div class="option_settings option-Mesh014_1" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="7" data-name="Mesh014_1"></div>
+                                <div class="option_settings option-Mesh014_2" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="7" data-name="Mesh014_2"></div>
+                            </div>
+
+
+                            <div class="component_title">Extendable Serving Table<span
+                                    class="span_price"><br>$200</span></div>
+
+
+                        </div>
+                        <div class="option option_7-4 custom_id--2.064/2.222/-0.003" data-group_id="7"
+                            data-component_id="4" data-price="1000" data-exclude_items="" data-value="Solar Panel"
+                            data-product_id="">
+                            <div class="image">
+                                <img decoding="async"
+                                    src="https://3d.ferlabikes.info/wp-content/uploads/2024/11/solar-panel.png">
+                            </div>
+                            <div class="component_options" id="options_7_4">
+                                <div class="option_settings option-Mesh007" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="7" data-name="Mesh007"></div>
+                                <div class="option_settings option-Mesh007_1" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="7" data-name="Mesh007_1"></div>
+                            </div>
+
+
+                            <div class="component_title">Solar Panel<span class="span_price"><br>$1000</span></div>
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="ar_filter_options_result" style="display: none">
+                        <div class="ar_filter_options_result_caption">Selected</div>
+                        <div class="ar_filter_options_result_list">
+                        </div>
+                    </div>
+                </div>
+                <div class="ar_filter_group ar_filter_group_8 group_custom_id-without_photo" id="group-8"
+                    data-assign_group="">
+                    <div class="ar_filter_header">
+                        <div class="ar_filter_number">05</div>
+                        <div class="ar_filter_caption">Instant Nitrogeration</div>
+                        <div class="ar_filter_group_toggle"></div>
+                        <div class="ar_filter_options_result_item_in_header"><span
+                                class="ar_filter_options_result_name_in_header"></span><span
+                                class="ar_filter_options_result_price_in_header"></span></div>
+                    </div>
+                    <div class="ar_group_config">
+                    </div>
+
+                    <div class="ar_filter_inputs type_checkbox">
+                    </div>
+                    <div class="ar_filter_options type_checkbox" data-default="">
+                        <div class="option option_8-0" data-group_id="8" data-component_id="0" data-price="0"
+                            data-exclude_items="" data-value="Instant Nitrogeration" data-product_id="">
+                            <div class="image ar_no_image"></div>
+                            <div class="component_options" id="options_8_0">
+                            </div>
+
+
+                            <div class="component_title">Instant Nitrogeration<span
+                                    class="span_price"><br>Included</span></div>
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="ar_filter_options_result" style="display: none">
+                        <div class="ar_filter_options_result_caption">Selected</div>
+                        <div class="ar_filter_options_result_list">
+                        </div>
+                    </div>
+                </div>
+                <div class="ar_filter_group ar_filter_group_3" id="group-3" data-assign_group="">
+                    <div class="ar_filter_header">
+                        <div class="ar_filter_number">06</div>
+                        <div class="ar_filter_caption">Equipment</div>
+                        <div class="ar_filter_group_toggle"></div>
+                        <div class="ar_filter_options_result_item_in_header"><span
+                                class="ar_filter_options_result_name_in_header"></span><span
+                                class="ar_filter_options_result_price_in_header"></span></div>
+                    </div>
+                    <div class="ar_group_config">
+                    </div>
+
+                    <div class="ar_filter_inputs type_select">
+                    </div>
+                    <div class="ar_filter_options type_select" data-default="">
+                        <div class="option option_3-0" data-group_id="3" data-component_id="0" data-price="0"
+                            data-exclude_items="" data-value="Ecoflow" data-product_id="">
+                            <div class="image">
+                                <img decoding="async"
+                                    src="https://3d.ferlabikes.info/wp-content/uploads/2024/11/EcoFlow.png">
+                            </div>
+                            <div class="component_options" id="options_3_0">
+                            </div>
+
+
+                            <div class="component_title">Ecoflow<span class="span_price"><br>Included</span></div>
+
+
+                        </div>
+                        <div class="option option_3-1" data-group_id="3" data-component_id="1" data-price="0"
+                            data-exclude_items="" data-value="Iceco" data-product_id="">
+                            <div class="image">
+                                <img decoding="async"
+                                    src="https://3d.ferlabikes.info/wp-content/uploads/2024/11/Iceco.png">
+                            </div>
+                            <div class="component_options" id="options_3_1">
+                            </div>
+
+
+                            <div class="component_title">Iceco<span class="span_price"><br>Included</span></div>
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="ar_filter_options_result" style="display: none">
+                        <div class="ar_filter_options_result_caption">Selected</div>
+                        <div class="ar_filter_options_result_list">
+                        </div>
+                    </div>
+                </div>
+                <div class="ar_filter_group ar_filter_group_4 group_custom_id-without_photo" id="group-4"
+                    data-assign_group="">
+                    <div class="ar_filter_header">
+                        <div class="ar_filter_number">07</div>
+                        <div class="ar_filter_caption">Espresso Machine</div>
+                        <div class="ar_filter_group_toggle"></div>
+                        <div class="ar_filter_options_result_item_in_header"><span
+                                class="ar_filter_options_result_name_in_header"></span><span
+                                class="ar_filter_options_result_price_in_header"></span></div>
+                    </div>
+                    <div class="ar_group_config">
+                    </div>
+
+                    <div class="ar_filter_inputs type_checkbox">
+                    </div>
+                    <div class="ar_filter_options type_checkbox" data-default="">
+                        <div class="option option_4-0" data-group_id="4" data-component_id="0" data-price="0"
+                            data-exclude_items="" data-value="Espresso Machine" data-product_id="">
+                            <div class="image ar_no_image"></div>
+                            <div class="component_options" id="options_4_0">
+                            </div>
+
+
+                            <div class="component_title">Espresso Machine<span class="span_price"><br>Included</span>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="ar_filter_options_result" style="display: none">
+                        <div class="ar_filter_options_result_caption">Selected</div>
+                        <div class="ar_filter_options_result_list">
+                        </div>
+                    </div>
+                </div>
+                <div class="ar_filter_group ar_filter_group_9 group_custom_id-last_group" id="group-9"
+                    data-assign_group="">
+                    <div class="ar_filter_header">
+                        <div class="ar_filter_number">08</div>
+                        <div class="ar_filter_caption">Assembly</div>
+                        <div class="ar_filter_group_toggle"></div>
+                        <div class="ar_filter_options_result_item_in_header"><span
+                                class="ar_filter_options_result_name_in_header">Assembly</span><span
+                                class="ar_filter_options_result_price_in_header">(+400)</span></div>
+                    </div>
+                    <div class="ar_group_config">
+                    </div>
+
+                    <div class="ar_filter_inputs type_select_no_photo">
+                    </div>
+                    <div class="ar_filter_options type_select_no_photo" data-default="0">
+                        <div class="option option_9-0 active" data-group_id="9" data-component_id="0" data-price="400"
+                            data-exclude_items="" data-value="Assembly" data-product_id="">
+                            <div class="component_options" id="options_9_0">
+                            </div>
+
+
+                            <div class="component_title">Assembly<span class="span_price"><br>$400</span></div>
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="ar_filter_options_result" style="display: block;">
+                        <div class="ar_filter_options_result_caption">Selected</div>
+                        <div class="ar_filter_options_result_list">
+                            <div class="ar_filter_options_result_item">
+                                <div class="ar_filter_options_result_name">Assembly</div>
+                                <div class="ar_filter_options_result_price">400</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ar_filter_group ar_filter_group_10 group_custom_id-hidden" id="group-10"
+                    data-assign_group="" style="display: none;">
+                    <div class="ar_filter_header">
+                        <div class="ar_filter_number">10</div>
+                        <div class="ar_filter_caption">Cup Holders and Cash Drawer (hidden)</div>
+                        <div class="ar_filter_group_toggle"></div>
+                        <div class="ar_filter_options_result_item_in_header"><span
+                                class="ar_filter_options_result_name_in_header">Cup Holders</span><span
+                                class="ar_filter_options_result_price_in_header"></span></div>
+                    </div>
+                    <div class="ar_filter_description">hidden_from_DOM</div>
+                    <div class="ar_group_config">
+                    </div>
+
+                    <div class="ar_filter_inputs type_checkbox">
+                    </div>
+                    <div class="ar_filter_options type_checkbox" data-default="0">
+                        <div class="option option_10-0 active custom_id-cup_holder" data-group_id="10"
+                            data-component_id="0" data-price="0" data-exclude_items="" data-value="Cup Holders"
+                            data-product_id="">
+                            <div class="image">
+                                <img decoding="async"
+                                    src="https://3d.ferlabikes.info/wp-content/uploads/2024/11/option1.svg">
+                            </div>
+                            <div class="component_options" id="options_10_0">
+                                <div class="option_settings option-cup_holder" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="10" data-name="cup_holder"></div>
+                                <div class="option_settings option-cup_holder2" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="10" data-name="cup_holder2"></div>
+                                <div class="option_settings option-Mesh019" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="10" data-name="Mesh019"></div>
+                                <div class="option_settings option-Mesh019_1" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="10" data-name="Mesh019_1"></div>
+                            </div>
+
+
+                            <div class="component_title">Cup Holders<span class="span_price"><br>Included</span></div>
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="ar_filter_options_result" style="display: block;">
+                        <div class="ar_filter_options_result_caption">Selected</div>
+                        <div class="ar_filter_options_result_list">
+                            <div class="ar_filter_options_result_item">
+                                <div class="ar_filter_options_result_name">Cup Holders</div>
+                                <div class="ar_filter_options_result_price"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ar_filter_group ar_filter_group_11 group_custom_id-hidden" id="group-11"
+                    data-assign_group="" style="display: none;">
+                    <div class="ar_filter_header">
+                        <div class="ar_filter_number">10</div>
+                        <div class="ar_filter_caption">Sink top (hidden)</div>
+                        <div class="ar_filter_group_toggle"></div>
+                        <div class="ar_filter_options_result_item_in_header"><span
+                                class="ar_filter_options_result_name_in_header">Sink top</span><span
+                                class="ar_filter_options_result_price_in_header"></span></div>
+                    </div>
+                    <div class="ar_filter_description">hidden_from_DOM</div>
+                    <div class="ar_group_config">
+                    </div>
+
+                    <div class="ar_filter_inputs type_select">
+                    </div>
+                    <div class="ar_filter_options type_select" data-default="0">
+                        <div class="option option_11-0 active" data-group_id="11" data-component_id="0" data-price="0"
+                            data-exclude_items="" data-value="Sink top" data-product_id="">
+                            <div class="image ar_no_image"></div>
+                            <div class="component_options" id="options_11_0">
+                                <div class="option_settings option-Fill_sink_wood" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="11" data-name="Fill_sink_wood"></div>
+                            </div>
+
+
+                            <div class="component_title">Sink top<span class="span_price"><br>Included</span></div>
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="ar_filter_options_result" style="display: block;">
+                        <div class="ar_filter_options_result_caption">Selected</div>
+                        <div class="ar_filter_options_result_list">
+                            <div class="ar_filter_options_result_item">
+                                <div class="ar_filter_options_result_name">Sink top</div>
+                                <div class="ar_filter_options_result_price"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ar_filter_group ar_filter_group_12 group_custom_id-hidden" id="group-12"
+                    data-assign_group="" style="display: none;">
+                    <div class="ar_filter_header">
+                        <div class="ar_filter_number">10</div>
+                        <div class="ar_filter_caption">Clear top (hidden)</div>
+                        <div class="ar_filter_group_toggle"></div>
+                        <div class="ar_filter_options_result_item_in_header"><span
+                                class="ar_filter_options_result_name_in_header">Clear top</span><span
+                                class="ar_filter_options_result_price_in_header"></span></div>
+                    </div>
+                    <div class="ar_filter_description">hidden_from_DOM</div>
+                    <div class="ar_group_config">
+                    </div>
+
+                    <div class="ar_filter_inputs type_select">
+                    </div>
+                    <div class="ar_filter_options type_select" data-default="0">
+                        <div class="option option_12-0 active" data-group_id="12" data-component_id="0" data-price="0"
+                            data-exclude_items="" data-value="Clear top" data-product_id="">
+                            <div class="image ar_no_image"></div>
+                            <div class="component_options" id="options_12_0">
+                                <div class="option_settings option-Clear_top_wood" data-color="" data-disable_color=""
+                                    data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
+                                    data-group_id="12" data-name="Clear_top_wood"></div>
+                            </div>
+
+
+                            <div class="component_title">Clear top<span class="span_price"><br>Included</span></div>
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="ar_filter_options_result" style="display: block;">
+                        <div class="ar_filter_options_result_caption">Selected</div>
+                        <div class="ar_filter_options_result_list">
+                            <div class="ar_filter_options_result_item">
+                                <div class="ar_filter_options_result_name">Clear top</div>
+                                <div class="ar_filter_options_result_price"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ar_filter_group ar_filter_group_14 group_custom_id-hidden" id="group-14"
+                    data-assign_group="" style="display: none;">
+                    <div class="ar_filter_header">
+                        <div class="ar_filter_number">11</div>
+                        <div class="ar_filter_caption">Base Price (hidden)</div>
+                        <div class="ar_filter_group_toggle"></div>
+                        <div class="ar_filter_options_result_item_in_header"><span
+                                class="ar_filter_options_result_name_in_header">base price</span><span
+                                class="ar_filter_options_result_price_in_header">(+4999)</span></div>
+                    </div>
+                    <div class="ar_filter_description">hidden_from_DOM</div>
+                    <div class="ar_group_config">
+                    </div>
+
+                    <div class="ar_filter_inputs type_select">
+                    </div>
+                    <div class="ar_filter_options type_select" data-default="0">
+                        <div class="option option_14-0 active" data-group_id="14" data-component_id="0"
+                            data-price="4999" data-exclude_items="" data-value="base price" data-product_id="">
+                            <div class="image ar_no_image"></div>
+                            <div class="component_options" id="options_14_0">
+                            </div>
+
+
+                            <div class="component_title">base price<span class="span_price"><br>$4999</span></div>
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="ar_filter_options_result" style="display: block;">
+                        <div class="ar_filter_options_result_caption">Selected</div>
+                        <div class="ar_filter_options_result_list">
+                            <div class="ar_filter_options_result_item">
+                                <div class="ar_filter_options_result_name">base price</div>
+                                <div class="ar_filter_options_result_price">4999</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="additional-info hide-visible">
+                <div class="add-info_close"></div>
+            </div>
+            <div class="sum-button">
+                <div class="sum-button_price">$5,599</div>
+                <div class="sum-button_button">Summary</div>
             </div>
 
-            <div class="ar_filter_inputs type_select">
+
+            <div class="ar_summary" style="display: block;">
+                <div class="ar_summary_caption">Summary</div>
+                <div class="ar_summary_list">
+                    <div class="ar_summary_list_item">
+                        <div class="ar_summary_list_group">ColorIncluded</div>
+                        <div class="ar_summary_list_components">
+                            <div class="ar_summary_list_components_component">
+                                <div class="ar_summary_list_components_component_title">greenIncluded</div>
+                                <div class="ar_summary_list_components_component_price"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ar_summary_list_item">
+                        <div class="ar_summary_list_group">Wheels</div>
+                        <div class="ar_summary_list_components">
+                            <div class="ar_summary_list_components_component">
+                                <div class="ar_summary_list_components_component_title">4 castersIncluded</div>
+                                <div class="ar_summary_list_components_component_price"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ar_summary_list_item">
+                        <div class="ar_summary_list_group">Branding</div>
+                        <div class="ar_summary_list_components">
+                            <div class="ar_summary_list_components_component">
+                                <div class="ar_summary_list_components_component_title">Logo Decal Branding$200</div>
+                                <div class="ar_summary_list_components_component_price">200</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ar_summary_list_item">
+                        <div class="ar_summary_list_group">Refregiration</div>
+                        <div class="ar_summary_list_components">
+                            <div class="ar_summary_list_components_component">
+                                <div class="ar_summary_list_components_component_title">No RefrigirationIncluded</div>
+                                <div class="ar_summary_list_components_component_price"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ar_summary_list_item">
+                        <div class="ar_summary_list_group">Assembly</div>
+                        <div class="ar_summary_list_components">
+                            <div class="ar_summary_list_components_component">
+                                <div class="ar_summary_list_components_component_title">Assembly$400</div>
+                                <div class="ar_summary_list_components_component_price">400</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ar_summary_list_item">
+                        <div class="ar_summary_list_group">Cup Holders and Cash Drawer (hidden)</div>
+                        <div class="ar_summary_list_components">
+                            <div class="ar_summary_list_components_component">
+                                <div class="ar_summary_list_components_component_title">Cup HoldersIncluded</div>
+                                <div class="ar_summary_list_components_component_price"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ar_summary_list_item">
+                        <div class="ar_summary_list_group">Sink top (hidden)</div>
+                        <div class="ar_summary_list_components">
+                            <div class="ar_summary_list_components_component">
+                                <div class="ar_summary_list_components_component_title">Sink topIncluded</div>
+                                <div class="ar_summary_list_components_component_price"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ar_summary_list_item">
+                        <div class="ar_summary_list_group">Clear top (hidden)</div>
+                        <div class="ar_summary_list_components">
+                            <div class="ar_summary_list_components_component">
+                                <div class="ar_summary_list_components_component_title">Clear topIncluded</div>
+                                <div class="ar_summary_list_components_component_price"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ar_summary_list_item">
+                        <div class="ar_summary_list_group">Base Price (hidden)</div>
+                        <div class="ar_summary_list_components">
+                            <div class="ar_summary_list_components_component">
+                                <div class="ar_summary_list_components_component_title">base price$4999</div>
+                                <div class="ar_summary_list_components_component_price">4999</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="ar_filter_options type_select" data-default="1">
-                <div class="option option_13-0 custom_id-#d92809" data-group_id="13" data-component_id="0"
-                    data-price="0" data-exclude_items="" data-value="red" data-product_id=""
-                    style="background-color: rgb(217, 40, 9);">
-                    <div class="image ar_no_image"></div>
-                    <div class="component_options" id="options_13_0">
-                    </div>
-
-
-                    <div class="component_title">red<span class="span_price"><br>Included</span></div>
-
-
+            <div class="ar_result_container">
+                <div class="ar_price">
+                    <span class="subtotal_caption">Subtotal</span>
+                    <span class="ar_price_amount" id="ar_price_amount">5599</span>
                 </div>
-                <div class="option option_13-1 active custom_id-#60b362" data-group_id="13" data-component_id="1"
-                    data-price="0" data-exclude_items="" data-value="green" data-product_id="">
-                    <div class="image ar_no_image"></div>
-                    <div class="component_options" id="options_13_1">
-                    </div>
+                <input type="hidden" id="ar_order_link" name="ar_order_link"
+                    value="https://3d.ferlabikes.info/configurator/ferla-grand-cart-wood">
 
+                <div id="ar-currency"></div>
+                <div id="ar-currency_code"></div>
 
-                    <div class="component_title">green<span class="span_price"><br>Included</span></div>
-
-
-                </div>
-                <div class="option option_13-2 custom_id-#343634" data-group_id="13" data-component_id="2"
-                    data-price="0" data-exclude_items="" data-value="black" data-product_id=""
-                    style="background-color: rgb(52, 54, 52);">
-                    <div class="image ar_no_image"></div>
-                    <div class="component_options" id="options_13_2">
-                    </div>
-
-
-                    <div class="component_title">black<span class="span_price"><br>Included</span></div>
-
-
-                </div>
-                <div class="option option_13-3 custom_id-#ededed" data-group_id="13" data-component_id="3"
-                    data-price="0" data-exclude_items="" data-value="white" data-product_id=""
-                    style="background-color: rgb(237, 237, 237);">
-                    <div class="image ar_no_image"></div>
-                    <div class="component_options" id="options_13_3">
-                    </div>
-
-
-                    <div class="component_title">white<span class="span_price"><br>Included</span></div>
-
-
-                </div>
-                <div class="option option_13-4 custom_id-#94579c" data-group_id="13" data-component_id="4"
-                    data-price="0" data-exclude_items="" data-value="purple" data-product_id=""
-                    style="background-color: rgb(148, 87, 156);">
-                    <div class="image ar_no_image"></div>
-                    <div class="component_options" id="options_13_4">
-                    </div>
-
-
-                    <div class="component_title">purple<span class="span_price"><br>Included</span></div>
-
-
-                </div>
-                <div class="option option_13-5 custom_id-#f3d5f7" data-group_id="13" data-component_id="5"
-                    data-price="0" data-exclude_items="" data-value="pink" data-product_id=""
-                    style="background-color: rgb(243, 213, 247);">
-                    <div class="image ar_no_image"></div>
-                    <div class="component_options" id="options_13_5">
-                    </div>
-
-
-                    <div class="component_title">pink<span class="span_price"><br>Included</span></div>
-
-
-                </div>
-                <div class="option option_13-6 custom_id-#f5ed84" data-group_id="13" data-component_id="6"
-                    data-price="0" data-exclude_items="" data-value="yellow" data-product_id=""
-                    style="background-color: rgb(245, 237, 132);">
-                    <div class="image ar_no_image"></div>
-                    <div class="component_options" id="options_13_6">
-                    </div>
-
-
-                    <div class="component_title">yellow<span class="span_price"><br>Included</span></div>
-
-
-                </div>
-
+                <div id="ar-locale">en_US</div>
             </div>
+            <div class="viewer-loader" id="viewer-loader" style="display: none;">
+                <div class="viewer-loader-img"></div>
+            </div>
+            <div class="share-box hide-visible">
+                <div class="share-box_close"></div>
 
-            <div class="ar_filter_options_result" style="display: block;">
-                <div class="ar_filter_options_result_caption">Selected</div>
-                <div class="ar_filter_options_result_list">
-                    <div class="ar_filter_options_result_item">
-                        <div class="ar_filter_options_result_name">green</div>
-                        <div class="ar_filter_options_result_price"></div>
-                    </div>
+                <h3 class="share-box_title">Share Configurator</h3>
+
+                <div class="share-box_bottom">
+                    <input type="text" class="share-box_bottom_input">
+                    <button class="share-box_bottom_copy"></button>
+                </div>
+            </div>
+            <div class="ar-box hide-visible">
+                <div class="ar-box_close"></div>
+
+                <h3 class="ar-box_title">Scan the QR code with your phone. Within 1-3 seconds the AR function opens on
+                    your
+                    phone.</h3>
+
+                <div class="ar-box_bottom">
+                    <div class="ar-box_bottom_QR"></div>
                 </div>
             </div>
         </div>
-        <div class="ar_filter_group ar_filter_group_2 group_custom_id-Wheels" id="group-2" data-assign_group="">
-            <div class="ar_filter_header">
-                <div class="ar_filter_number">01</div>
-                <div class="ar_filter_caption">Wheels</div>
-                <div class="ar_filter_group_toggle"></div>
-                <div class="ar_filter_options_result_item_in_header"><span
-                        class="ar_filter_options_result_name_in_header">4 casters</span><span
-                        class="ar_filter_options_result_price_in_header"></span></div>
-            </div>
-            <div class="ar_group_config">
-            </div>
 
-            <div class="ar_filter_inputs type_select">
-            </div>
-            <div class="ar_filter_options type_select" data-default="0">
-                <div class="option option_2-0 active custom_id-Small_wheels" data-group_id="2" data-component_id="0"
-                    data-price="0" data-exclude_items="" data-value="4 casters" data-product_id="">
-                    <div class="ar_option_description_tooltip"></div>
-                    <div class="ar_option_description">
-                        Test text info </div>
-                    <div class="image">
-                        <img decoding="async" src="https://3d.ferlabikes.info/wp-content/uploads/2024/11/option2.svg">
-                    </div>
-                    <div class="component_options" id="options_2_0">
-                        <div class="option_settings option-Ferla_logo" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="2"
-                            data-name="Ferla_logo"></div>
-                        <div class="option_settings option-Ferla_logo2" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="2"
-                            data-name="Ferla_logo2"></div>
-                        <div class="option_settings option-Mesh170" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="2"
-                            data-name="Mesh170"></div>
-                        <div class="option_settings option-Mesh170_1" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="2"
-                            data-name="Mesh170_1"></div>
-                        <div class="option_settings option-Mesh170_2" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="2"
-                            data-name="Mesh170_2"></div>
-                        <div class="option_settings option-Mesh170_3" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="2"
-                            data-name="Mesh170_3"></div>
-                        <div class="option_settings option-Mesh170_4" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="2"
-                            data-name="Mesh170_4"></div>
-                        <div class="option_settings option-Mesh170_5" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="2"
-                            data-name="Mesh170_5"></div>
-                        <div class="option_settings option-Mesh002" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="2"
-                            data-name="Mesh002"></div>
-                        <div class="option_settings option-Mesh002_1" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="2"
-                            data-name="Mesh002_1"></div>
-                        <div class="option_settings option-Mesh002_2" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="2"
-                            data-name="Mesh002_2"></div>
-                        <div class="option_settings option-Mesh002_3" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="2"
-                            data-name="Mesh002_3"></div>
-                        <div class="option_settings option-Mesh002_4" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="2"
-                            data-name="Mesh002_4"></div>
-                        <div class="option_settings option-Mesh003" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="2"
-                            data-name="Mesh003"></div>
-                        <div class="option_settings option-Mesh003_1" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="2"
-                            data-name="Mesh003_1"></div>
-                        <div class="option_settings option-Mesh003_2" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="2"
-                            data-name="Mesh003_2"></div>
-                        <div class="option_settings option-Mesh003_3" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="2"
-                            data-name="Mesh003_3"></div>
-                        <div class="option_settings option-Mesh003_4" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="2"
-                            data-name="Mesh003_4"></div>
-                    </div>
-
-
-                    <div class="component_title">4 casters<span class="span_price"><br>Included</span></div>
-
-
-                </div>
-                <div class="option option_2-1 custom_id-Big_Wheels" data-group_id="2" data-component_id="1"
-                    data-price="300" data-exclude_items="" data-value="2 casters" data-product_id="">
-                    <div class="ar_option_description_tooltip"></div>
-                    <div class="ar_option_description">
-                        Text info </div>
-                    <div class="image">
-                        <img decoding="async" src="https://3d.ferlabikes.info/wp-content/uploads/2024/11/option1-1.svg">
-                    </div>
-                    <div class="component_options" id="options_2_1">
-                        <div class="option_settings option-Mesh001" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="2"
-                            data-name="Mesh001"></div>
-                        <div class="option_settings option-Mesh001_1" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="2"
-                            data-name="Mesh001_1"></div>
-                        <div class="option_settings option-Mesh001_2" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="2"
-                            data-name="Mesh001_2"></div>
-                        <div class="option_settings option-Mesh001_3" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="2"
-                            data-name="Mesh001_3"></div>
-                        <div class="option_settings option-Mesh001_4" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="2"
-                            data-name="Mesh001_4"></div>
-                        <div class="option_settings option-Ferla_logo" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="2"
-                            data-name="Ferla_logo"></div>
-                        <div class="option_settings option-Ferla_logo2" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="2"
-                            data-name="Ferla_logo2"></div>
-                        <div class="option_settings option-Mesh170" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="2"
-                            data-name="Mesh170"></div>
-                        <div class="option_settings option-Mesh170_1" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="2"
-                            data-name="Mesh170_1"></div>
-                        <div class="option_settings option-Mesh170_2" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="2"
-                            data-name="Mesh170_2"></div>
-                        <div class="option_settings option-Mesh170_3" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="2"
-                            data-name="Mesh170_3"></div>
-                        <div class="option_settings option-Mesh170_4" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="2"
-                            data-name="Mesh170_4"></div>
-                        <div class="option_settings option-Mesh170_5" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="2"
-                            data-name="Mesh170_5"></div>
-                        <div class="option_settings option-Mesh003" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="2"
-                            data-name="Mesh003"></div>
-                        <div class="option_settings option-Mesh003_1" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="2"
-                            data-name="Mesh003_1"></div>
-                        <div class="option_settings option-Mesh003_2" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="2"
-                            data-name="Mesh003_2"></div>
-                        <div class="option_settings option-Mesh003_3" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="2"
-                            data-name="Mesh003_3"></div>
-                        <div class="option_settings option-Mesh003_4" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="2"
-                            data-name="Mesh003_4"></div>
-                    </div>
-
-
-                    <div class="component_title">2 casters<span class="span_price"><br>$300</span></div>
-
-
-                </div>
-
-            </div>
-
-            <div class="ar_filter_options_result" style="display: block;">
-                <div class="ar_filter_options_result_caption">Selected</div>
-                <div class="ar_filter_options_result_list">
-                    <div class="ar_filter_options_result_item">
-                        <div class="ar_filter_options_result_name">4 casters</div>
-                        <div class="ar_filter_options_result_price"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="ar_filter_group ar_filter_group_5 group_custom_id-branding" id="group-5" data-assign_group="">
-            <div class="ar_filter_header">
-                <div class="ar_filter_number">02</div>
-                <div class="ar_filter_caption">Branding</div>
-                <div class="ar_filter_group_toggle"></div>
-                <div class="ar_filter_options_result_item_in_header"><span
-                        class="ar_filter_options_result_name_in_header"></span><span
-                        class="ar_filter_options_result_price_in_header"></span></div>
-            </div>
-            <div class="ar_group_config">
-            </div>
-
-            <div class="ar_filter_inputs type_checkbox">
-            </div>
-            <div class="ar_filter_options type_checkbox type_checkbox_with_add_img" data-default="">
-                <div class="option option_5-1 custom_id-branding" data-group_id="5" data-component_id="1"
-                    data-price="200" data-exclude_items="" data-value="Logo Decal Branding" data-product_id="">
-                    <div class="ar_option_description_tooltip"></div>
-                    <div class="ar_option_description">
-                        Text info </div>
-                    <div class="image">
-                        <img decoding="async"
-                            src="https://3d.ferlabikes.info/wp-content/uploads/2024/11/Logo-Decal-Branding.png">
-                    </div>
-                    <div class="component_options" id="options_5_1">
-                    </div>
-
-
-                    <div class="component_title">Logo Decal Branding<span class="span_price"><br>$200</span></div>
-
-
-                </div>
-                <div class="option option_5-2 custom_id-LED_Logo_Sign" data-group_id="5" data-component_id="2"
-                    data-price="200" data-exclude_items="" data-value="LED Sign" data-product_id="">
-                    <div class="ar_option_description_tooltip"></div>
-                    <div class="ar_option_description">
-                        Text info </div>
-                    <div class="image">
-                        <img decoding="async" src="https://3d.ferlabikes.info/wp-content/uploads/2024/11/Led-Sign.png">
-                    </div>
-                    <div class="component_options" id="options_5_2">
-                        <div class="option_settings option-LED_Logo_Sign" data-color="" data-disable_color=""
-                            data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
-                            data-group_id="5" data-name="LED_Logo_Sign"></div>
-                    </div>
-
-
-                    <div class="component_title">LED Sign<span class="span_price"><br>$200</span></div>
-
-
-                </div>
-                <div class="option option_5-3" data-group_id="5" data-component_id="3" data-price="0"
-                    data-exclude_items="" data-value="Full Wrap" data-product_id="">
-                    <div class="ar_option_description_tooltip"></div>
-                    <div class="ar_option_description">
-                        Text info </div>
-                    <div class="image">
-                        <img decoding="async" src="https://3d.ferlabikes.info/wp-content/uploads/2024/11/Full-Wrap.png">
-                    </div>
-                    <div class="component_options" id="options_5_3">
-                    </div>
-
-
-                    <div class="component_title">Full Wrap<span class="span_price"><br>Included</span></div>
-
-
-                </div>
-
-            </div>
-
-            <div class="ar_filter_options_result" style="display: none;">
-                <div class="ar_filter_options_result_caption">Selected</div>
-                <div class="ar_filter_options_result_list"></div>
-            </div>
-        </div>
-        <div class="ar_filter_group ar_filter_group_6" id="group-6" data-assign_group="">
-            <div class="ar_filter_header">
-                <div class="ar_filter_number">03</div>
-                <div class="ar_filter_caption">Refregiration</div>
-                <div class="ar_filter_group_toggle"></div>
-                <div class="ar_filter_options_result_item_in_header"><span
-                        class="ar_filter_options_result_name_in_header">No Refrigiration</span><span
-                        class="ar_filter_options_result_price_in_header"></span></div>
-            </div>
-            <div class="ar_group_config">
-            </div>
-
-            <div class="ar_filter_inputs type_select_no_photo">
-            </div>
-            <div class="ar_filter_options type_select_no_photo" data-default="2">
-                <div class="option option_6-2 active" data-group_id="6" data-component_id="2" data-price="0"
-                    data-exclude_items="" data-value="No Refrigiration" data-product_id="">
-                    <div class="ar_option_description_tooltip"></div>
-                    <div class="ar_option_description">
-                        Text info </div>
-                    <div class="component_options" id="options_6_2">
-                    </div>
-
-
-                    <div class="component_title">No Refrigiration<span class="span_price"><br>Included</span></div>
-
-
-                </div>
-                <div class="option option_6-0" data-group_id="6" data-component_id="0" data-price="1200"
-                    data-exclude_items="" data-value="Compact" data-product_id="">
-                    <div class="ar_option_description_tooltip"></div>
-                    <div class="ar_option_description">
-                        Text info </div>
-                    <div class="component_options" id="options_6_0">
-                        <div class="option_settings option-Mesh183" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="6"
-                            data-name="Mesh183"></div>
-                        <div class="option_settings option-Mesh183_1" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="6"
-                            data-name="Mesh183_1"></div>
-                        <div class="option_settings option-Mesh183_2" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="6"
-                            data-name="Mesh183_2"></div>
-                    </div>
-
-
-                    <div class="component_title">Compact<span class="span_price"><br>$1200</span></div>
-
-
-                </div>
-                <div class="option option_6-1" data-group_id="6" data-component_id="1" data-price="1600"
-                    data-exclude_items="" data-value="Large" data-product_id="">
-                    <div class="ar_option_description_tooltip"></div>
-                    <div class="ar_option_description">
-                        Text info </div>
-                    <div class="component_options" id="options_6_1">
-                        <div class="option_settings option-Mesh184" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="6"
-                            data-name="Mesh184"></div>
-                        <div class="option_settings option-Mesh184_1" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="6"
-                            data-name="Mesh184_1"></div>
-                        <div class="option_settings option-Mesh184_2" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="6"
-                            data-name="Mesh184_2"></div>
-                    </div>
-
-
-                    <div class="component_title">Large<span class="span_price"><br>$1600</span></div>
-
-
-                </div>
-
-            </div>
-
-            <div class="ar_filter_options_result" style="display: block;">
-                <div class="ar_filter_options_result_caption">Selected</div>
-                <div class="ar_filter_options_result_list">
-                    <div class="ar_filter_options_result_item">
-                        <div class="ar_filter_options_result_name">No Refrigiration</div>
-                        <div class="ar_filter_options_result_price"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="ar_filter_group ar_filter_group_7" id="group-7" data-assign_group="">
-            <div class="ar_filter_header">
-                <div class="ar_filter_number">04</div>
-                <div class="ar_filter_caption">Add-ons</div>
-                <div class="ar_filter_group_toggle"></div>
-                <div class="ar_filter_options_result_item_in_header"><span
-                        class="ar_filter_options_result_name_in_header"></span><span
-                        class="ar_filter_options_result_price_in_header"></span></div>
-            </div>
-            <div class="ar_group_config">
-            </div>
-
-            <div class="ar_filter_inputs type_checkbox">
-            </div>
-            <div class="ar_filter_options type_checkbox" data-default="">
-                <div class="option option_7-1 custom_id-Cold_brew" data-group_id="7" data-component_id="1"
-                    data-price="1200" data-exclude_items="" data-value="Tap/Cold Brew" data-product_id="">
-                    <div class="image">
-                        <img decoding="async" src="https://3d.ferlabikes.info/wp-content/uploads/2024/11/option2.svg">
-                    </div>
-                    <div class="component_options" id="options_7_1">
-                        <div class="option_settings option-Mesh008" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="7"
-                            data-name="Mesh008"></div>
-                        <div class="option_settings option-Mesh008_1" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="7"
-                            data-name="Mesh008_1"></div>
-                    </div>
-
-
-                    <div class="component_title">Tap/Cold Brew<span class="span_price"><br>$1200</span></div>
-
-
-                </div>
-                <div class="option option_7-2 custom_id-Sink" data-group_id="7" data-component_id="2" data-price="500"
-                    data-exclude_items="" data-value="Sink/Hot Water" data-product_id="">
-                    <div class="image ar_no_image"></div>
-                    <div class="component_options" id="options_7_2">
-                        <div class="option_settings option-Sink" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="7"
-                            data-name="Sink"></div>
-                        <div class="option_settings option-Tap" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="7"
-                            data-name="Tap"></div>
-                    </div>
-
-
-                    <div class="component_title">Sink/Hot Water<span class="span_price"><br>$500</span></div>
-
-
-                </div>
-                <div class="option option_7-3 custom_id-Extendable_table_wood" data-group_id="7" data-component_id="3"
-                    data-price="200" data-exclude_items="" data-value="Extendable Serving Table" data-product_id="">
-                    <div class="image ar_no_image"></div>
-                    <div class="component_options" id="options_7_3">
-                        <div class="option_settings option-Mesh014" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="7"
-                            data-name="Mesh014"></div>
-                        <div class="option_settings option-Mesh014_1" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="7"
-                            data-name="Mesh014_1"></div>
-                        <div class="option_settings option-Mesh014_2" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="7"
-                            data-name="Mesh014_2"></div>
-                    </div>
-
-
-                    <div class="component_title">Extendable Serving Table<span class="span_price"><br>$200</span></div>
-
-
-                </div>
-                <div class="option option_7-4 custom_id-Solar_panel" data-group_id="7" data-component_id="4"
-                    data-price="1000" data-exclude_items="" data-value="Solar Panel" data-product_id="">
-                    <div class="image ar_no_image"></div>
-                    <div class="component_options" id="options_7_4">
-                        <div class="option_settings option-Mesh007" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="7"
-                            data-name="Mesh007"></div>
-                        <div class="option_settings option-Mesh007_1" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="7"
-                            data-name="Mesh007_1"></div>
-                    </div>
-
-
-                    <div class="component_title">Solar Panel<span class="span_price"><br>$1000</span></div>
-
-
-                </div>
-
-            </div>
-
-            <div class="ar_filter_options_result" style="display: none">
-                <div class="ar_filter_options_result_caption">Selected</div>
-                <div class="ar_filter_options_result_list">
-                </div>
-            </div>
-        </div>
-        <div class="ar_filter_group ar_filter_group_8 default_hidden disabled" id="group-8" data-assign_group="">
-            <div class="ar_filter_header">
-                <div class="ar_filter_number">05</div>
-                <div class="ar_filter_caption">Instant Nitrogeration</div>
-                <div class="ar_filter_group_toggle"></div>
-                <div class="ar_filter_options_result_item_in_header"><span
-                        class="ar_filter_options_result_name_in_header"></span><span
-                        class="ar_filter_options_result_price_in_header"></span></div>
-            </div>
-            <div class="ar_group_config">
-            </div>
-
-            <div class="ar_filter_inputs type_checkbox">
-            </div>
-            <div class="ar_filter_options type_checkbox" data-default="">
-                <div class="option option_8-0" data-group_id="8" data-component_id="0" data-price="0"
-                    data-exclude_items="" data-value="Instant Nitrogeration" data-product_id="">
-                    <div class="image ar_no_image"></div>
-                    <div class="component_options" id="options_8_0">
-                    </div>
-
-
-                    <div class="component_title">Instant Nitrogeration<span class="span_price"><br>Included</span></div>
-
-
-                </div>
-
-            </div>
-
-            <div class="ar_filter_options_result" style="display: none">
-                <div class="ar_filter_options_result_caption">Selected</div>
-                <div class="ar_filter_options_result_list">
-                </div>
-            </div>
-        </div>
-        <div class="ar_filter_group ar_filter_group_3" id="group-3" data-assign_group="">
-            <div class="ar_filter_header">
-                <div class="ar_filter_number">06</div>
-                <div class="ar_filter_caption">Equipment</div>
-                <div class="ar_filter_group_toggle"></div>
-                <div class="ar_filter_options_result_item_in_header"><span
-                        class="ar_filter_options_result_name_in_header"></span><span
-                        class="ar_filter_options_result_price_in_header"></span></div>
-            </div>
-            <div class="ar_group_config">
-            </div>
-
-            <div class="ar_filter_inputs type_select">
-            </div>
-            <div class="ar_filter_options type_select" data-default="">
-                <div class="option option_3-0" data-group_id="3" data-component_id="0" data-price="0"
-                    data-exclude_items="" data-value="Ecoflow" data-product_id="">
-                    <div class="image ar_no_image"></div>
-                    <div class="component_options" id="options_3_0">
-                    </div>
-
-
-                    <div class="component_title">Ecoflow<span class="span_price"><br>Included</span></div>
-
-
-                </div>
-                <div class="option option_3-1" data-group_id="3" data-component_id="1" data-price="0"
-                    data-exclude_items="" data-value="Iceco" data-product_id="">
-                    <div class="image ar_no_image"></div>
-                    <div class="component_options" id="options_3_1">
-                    </div>
-
-
-                    <div class="component_title">Iceco<span class="span_price"><br>Included</span></div>
-
-
-                </div>
-
-            </div>
-
-            <div class="ar_filter_options_result" style="display: none">
-                <div class="ar_filter_options_result_caption">Selected</div>
-                <div class="ar_filter_options_result_list">
-                </div>
-            </div>
-        </div>
-        <div class="ar_filter_group ar_filter_group_4" id="group-4" data-assign_group="">
-            <div class="ar_filter_header">
-                <div class="ar_filter_number">07</div>
-                <div class="ar_filter_caption">Espresso Machine</div>
-                <div class="ar_filter_group_toggle"></div>
-                <div class="ar_filter_options_result_item_in_header"><span
-                        class="ar_filter_options_result_name_in_header"></span><span
-                        class="ar_filter_options_result_price_in_header"></span></div>
-            </div>
-            <div class="ar_group_config">
-            </div>
-
-            <div class="ar_filter_inputs type_checkbox">
-            </div>
-            <div class="ar_filter_options type_checkbox" data-default="">
-                <div class="option option_4-0" data-group_id="4" data-component_id="0" data-price="0"
-                    data-exclude_items="" data-value="Espresso Machine" data-product_id="">
-                    <div class="image ar_no_image"></div>
-                    <div class="component_options" id="options_4_0">
-                    </div>
-
-
-                    <div class="component_title">Espresso Machine<span class="span_price"><br>Included</span></div>
-
-
-                </div>
-
-            </div>
-
-            <div class="ar_filter_options_result" style="display: none">
-                <div class="ar_filter_options_result_caption">Selected</div>
-                <div class="ar_filter_options_result_list">
-                </div>
-            </div>
-        </div>
-        <div class="ar_filter_group ar_filter_group_9" id="group-9" data-assign_group="">
-            <div class="ar_filter_header">
-                <div class="ar_filter_number">08</div>
-                <div class="ar_filter_caption">Assembly</div>
-                <div class="ar_filter_group_toggle"></div>
-                <div class="ar_filter_options_result_item_in_header"><span
-                        class="ar_filter_options_result_name_in_header">Assembly</span><span
-                        class="ar_filter_options_result_price_in_header">(+400)</span></div>
-            </div>
-            <div class="ar_group_config">
-            </div>
-
-            <div class="ar_filter_inputs type_select_no_photo">
-            </div>
-            <div class="ar_filter_options type_select_no_photo" data-default="0">
-                <div class="option option_9-0 active" data-group_id="9" data-component_id="0" data-price="400"
-                    data-exclude_items="" data-value="Assembly" data-product_id="">
-                    <div class="component_options" id="options_9_0">
-                    </div>
-
-
-                    <div class="component_title">Assembly<span class="span_price"><br>$400</span></div>
-
-
-                </div>
-
-            </div>
-
-            <div class="ar_filter_options_result" style="display: block;">
-                <div class="ar_filter_options_result_caption">Selected</div>
-                <div class="ar_filter_options_result_list">
-                    <div class="ar_filter_options_result_item">
-                        <div class="ar_filter_options_result_name">Assembly</div>
-                        <div class="ar_filter_options_result_price">400</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="ar_filter_group ar_filter_group_10 group_custom_id-hidden" id="group-10" data-assign_group=""
-            style="display: none;">
-            <div class="ar_filter_header">
-                <div class="ar_filter_number">10</div>
-                <div class="ar_filter_caption">Cup Holders and Cash Drawer (hidden)</div>
-                <div class="ar_filter_group_toggle"></div>
-                <div class="ar_filter_options_result_item_in_header"><span
-                        class="ar_filter_options_result_name_in_header">Cup Holders</span><span
-                        class="ar_filter_options_result_price_in_header"></span></div>
-            </div>
-            <div class="ar_filter_description">hidden_from_DOM</div>
-            <div class="ar_group_config">
-            </div>
-
-            <div class="ar_filter_inputs type_checkbox">
-            </div>
-            <div class="ar_filter_options type_checkbox" data-default="0">
-                <div class="option option_10-0 active custom_id-cup_holder" data-group_id="10" data-component_id="0"
-                    data-price="0" data-exclude_items="" data-value="Cup Holders" data-product_id="">
-                    <div class="image">
-                        <img decoding="async" src="https://3d.ferlabikes.info/wp-content/uploads/2024/11/option1.svg">
-                    </div>
-                    <div class="component_options" id="options_10_0">
-                        <div class="option_settings option-cup_holder" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="10"
-                            data-name="cup_holder"></div>
-                        <div class="option_settings option-cup_holder2" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="10"
-                            data-name="cup_holder2"></div>
-                        <div class="option_settings option-Mesh019" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="10"
-                            data-name="Mesh019"></div>
-                        <div class="option_settings option-Mesh019_1" data-color="" data-disable_color="" data-map=""
-                            data-normal_map="" data-roughness="" data-metalness="" data-ao="" data-group_id="10"
-                            data-name="Mesh019_1"></div>
-                    </div>
-
-
-                    <div class="component_title">Cup Holders<span class="span_price"><br>Included</span></div>
-
-
-                </div>
-
-            </div>
-
-            <div class="ar_filter_options_result" style="display: block;">
-                <div class="ar_filter_options_result_caption">Selected</div>
-                <div class="ar_filter_options_result_list">
-                    <div class="ar_filter_options_result_item">
-                        <div class="ar_filter_options_result_name">Cup Holders</div>
-                        <div class="ar_filter_options_result_price"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="ar_filter_group ar_filter_group_11 group_custom_id-hidden" id="group-11" data-assign_group=""
-            style="display: none;">
-            <div class="ar_filter_header">
-                <div class="ar_filter_number">10</div>
-                <div class="ar_filter_caption">Sink top (hidden)</div>
-                <div class="ar_filter_group_toggle"></div>
-                <div class="ar_filter_options_result_item_in_header"><span
-                        class="ar_filter_options_result_name_in_header">Sink top</span><span
-                        class="ar_filter_options_result_price_in_header"></span></div>
-            </div>
-            <div class="ar_filter_description">hidden_from_DOM</div>
-            <div class="ar_group_config">
-            </div>
-
-            <div class="ar_filter_inputs type_select">
-            </div>
-            <div class="ar_filter_options type_select" data-default="0">
-                <div class="option option_11-0 active" data-group_id="11" data-component_id="0" data-price="0"
-                    data-exclude_items="" data-value="Sink top" data-product_id="">
-                    <div class="image ar_no_image"></div>
-                    <div class="component_options" id="options_11_0">
-                        <div class="option_settings option-Fill_sink_wood" data-color="" data-disable_color=""
-                            data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
-                            data-group_id="11" data-name="Fill_sink_wood"></div>
-                    </div>
-
-
-                    <div class="component_title">Sink top<span class="span_price"><br>Included</span></div>
-
-
-                </div>
-
-            </div>
-
-            <div class="ar_filter_options_result" style="display: block;">
-                <div class="ar_filter_options_result_caption">Selected</div>
-                <div class="ar_filter_options_result_list">
-                    <div class="ar_filter_options_result_item">
-                        <div class="ar_filter_options_result_name">Sink top</div>
-                        <div class="ar_filter_options_result_price"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="ar_filter_group ar_filter_group_12 group_custom_id-hidden" id="group-12" data-assign_group=""
-            style="display: none;">
-            <div class="ar_filter_header">
-                <div class="ar_filter_number">10</div>
-                <div class="ar_filter_caption">Clear top (hidden)</div>
-                <div class="ar_filter_group_toggle"></div>
-                <div class="ar_filter_options_result_item_in_header"><span
-                        class="ar_filter_options_result_name_in_header">Clear top</span><span
-                        class="ar_filter_options_result_price_in_header"></span></div>
-            </div>
-            <div class="ar_filter_description">hidden_from_DOM</div>
-            <div class="ar_group_config">
-            </div>
-
-            <div class="ar_filter_inputs type_select">
-            </div>
-            <div class="ar_filter_options type_select" data-default="0">
-                <div class="option option_12-0 active" data-group_id="12" data-component_id="0" data-price="0"
-                    data-exclude_items="" data-value="Clear top" data-product_id="">
-                    <div class="image ar_no_image"></div>
-                    <div class="component_options" id="options_12_0">
-                        <div class="option_settings option-Clear_top_wood" data-color="" data-disable_color=""
-                            data-map="" data-normal_map="" data-roughness="" data-metalness="" data-ao=""
-                            data-group_id="12" data-name="Clear_top_wood"></div>
-                    </div>
-
-
-                    <div class="component_title">Clear top<span class="span_price"><br>Included</span></div>
-
-
-                </div>
-
-            </div>
-
-            <div class="ar_filter_options_result" style="display: block;">
-                <div class="ar_filter_options_result_caption">Selected</div>
-                <div class="ar_filter_options_result_list">
-                    <div class="ar_filter_options_result_item">
-                        <div class="ar_filter_options_result_name">Clear top</div>
-                        <div class="ar_filter_options_result_price"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </body>
 

@@ -150,8 +150,10 @@ var SharedParameterList = [
 SharedParameterList[0].groupOptionAction = function () {
 }
 
+// loaderForHtml();
+
 function EmptyURLParams() {
-    console.log("ðŸš€ðŸš€ðŸš€ðŸš€ðŸš€ EmptyURLParams");
+    console.log("Ã°Å¸Å¡â‚¬Ã°Å¸Å¡â‚¬Ã°Å¸Å¡â‚¬Ã°Å¸Å¡â‚¬Ã°Å¸Å¡â‚¬ EmptyURLParams");
     // ParseAllGroups();
     setIsLoaderActive(false);
     blockURLWriter = false;
@@ -432,7 +434,7 @@ function InitializationGroups(callback) {
         switch (typeValue) {
             case "range":
                 inputRange = ar_filter_inputs.querySelector("input");
-                // console.log("ðŸš€ ~ InitializationGroups ~ inputRange:", inputRange);
+                // console.log("Ã°Å¸Å¡â‚¬ ~ InitializationGroups ~ inputRange:", inputRange);
 
                 if (inputRange != null) {
                     newSomeGroup.input = inputRange;
@@ -443,14 +445,14 @@ function InitializationGroups(callback) {
                             newSomeGroup.rangeList.push(opt.textContent.trim());
                         });
                         newSomeGroup.rangeList.sort();
-                        // console.log("ðŸš€ ~ InitializationGroups ~ newSomeGroup.rangeList:", newSomeGroup.rangeList);
+                        // console.log("Ã°Å¸Å¡â‚¬ ~ InitializationGroups ~ newSomeGroup.rangeList:", newSomeGroup.rangeList);
                     }
                 }
                 break;
             case "number":
             case "text":
                 input = ar_filter_inputs.querySelector("input");
-                // console.log("ðŸš€ ~ InitializationGroups ~ input:", input);
+                // console.log("Ã°Å¸Å¡â‚¬ ~ InitializationGroups ~ input:", input);
 
                 if (input != null) {
                     newSomeGroup.input = input;
@@ -458,7 +460,7 @@ function InitializationGroups(callback) {
                 break;
             case "dropdown":
                 select_dropdown = ar_filter_inputs.querySelector("select");
-                // console.log("ðŸš€ ~ InitializationGroups ~ select_dropdown:", select_dropdown);
+                // console.log("Ã°Å¸Å¡â‚¬ ~ InitializationGroups ~ select_dropdown:", select_dropdown);
 
                 if (select_dropdown != null) {
                     newSomeGroup.select = select_dropdown;
@@ -557,7 +559,8 @@ function StartSettings() {
     listenerFocusOptions();
     Settings3d();
     PrepareAR();
-    PrepareUI();
+    listenerChangeOrbitCamera();
+    setTimeout(() => { PrepareUI() }, 1500);
     // SetActionForGroups();
     // ApplyURLParameters(); 
     // CheckChanges();
@@ -572,22 +575,68 @@ function StartSettings() {
 }
 
 function Settings3d() {
-    controls.maxPolarAngle = Math.PI / 2.0;
+    controls.maxPolarAngle = Math.PI / 1.77;
     controls.minPolarAngle = 0.15;
     controls.minDistance = 1;
-    controls.maxDistance = 6;
+    controls.maxDistance = 4;
 
-    // camera.position.set(-0.8, 1.5, 1.5);
-    theModel.position.y = -1;
-    floor.position.y = -1;
+    camera.fov = 70;
+    camera.position.set(-2.2, 0.6, 2);
 
-    // Remove all default textures
-    //RemoveAllDefaultTextures(theModel);
+    if (dirLight) {
+        dirLight.intensity = 0.1;
+        dirLight.position.set(0, 20, 0);
+    }
 
-    UpdateSceneEnvironmentMapURL('https://s3.eu-central-1.amazonaws.com/marevo.vision/RelevantProjects/webAR/WP+AR+WooCommerce+plugin/src/environment/brown_photostudio_02_1k.hdr');
-    // pointLight.intensity = 0.15;
-    // pointLight2.intensity = 0.15;
-    // scene.add(pointLight, pointLight2);
+    if (theModel && floor) {
+        theModel.position.y = -1;
+        floor.position.y = -1;
+    }
+
+    const pointLight = new THREE.PointLight(0xffffff, 0.1, 50); // (колір, інтенсивність, радіус)
+    pointLight.position.set(2, 1.5, -3); // Позиція джерела світла
+    scene.add(pointLight);
+
+    // Додавання RectAreaLight з сітками
+    const rectLight = new THREE.RectAreaLight(0xffffff, 1, 10, 10); // прямокутне світло
+    rectLight.position.set(-1.5, -3.8, -3.5);
+    rectLight.rotation.z = Math.PI / 2; // Осьовий оберт для RectAreaLight
+    rectLight.rotation.y = Math.PI / -2; // Осьовий оберт для RectAreaLight
+    scene.add(rectLight);
+
+    // Створення сітки для rectLight
+    // const rectLightHelper = new THREE.Mesh(
+    //     new THREE.PlaneGeometry(0.5, 0.5), // прямокутна сітка для позначення джерела світла
+    //     new THREE.MeshBasicMaterial({ color: 0x0000ff, side: THREE.DoubleSide }) // синій колір
+    // );
+    // rectLightHelper.position.copy(rectLight.position); // Позиція сітки збігається з позицією світла
+    // rectLightHelper.rotation.copy(rectLight.rotation); // Позиція сітки має відповідати орієнтації світла
+    // scene.add(rectLightHelper);
+
+    const rectLight1 = new THREE.RectAreaLight(0xffffff, 0.3, 10, 10); // інше прямокутне світло
+    rectLight1.position.set(1, 2, 3);
+    rectLight1.rotation.z = Math.PI / 2; // Осьовий оберт для RectAreaLight
+    rectLight1.rotation.y = Math.PI / 2; // Осьовий оберт для RectAreaLight
+    scene.add(rectLight1);
+
+    // Створення сітки для rectLight1
+    // const rectLight1Helper = new THREE.Mesh(
+    //     new THREE.PlaneGeometry(0.5, 0.5), // прямокутна сітка для позначення джерела світла
+    //     new THREE.MeshBasicMaterial({ color: 0xffff00, side: THREE.DoubleSide }) // жовтий колір
+    // );
+    // rectLight1Helper.position.copy(rectLight1.position); // Позиція сітки збігається з позицією світла
+    // rectLight1Helper.rotation.copy(rectLight1.rotation); // Позиція сітки має відповідати орієнтації світла
+    // scene.add(rectLight1Helper);
+
+    // Логування всіх елементів для налагодження
+    console.log('camera:', camera, 'dirL:', dirLight, 'rectLight:', rectLight, 'rectLight1:', rectLight1, 'pointLight:', pointLight);
+
+    try {
+        // UpdateSceneEnvironmentMapURL('https://s3.eu-central-1.amazonaws.com/marevo.vision/RelevantProjects/webAR/WP+AR+WooCommerce+plugin/src/environment/neutral_model_viewer.hdr');
+        UpdateSceneEnvironmentMapURL('https://s3.eu-central-1.amazonaws.com/marevo.vision/RelevantProjects/webAR/WP+AR+WooCommerce+plugin/src/environment/blocky_photo_studio_1k.hdr');
+    } catch (error) {
+        console.log('Error with HDR:', error);
+    }
 }
 
 function RemoveAllDefaultTextures(targetObject) {
@@ -866,7 +915,7 @@ function changeRangeOptions(groupID) {
         let group = jQuery('#' + groupID);
         let range_option = [];
         let range = group.find('input');
-        // console.log("ðŸš€ ~ range:", range);
+        // console.log("Ã°Å¸Å¡â‚¬ ~ range:", range);
         group.find('.option').removeClass('active');
         beforeFilterAction();
         group.find('.option:not(.disable_filter)').each(function () {
@@ -1137,6 +1186,18 @@ function PrepareUI() {
     GLTFExporter_script.setAttribute('src', 'https://cdn.jsdelivr.net/npm/three@0.146/examples/js/exporters/GLTFExporter.js');
     document.body.appendChild(GLTFExporter_script);
 
+    //#region ADD PDF SCRIPT
+    const scriptPDF_first = document.createElement('script');
+    scriptPDF_first.setAttribute('src', 'https://unpkg.com/pdf-lib@1.4.0');
+    document.body.appendChild(scriptPDF_first);
+
+    const scriptPDF_second = document.createElement('script');
+    scriptPDF_second.setAttribute('src', 'https://unpkg.com/@pdf-lib/fontkit@0.0.4');
+    document.body.appendChild(scriptPDF_second);
+    //#endregion
+
+    //#region *** FUNCTIONS HELPER ***
+
     function getElementFromDOM(cls) {
         return document.getElementsByClassName(cls)[0];
     }
@@ -1154,36 +1215,143 @@ function PrepareUI() {
         return toAdd.insertAdjacentElement('beforeend', div);
     }
 
-    const menuConfig = document.getElementsByClassName('ar_filter')[0];
+    function removeElementFromContainer(containerId, elementId) {
+        const container = getElementFromDOM(containerId);
+        if (container) {
+            const element = getElementFromDOM(elementId);
+            if (element) container.removeChild(element);
+        }
+    }
+
+    function toggleClickButton(triger, element, cls) {
+        element.classList.add('hide-visible');
+
+        triger.addEventListener('click', () => {
+            if (element.classList.contains('hide-visible')) {
+                return element.classList.remove('hide-visible');
+            }
+
+            return element.classList.add('hide-visible');
+        })
+    }
+
+    function closeClick(triger, element) {
+        triger.addEventListener('click', () => {
+            return element.classList.add('hide-visible');
+        })
+    }
+
+    //#endregion
+
+    const main = getElementFromDOM('site-main');
+    const menuConfig = getElementFromDOM('ar_filter');
+    const summary = getElementFromDOM('ar_summary');
+
+    summary.classList.add('hide-visible');
+
+    //#region CONFIG-PARAMS 
+    const CONFIG_PARAMS = document.getElementsByClassName('group_custom_id-config_params')[0];
+    //#endregion
 
     //#region scrollLogic 
-    document.body.style.overflow = 'hidden';
+    // document.body.style.overflow = 'hidden';
 
-    menuConfig.addEventListener('wheel', (event) => {
-        const scrollTop = menuConfig.scrollTop;
-        const scrollHeight = menuConfig.scrollHeight;
-        const clientHeight = menuConfig.clientHeight;
+    // menuConfig.addEventListener('wheel', (event) => {
+    //     const scrollTop = menuConfig.scrollTop;
+    //     const scrollHeight = menuConfig.scrollHeight;
+    //     const clientHeight = menuConfig.clientHeight;
 
-        const isScrollingDown = event.deltaY > 0;
+    //     const isScrollingDown = event.deltaY > 0;
 
 
-        if (isScrollingDown && scrollTop + clientHeight >= scrollHeight) {
-            document.body.style.overflow = 'auto';
-        }
-    });
+    //     if (isScrollingDown && scrollTop + clientHeight >= scrollHeight) {
+    //         document.body.style.overflow = 'auto';
+    //     }
+    // });
     //#endregion
 
     //#region SHARE AND AR LOGIC
+
+
     const shareButton = addElementToContainer('ar_conf_container', 'share-button', 'share');
     const arButton = addElementToContainer('ar_conf_container', 'ar-button', 'ar');
+    const arConf = getElementFromDOM('configurator3d_post');
 
-    shareButton.addEventListener('click', () => {
-        console.log('share')
-    })
+    arConf.insertAdjacentHTML('beforeend', `
+        <div class="share-box">
+            <div class="share-box_close"></div>
+    
+            <h3 class="share-box_title">Share Configurator</h3>
+    
+            <div class="share-box_bottom">
+                <input type="text" class="share-box_bottom_input">
+                <button class="share-box_bottom_copy"></button>
+            </div>
+        </div>`);
 
-    arButton.addEventListener('click', () => {
-        console.log('ar')
-    })
+    arConf.insertAdjacentHTML('beforeend', `
+        <div class="ar-box">
+            <div class= "ar-box_close" ></div >
+
+            <h3 class="ar-box_title">Scan the QR code with your phone. Within 1-3 seconds the AR function opens on your
+                phone.</h3>
+
+            <div class="ar-box_bottom">
+                <div class="ar-box_bottom_QR"></div>
+            </div>
+        </div > `)
+
+    //#region URL CHANGE
+    function updateInputWithURL() {
+        console.log('update url');
+        getElementFromDOM('share-box_bottom_input').value = window.location.href;
+    }
+
+    updateInputWithURL();
+
+    window.addEventListener('popstate', updateInputWithURL);
+    window.addEventListener('hashchange', updateInputWithURL);
+
+    const originalPushState = history.pushState;
+    history.pushState = function (...args) {
+        originalPushState.apply(this, args); // Викликаємо оригінальну функцію
+        updateInputWithURL(); // Оновлюємо вручну після зміни URL
+    };
+
+    const originalReplaceState = history.replaceState;
+    history.replaceState = function (...args) {
+        originalReplaceState.apply(this, args); // Викликаємо оригінальну функцію
+        updateInputWithURL(); // Оновлюємо вручну після зміни URL
+    };
+    //#endregion
+
+    //#region SHARE BUTTON
+    if (shareButton) {
+        shareButton.addEventListener('click', () => {
+            getElementFromDOM('ar-box').classList.add('hide-visible');
+        });
+
+        toggleClickButton(shareButton, getElementFromDOM('share-box'));
+        closeClick(getElementFromDOM('share-box_close'), getElementFromDOM('share-box'));
+
+        function copyToClipboard() {
+            navigator.clipboard.writeText(getElementFromDOM('share-box_bottom_input').value);
+        }
+
+        getElementFromDOM('share-box_bottom_copy').addEventListener('click', copyToClipboard);
+    }
+    //#endregion
+
+    //#region AR BUTTON 
+    if (arButton) {
+        arButton.addEventListener('click', () => {
+            getElementFromDOM('share-box').classList.add('hide-visible');
+        });
+
+        toggleClickButton(getElementFromDOM('ar-button'), getElementFromDOM('ar-box'));
+        closeClick(getElementFromDOM('ar-box_close'), getElementFromDOM('ar-box'));
+    }
+    //#endregion
     //#endregion
 
     //#region SUMARRY_BOARD_INIT
@@ -1200,6 +1368,201 @@ function PrepareUI() {
         <div class="sum-button_price">$${formattedPrice}</div>
         <div class="sum-button_button">Summary</div>
     `;
+
+    //#region MODAL CALL REQUEST 
+
+    main.insertAdjacentHTML(
+        'beforeend',
+        `
+          <div class="custom-request-modal-bg hide-visible">
+            <div class="custom-request-modal">
+              <div class="custom-request-modal-close"></div>
+      
+              <p class="custom-request-modal-text">
+                A representative will be reaching out to you shortly.
+              </p>
+      
+              <div class="custom-request-modal-button">OK</div>
+            </div>
+          </div>
+        `
+    );
+
+    const modalCallRequest = getElementFromDOM('custom-request-modal-bg');
+
+    const buttonModal = getElementFromDOM('custom-request-modal-button')
+    const closeButton = getElementFromDOM('custom-request-modal-close');
+
+    buttonModal.addEventListener('click', () => {
+        if (!modalCallRequest.classList.contains('hide-visible')) {
+            modalCallRequest.classList.add('hide-visible');
+        }
+    })
+
+    closeButton.addEventListener('click', () => {
+        if (!modalCallRequest.classList.contains('hide-visible')) {
+            modalCallRequest.classList.add('hide-visible');
+        }
+    })
+    //#endregion
+
+    document.addEventListener('click', (event) => {
+        if (event.target.classList.contains('sum-button_button')) {
+            function applyChanges() {
+                const pdfButtonOnPhone = document.getElementsByClassName('sum-button_pdf')[0];
+                getElementFromDOM('ar_conf_container').classList.add('hide-visible');
+                getElementFromDOM('add-info').classList.add('hide-visible');
+                getElementFromDOM('page-header').classList.add('page-header_sum');
+                document.getElementById('content').classList.add('content_sum');
+                getElementFromDOM('sum-button').classList.add('sum-button_sum');
+
+                addElementToContainer('sum-button', 'sum-button_container');
+
+                if (!pdfButtonOnPhone) {
+                    addElementToContainer('sum-button', 'sum-button_pdf', 'Download PDF');
+                } else {
+                    pdfButtonOnPhone.classList.remove('hide-visible');
+                }
+
+                addElementToContainer('sum-button_container', 'sum-button_container_pdf', 'Download PDF');
+                addElementToContainer('sum-button_container', 'sum-button_container_call', 'Request a Call');
+                addElementToContainer('sum-button_container', 'sum-button_container_conf', 'Change a Model');
+
+                addElementToContainer('ar_summary', 'ar_summary_sum-button_conf', 'Change a Model');
+                addElementToContainer('ar_summary', 'ar_summary_sum-button_call', 'Request a Call');
+            }
+
+            function revertChanges() {
+                getElementFromDOM('ar_conf_container').classList.remove('hide-visible');
+                getElementFromDOM('add-info').classList.remove('hide-visible');
+                getElementFromDOM('page-header').classList.remove('page-header_sum');
+                document.getElementById('content').classList.remove('content_sum');
+                getElementFromDOM('sum-button').classList.remove('sum-button_sum');
+                getElementFromDOM('sum-button_pdf').classList.add('hide-visible');
+
+                removeElementFromContainer('sum-button_container', 'sum-button_container_pdf');
+                removeElementFromContainer('sum-button_container', 'sum-button_container_call');
+                removeElementFromContainer('sum-button_container', 'sum-button_container_conf');
+
+                removeElementFromContainer('ar_summary', 'ar_summary_sum-button_conf');
+                removeElementFromContainer('ar_summary', 'ar_summary_sum-button_call');
+
+                const sumButtonContainer = getElementFromDOM('sum-button_container');
+                if (sumButtonContainer) sumButtonContainer.remove();
+            }
+            const allTitle = document.getElementsByClassName('ar_summary_list_components_component_title');
+            const allPrices = document.getElementsByClassName('ar_summary_list_components_component_price');
+            const allListSummary = document.getElementsByClassName('ar_summary_list_item');
+
+            const amountPrice = document.getElementById('ar_price_amount').textContent;
+            let basePrice = '';
+
+            //#region **Edit UI price Included or have price** and **find BASE PRICE** and **FIX ADDED PRICE/INCLUDED FOR SUM PRICE**
+            Array.from(allListSummary).forEach(list => {
+                if (list.getElementsByClassName('ar_summary_list_group')[0].textContent.includes('(hidden)')) {
+                    list.classList.add('hide-visible');
+                }
+                if (list.getElementsByClassName('ar_summary_list_group')[0].textContent.includes('Base Price')) {
+                    basePrice = list.getElementsByClassName('ar_summary_list_components_component_price')[0].textContent;
+                }
+            })
+
+            Array.from(allPrices).forEach(price => {
+                if (!price.textContent) {
+                    price.textContent = 'Included';
+                } else {
+                    price.textContent = '$' + price.textContent;
+                }
+            })
+
+            Array.from(allTitle).forEach(title => {
+                if (title.textContent.includes('Included')) {
+                    title.textContent = title.textContent.replaceAll('Included', '');
+                }
+
+                if (title.textContent.includes('$')) {
+                    title.textContent = title.textContent.split('$')[0];
+                }
+            })
+
+            //#endregion
+
+            const differentePrice = (+amountPrice.replace(/[^0-9]/g, "") - +basePrice.replace(/[^0-9]/g, "")).toString();
+
+            function formatPrice(price) {
+                return price.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            }
+
+            if (!document.querySelector('.sum_img') && !document.querySelector('.custom-template')) {
+                const templateHTML = `
+                    <div class="sum_img"></div>
+                    <div class="custom-template">
+                       <h2 class="custom-template_title">Your Ferla Vendor Bike Configuration</h2>
+                       <div class="custom-template_price-item">Base Price: $${formatPrice(basePrice)}</div>
+                       <div class="custom-template_price-item">Sum of selected options: $${differentePrice}</div>
+                       <div class="custom-template_price-total">Total Price: $${formatPrice(amountPrice)}</div>
+                    </div>
+                  `;
+
+                summary.insertAdjacentHTML('afterbegin', templateHTML);
+            }
+
+            // Rewrite different price
+            document.getElementsByClassName('custom-template_price-item')[1].textContent = `Sum of selected options: $${formatPrice(differentePrice)}`;
+
+            // Rewrite amount price
+            document.getElementsByClassName('custom-template_price-total')[0].textContent = `Total Price: $${formatPrice(amountPrice)}`;
+
+            //#region Turn-on SUMMARY
+            menuConfig.classList.add('hide-visible');
+            applyChanges();
+            summary.classList.remove('hide-visible');
+            //#endregion
+
+            //#region load img from SUM ***CONFIG_PARAMS***
+            const photSumUrl = CONFIG_PARAMS.getElementsByClassName('ar_filter_options')[0].getElementsByClassName('option')[0].textContent.replaceAll('Included', '');
+
+            const style = document.createElement('style');
+
+            style.textContent = `
+                .page-header_sum::after {
+                    background-image: url(${photSumUrl});                 
+                }
+                .sum_img {
+                 background-image: url(${photSumUrl});    
+                }
+            `;
+            document.head.appendChild(style);
+            //#endregion
+
+            //BUTTON CHANGE CONF DESKTOP
+            getElementFromDOM('sum-button_container_conf').addEventListener('click', () => {
+                //#region Turn-off SUMARRY
+                menuConfig.classList.remove('hide-visible');
+                revertChanges();
+                summary.classList.add('hide-visible');
+                //#endregion
+            });
+
+            //BUTTON CHANGE CONF PHONE
+            getElementFromDOM('ar_summary_sum-button_conf').addEventListener('click', () => {
+                //#region Turn-off SUMARRY
+                menuConfig.classList.remove('hide-visible');
+                revertChanges();
+                summary.classList.add('hide-visible');
+                //#endregion
+            });
+
+            //BUTTON CALL-REQUEST DESKTOP
+            getElementFromDOM('sum-button_container_call').addEventListener('click', () => {
+
+
+                if (modalCallRequest.classList.contains('hide-visible')) {
+                    modalCallRequest.classList.remove('hide-visible');
+                }
+            })
+        }
+    });
     //#endregion
 
     //#region HIDDEN_FROM_DOM 
@@ -1233,19 +1596,25 @@ function PrepareUI() {
             const infoBoard = menuConfig.parentNode.insertBefore(info, menuConfig.nextSibling);
             infoBoard.classList.add('hide-visible');
 
-            addedInfo.addEventListener('click', () => {
-                isOpen = !isOpen;
+            info.innerHTML += `<div class='add-info_close'></div>`;
 
-                if (isOpen) {
+            getElementFromDOM('add-info_close').addEventListener('click', () => {
+                addedInfo.classList.remove('add-info-active')
+                infoBoard.classList.add('hide-visible');
+            })
+
+            addedInfo.addEventListener('click', () => {
+
+                if (infoBoard.classList.contains('hide-visible')) {
+                    addedInfo.classList.add('add-info-active')
                     return infoBoard.classList.remove('hide-visible');
                 }
 
+                addedInfo.classList.remove('add-info-active')
                 return infoBoard.classList.add('hide-visible');
             })
         }
     }
-
-
     //#endregion
 
     //#region HEADER-NAV-SHADOW-BOXES
@@ -1331,10 +1700,36 @@ function PrepareUI() {
             inputs[i].addEventListener('input', validateForm);
         }
 
-        buttonOfForm.addEventListener('submit', function () {
+        buttonOfForm.addEventListener('click', function () {
             menuConfig.classList.add('menu-visible');
             form.classList.add('hide-visible');
             titleH1.style.visibility = 'visible';
+
+            const dataForFetch = changeDataFetch({
+                productName: document.getElementsByClassName('entry-title')[0].textContent,
+                userName: name,
+                phone: tel,
+                email: email,
+            });
+
+            fetch('https://hook.us1.make.com/xh8wgbzkjkkh8cj6gbq6s62my1t58xmk', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(dataForFetch),
+            }).then((response) => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+                .then((data) => {
+                    console.log('Успішно відправлено:', data);
+                })
+                .catch((error) => {
+                    console.error('Помилка при відправці:', error);
+                });
         });
     }
     //#endregion
@@ -1416,11 +1811,13 @@ function PrepareUI() {
 
     for (const group of allGroup) {
         const allOptions = group.getElementsByClassName('ar_filter_options');
+
         for (const options of allOptions) {
             const thisOptions = options.getElementsByClassName('option');
 
             for (const option of thisOptions) {
                 const title = option.getElementsByClassName('component_title')[0];
+                console.log(title);
 
                 const price = option.getAttribute('data-price');
 
@@ -1452,6 +1849,36 @@ function PrepareUI() {
     }
     //#endregion
 
+    //#endregion
+
+    //#region info Pop-UP
+    const allPopInfo = document.getElementsByClassName('ar_option_description_tooltip');
+
+    Array.from(allPopInfo).forEach(pop => {
+
+        pop.addEventListener('click', () => {
+            const arFilter = document.querySelector('.configurator3d_post');
+            const text = pop.nextSibling.nextSibling.textContent;
+
+            // Додаємо текст і клас для стилізації
+            arFilter.setAttribute('data-text', text);
+            arFilter.classList.add('show-content');
+
+            // Додаємо подію для видалення класу при кліку
+            arFilter.addEventListener('click', (e) => {
+                if (e.target === arFilter) {
+                    // Перевіряємо, що клік саме в область елемента
+                    arFilter.classList.remove('show-content');
+                    arFilter.removeAttribute('data-text');
+                }
+            });
+        });
+    })
+
+    //#endregion
+
+    //#region endLoading
+    document.getElementsByClassName('page-content')[0].classList.add('no-loader');
     //#endregion
 }
 
@@ -1521,7 +1948,7 @@ function ReadURLParameters(callback) {
         }
     }
 
-    // console.log("ðŸš€ ~ ReadURLParameters ~ parseParams:", parseParams);
+    // console.log("Ã°Å¸Å¡â‚¬ ~ ReadURLParameters ~ parseParams:", parseParams);
 
     if (!parseParams?.trim()) {
         paramsLoaded = true;
@@ -1539,7 +1966,7 @@ function ReadURLParameters(callback) {
         return;
     }
 
-    // console.log("ðŸš€ ~ ReadURLParameters ~ paramArray:", paramArray);
+    // console.log("Ã°Å¸Å¡â‚¬ ~ ReadURLParameters ~ paramArray:", paramArray);
 
     for (let index = 0; index < SharedParameterList.length; index++) {
         const element = SharedParameterList[index];
@@ -1848,7 +2275,7 @@ function CreateQR() {
     var qrImg = new Image();
     qrImg.src = 'https://quickchart.io/qr?text=' + encoded + "&size=200";
     qrImg.addEventListener("load", () => {
-        console.log("ðŸš€ ~ qrImg.addEventListener ~ qrImg:", qrImg);
+        console.log("Ã°Å¸Å¡â‚¬ ~ qrImg.addEventListener ~ qrImg:", qrImg);
         qr.appendChild(qrImg);
     });
 }
@@ -2410,7 +2837,7 @@ function activeRALcolor() {
 }
 
 function UpdateRALInput(value) {
-    console.log("ðŸš€ ~ RALInput ~ value:", value);
+    console.log("Ã°Å¸Å¡â‚¬ ~ RALInput ~ value:", value);
 
     if (value == undefined && value == '') return;
 
@@ -2495,7 +2922,7 @@ function UpdateRALInput(value) {
     const getHex = (ral) => rals["RAL" + ral];
 
     const hex = getHex(value);
-    console.log("ðŸš€ ~ UpdateRALInput ~ hex:", hex);
+    console.log("Ã°Å¸Å¡â‚¬ ~ UpdateRALInput ~ hex:", hex);
 
     if (hex != undefined && hex != null && hex != '') {
         jQuery('#RALcode_input').removeClass('error');
@@ -2506,7 +2933,7 @@ function UpdateRALInput(value) {
         setMaterialColor('legs', hex);
         WriteURLParameters();
     } else {
-        console.log("ðŸš€ ~ ERROR ~ hex for:", value);
+        console.log("Ã°Å¸Å¡â‚¬ ~ ERROR ~ hex for:", value);
         jQuery('#RALcode_input').val('0');
         jQuery('#RALcode_input').addClass('error');
         jQuery('#RALcode_input_error').addClass('error');
@@ -2549,6 +2976,7 @@ function setActionForOptions() {
 
 function readUrlParams(callback) {
     const hash = window.location.hash;
+
     if (!hash.startsWith(`#${parametersKey}=`)) {
         console.warn('No valid config found in hash');
         paramsLoaded = true;
@@ -2570,6 +2998,7 @@ function readUrlParams(callback) {
     }
 
     // qrScaned = parseInt(paramArray[21]); //! TODO ? later
+    console.log(paramArray);
 
     jQuery(document).ready(() => {
         applyUrlParams(paramArray);
@@ -2697,108 +3126,99 @@ function getParametersString() {
 
 // * **************************************************************
 
-function centerFromFocusOnMesh() {
-    const canvas = document.getElementById('ar_model_view');
-    const interactionDelay = 2000; // Затримка перед викликом Settings3d (2 секунди)
+function smoothCameraTransition(
+    targetCameraPosition,
+    duration = 750,
+    targetControlX = 0,
+    targetControlY = 0,
+    targetControlZ = 0,
+    targetControlMinDist = 0,
+    targetCameraFOV = 70,
+    maxPolarAngle = Math.PI / 1.77,
+    callback = () => { },
+    callback_env = () => { },
+) {
+    const correctedTargetPosition = new THREE.Vector3(0, 0, 0);
+    const delta = 0;
+    const deltaControlsX = targetControlX - controls.target.x;
+    const deltaControlsY = targetControlY - controls.target.y;
+    const deltaControlsZ = targetControlZ - controls.target.z;
+    const deltaControlMinDist = targetControlMinDist - controls.minDistance;
+    const deltaCameraFOV = targetCameraFOV - camera.fov;
 
-    let isInteracting = false;
-    let interactionTimeout;
+    correctedTargetPosition.x = targetCameraPosition.x + delta;
+    correctedTargetPosition.y = targetCameraPosition.y;
+    correctedTargetPosition.z = targetCameraPosition.z - delta;
 
-    // Обробка початку взаємодії
-    function onInteractionStart() {
-        isInteracting = true;
+    const startPosition = camera.position.clone();
+    const startControlX = controls.target.x;
+    const startControlY = controls.target.y;
+    const startControlZ = controls.target.z;
+    const startControlMinDist = controls.minDistance;
+    const startCameraFOV = camera.fov;
+    const startMaxPolarAngle = controls.maxPolarAngle;
+    const startMaxDistance = controls.maxDistance;
+    const startMinDistance = controls.minDistance;
 
-        // Скасовуємо таймаут, якщо взаємодія триває
-        if (interactionTimeout) {
-            clearTimeout(interactionTimeout);
-        }
-    }
+    const startTime = performance.now();
 
-    // Обробка завершення взаємодії
-    function onInteractionEnd() {
-        isInteracting = false;
-
-        // Якщо користувач припинив взаємодію, скидаємо камеру через 2 секунди
-        interactionTimeout = setTimeout(() => {
-            if (!isInteracting) {
-                console.log("Resetting camera to default settings.");
-                Settings3d(); // Виклик функції скидання камери
-            }
-        }, interactionDelay);
-    }
-
-    // Додаємо обробники подій для миші
-    canvas.addEventListener("mousedown", onInteractionStart);
-    canvas.addEventListener("mousemove", onInteractionStart);
-    canvas.addEventListener("mouseup", onInteractionEnd);
-
-    // Додаємо обробники подій для сенсорних пристроїв
-    canvas.addEventListener("touchstart", onInteractionStart);
-    canvas.addEventListener("touchmove", onInteractionStart);
-    canvas.addEventListener("touchend", onInteractionEnd);
-
-    console.log("Interaction listeners set up for canvas.");
-}
-
-function focusCameraOnMesh(meshName, duration = 1000) {
-    const mesh = scene.getObjectByName(meshName);
-
-    if (mesh) {
-        const boundingBox = new THREE.Box3().setFromObject(mesh);
-        const boxCenter = boundingBox.getCenter(new THREE.Vector3());
-        const boxSize = boundingBox.getSize(new THREE.Vector3());
-
-        const maxDimension = Math.max(boxSize.x, boxSize.y, boxSize.z);
-        const cameraDistance = maxDimension * 2;
-
-        // Камера дивиться з гори вниз під кутом angle
-        const angle = Math.PI / 3;
-        const cameraHeight = cameraDistance * Math.sin(angle);
-        const horizontalDistance = cameraDistance * Math.cos(angle);
-
-        // Камера на правій стороні -1;
-        const endPosition = new THREE.Vector3(
-            boxCenter.x + (-1) * cameraHeight,
-            boxCenter.y + horizontalDistance,
-            boxCenter.z + horizontalDistance,
+    function animate() {
+        const currentTime = performance.now() - startTime;
+        const progress = Math.min(currentTime / duration, 1);
+        const t = 0.5 - 0.5 * Math.cos(Math.PI * progress);
+        const currentPosition = new THREE.Vector3().lerpVectors(
+            startPosition, correctedTargetPosition, t,
         );
 
-        const startPosition = camera.position.clone();
-        const startTarget = controls.target.clone();
+        const currentControlX = startControlX + deltaControlsX * t;
+        const currentControlY = startControlY + deltaControlsY * t;
+        const currentControlZ = startControlZ + deltaControlsZ * t;
+        const currentControlZoom = startControlMinDist + deltaControlMinDist * t;
+        const currentCameraFOV = startCameraFOV + deltaCameraFOV * t;
 
-        const startTime = performance.now();
+        camera.position.copy(currentPosition);
+        controls.target.x = currentControlX;
+        controls.target.y = currentControlY;
+        controls.target.z = currentControlZ;
+        controls.minDistance = currentControlZoom;
+        camera.fov = currentCameraFOV;
+        camera.updateProjectionMatrix();
 
-        function easeInOutQuad(t) {
-            return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+        controls.maxPolarAngle = maxPolarAngle;
+
+        if (progress < 1) {
+            requestAnimationFrame(animate);
+        } else {
+            controls.minDistance = startMinDistance;
+            controls.maxDistance = startMaxDistance;
+            controls.maxPolarAngle = startMaxPolarAngle;
+
+            callback();
+            if (callback_env) callback_env();
         }
-
-        function animate() {
-            const elapsedTime = performance.now() - startTime;
-            const linearT = Math.min(elapsedTime / duration, 1);
-            const t = easeInOutQuad(linearT);
-
-            camera.position.lerpVectors(startPosition, endPosition, t);
-
-            const interpolatedTarget = new THREE.Vector3().lerpVectors(startTarget, boxCenter, t);
-            camera.lookAt(interpolatedTarget);
-
-            controls.update();
-
-            if (linearT < 1) {
-                requestAnimationFrame(animate);
-            } else {
-                camera.position.copy(endPosition);
-                camera.lookAt(boxCenter);
-                controls.target.copy(boxCenter);
-                controls.update();
-                console.log("Camera animation complete.");
-            }
-        }
-
-        animate();
     }
 
-    console.error("Mesh not found.");
+    animate();
+}
+
+function listenerChangeOrbitCamera() {
+    controls.addEventListener('end', () => {
+        consoleLogPosition('camera', camera.position, 3);
+    });
+}
+
+function consoleLogPosition(text = '', pos, num = 2) {
+    let k = 1;
+
+    for (let i = 0; i < num; i++) {
+        k = k * 10;
+    }
+
+    const x = Math.round(pos.x * k) / k;
+    const y = Math.round(pos.y * k) / k;
+    const z = Math.round(pos.z * k) / k;
+
+    console.log(':rocket: ' + text + ': [' + x + ', ' + y + ', ' + z + '],');
 }
 
 function listenerFocusOptions() {
@@ -2810,14 +3230,21 @@ function listenerFocusOptions() {
 
     setTimeout(() => {
         initialized = true;
-    }, 100);
+    }, 300);
+
+    function areArraysEqual(arr1, arr2) {
+        if (arr1.length !== arr2.length) return false;
+        return JSON.stringify(arr1) === JSON.stringify(arr2);
+    }
 
     for (const options of allOptions) {
         for (const option of options.children) {
-            const customIdClass = Array.from(option.classList).find(cls => cls.startsWith('custom_id-'));
+            let customIdClass = Array.from(option.classList).find(cls => cls.startsWith('custom_id-'));
 
             if (customIdClass) {
-                const mesh = customIdClass.split('-')[1];
+                customIdClass = customIdClass.replace('custom_id-', '');
+
+                const coordinate = customIdClass.split('/');
 
                 option.addEventListener('click', (event) => {
                     const clickedElement = event.currentTarget;
@@ -2828,15 +3255,46 @@ function listenerFocusOptions() {
                     }
 
                     const isActive = clickedElement.classList.contains('active');
+                    const parsetCurrentCoordinate = [parseFloat(camera.position.x.toFixed(3)), parseFloat(camera.position.y.toFixed(3)), parseFloat(camera.position.z.toFixed(3))];
 
-                    if (!isActive) {
-                        focusCameraOnMesh(mesh, 2000);
-                        console.log(`Option clicked: ${mesh}`);
+                    const isEqual = areArraysEqual([+coordinate[0], +coordinate[1], +coordinate[2]], parsetCurrentCoordinate);
+
+                    if (coordinate.length === 3 && !isEqual) {
+                        let x = +coordinate[0];
+                        let y = +coordinate[1];
+                        let z = +coordinate[2];
+
+                        targetCameraPosition = new THREE.Vector3(x, y, z);
+
+                        if (!isActive) {
+                            smoothCameraTransition(targetCameraPosition, 1000);
+                        }
                     }
                 });
+            } else {
+                console.log('Option without custom_id_${mesh}');
             }
-
-            console.log('Option without custom_id_${mesh}');
         }
     }
+}
+
+function changeDataFetch(changes) {
+    let data = {
+        productName: '',
+        userName: '',
+        phone: '',
+        email: '',
+        link: '',
+        stage: false,
+        callButton: false,
+        pdfButton: false,
+    };
+
+    for (const key in changes) {
+        if (changes.hasOwnProperty(key) && data.hasOwnProperty(key)) {
+            data[key] = changes[key];
+        }
+    }
+
+    return data;
 }
