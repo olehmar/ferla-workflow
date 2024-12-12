@@ -574,6 +574,20 @@ function StartSettings() {
     theModel.visible = true;
 }
 
+function resetCameraToDefault() {
+    camera.position.set(-2.2, 0.6, 2); // Задаємо початкові координати камери
+    camera.fov = 70; // Відновлюємо значення fov
+    camera.updateProjectionMatrix(); // Оновлюємо матрицю камери
+
+    if (controls) {
+        controls.maxPolarAngle = Math.PI / 1.77;
+        controls.minPolarAngle = 0.15;
+        controls.minDistance = 1;
+        controls.maxDistance = 4;
+        controls.update();
+    }
+}
+
 function Settings3d() {
     controls.maxPolarAngle = Math.PI / 1.77;
     controls.minPolarAngle = 0.15;
@@ -1187,16 +1201,73 @@ function PrepareUI() {
     document.body.appendChild(GLTFExporter_script);
 
     //#region ADD PDF SCRIPT
-    const scriptPDF_first = document.createElement('script');
-    scriptPDF_first.setAttribute('src', 'https://unpkg.com/pdf-lib@1.4.0');
-    document.body.appendChild(scriptPDF_first);
+    function loadScript(url) {
+        return new Promise((resolve, reject) => {
+            const script = document.createElement('script');
+            script.src = url;
+            script.onload = () => resolve();
+            script.onerror = () => reject(new Error(`Script load error for ${url}`));
+            document.head.appendChild(script);
+        });
+    }
 
-    const scriptPDF_second = document.createElement('script');
-    scriptPDF_second.setAttribute('src', 'https://unpkg.com/@pdf-lib/fontkit@0.0.4');
-    document.body.appendChild(scriptPDF_second);
+    async function loadPDFLib() {
+        try {
+            await loadScript('https://unpkg.com/pdf-lib@1.4.0');
+            console.log('PDF-lib script loaded');
+            await loadScript('https://unpkg.com/@pdf-lib/fontkit@0.0.4');
+            console.log('Fontkit script loaded');
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    async function loadCanvasLib() {
+        try {
+            await loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js');
+            console.log('Canvas script loaded');
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    async function loadCanvasPDFlib() {
+        try {
+            await loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js');
+            console.log('PDF HTML script loaded');
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+
+
+    loadPDFLib();
+    loadCanvasLib();
+    loadCanvasPDFlib();
     //#endregion
 
     //#region *** FUNCTIONS HELPER ***
+    const buttons = {
+        summary: 'sum',
+        call: 'call',
+        pdf: 'pdf',
+    }
+
+    function saveSceneAsImage(renderer) {
+        const canvas = renderer.domElement;
+
+        return imageUrl = canvas.toDataURL('image/png');
+    }
+
+    async function captureSingleSceneSnapshot(renderer, scene, camera) {
+        renderer.setClearColor(0x000000, 0);
+        scene.background = null;
+
+        renderer.render(scene, camera);
+
+        return saveSceneAsImage(renderer);
+    }
 
     function getElementFromDOM(cls) {
         return document.getElementsByClassName(cls)[0];
@@ -1241,16 +1312,204 @@ function PrepareUI() {
         })
     }
 
+    // async function makeScreen(capture, resize = true, size = 1200) {
+    //     if (resize) {
+    //         const elementToCapture = getElementFromDOM(capture);
+    //         const body = document.body;
+    //         const originalBodyStyle = body.style.cssText;
+    //         const screenWidth = size;
+    //         const originalWidth = window.innerWidth;
+
+    //         try {
+    //             body.style.width = `${screenWidth}`;
+    //             body.style.overflow = 'hidden';
+    //             document.documentElement.style.setProperty('--viewport-width', `${screenWidth}px`);
+
+    //             Object.defineProperty(window, 'innerWidth', { value: screenWidth, configurable: true });
+
+    //             await new Promise(resolve => requestAnimationFrame(resolve));
+
+    //             const canvas = await html2canvas(elementToCapture);
+
+    //             const imageUrl = canvas.toDataURL('image/png');
+    //             return imageUrl;
+    //         } finally {
+    //             body.style.cssText = originalBodyStyle;
+    //             document.documentElement.style.removeProperty('--viewport-width');
+
+    //             Object.defineProperty(window, 'innerWidth', { value: originalWidth, configurable: true });
+
+    //             await new Promise(resolve => requestAnimationFrame(resolve));
+    //         }
+    //     } else {
+    //         const elementToCapture = getElementFromDOM(capture);
+    //         const canvas = await html2canvas(elementToCapture);
+    //         const imageUrl = canvas.toDataURL('image/png');
+
+    //         return imageUrl;
+    //     }
+    // }
+
+    function toggleStyleForSummary() {
+        const maxWidht = 1400;
+        const contentId = document.getElementById('content');
+
+        if (!contentId.style.cssText.includes(`max-width: ${maxWidht}px !important`)) {
+            contentId.style.cssText += `max-width: ${maxWidht}px !important;`;
+        } else {
+            contentId.style.cssText = contentId.style.cssText.replace(`max-width: ${maxWidht}px !important;`, '');
+        }
+    }
+
+    function webHook(button, close) {
+        switch (button) {
+            case buttons.call:
+                localStorage.setItem('callButton', true);
+
+                break;
+
+            case buttons.summary:
+                localStorage.setItem('stage', 'Summary');
+
+                break;
+
+            case buttons.pdf:
+                localStorage.setItem('pdfButton', true);
+
+                break;
+
+            default:
+                break;
+        }
+
+        let data = {
+            productName: document.getElementsByClassName('entry-title')[0].textContent,
+            userName: localStorage.getItem('username'),
+            phone: localStorage.getItem('phone'),
+            email: localStorage.getItem('email'),
+            link: window.location.href,
+            stage: localStorage.getItem('stage') ? localStorage.getItem('stage') : 'Incomplete',
+            callButton: localStorage.getItem('callButton') ? localStorage.getItem('callButton') : false,
+            pdfButton: localStorage.getItem('pdfButton') ? localStorage.getItem('pdfButton') : false,
+            webSiteClose: false,
+        };
+
+        fetch('https://hook.us1.make.com/xh8wgbzkjkkh8cj6gbq6s62my1t58xmk', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        }).then(() => {
+            console.log(data);
+        })
+    }
     //#endregion
 
-    const main = getElementFromDOM('site-main');
+    const shortCode = document.getElementById('configurator_shortcode');
+    const main = document.body;
     const menuConfig = getElementFromDOM('ar_filter');
     const summary = getElementFromDOM('ar_summary');
+    const titlePDF = document.getElementsByTagName('h1')[0]?.textContent || 'Документ PDF';
 
     summary.classList.add('hide-visible');
 
+    //#region WebHook CLOSE 
+    window.addEventListener('unload', function () {
+        webHook('', true);
+    });
+    //#endregion
+
+    //#region RECLICK OPTIONS  
+    const reclickGroup = getElementFromDOM('group_custom_id-re-click-options');
+    const groupName = reclickGroup.getElementsByClassName('ar_filter_caption')[0].textContent;
+    const allSummaryName = document.getElementsByClassName('ar_summary_list_group');
+
+    const reclickGroupOptions = reclickGroup.getElementsByClassName('ar_filter_options')[0].getElementsByClassName('option');
+
+    Array.from(reclickGroupOptions).forEach(option => {
+        option.addEventListener('click', (event) => {
+            console.log(groupName);
+            if (option.classList.contains('active')) {
+                option.classList.remove('active');
+                event.stopPropagation();
+                event.preventDefault();
+
+
+                console.log(allSummaryName);
+                Array.from(allSummaryName).forEach(list => {
+                    list.textContent = list.textContent.replaceAll('Included', '');
+
+                    if (list.textContent.toLowerCase() === groupName.toLowerCase()) {
+                        const groupSum = list.closest('.ar_summary_list_item');
+
+                        groupSum.remove();
+                    }
+                })
+            }
+        })
+    })
+
+    //#endregion
+
     //#region CONFIG-PARAMS 
     const CONFIG_PARAMS = document.getElementsByClassName('group_custom_id-config_params')[0];
+
+    const photSumUrl = CONFIG_PARAMS.getElementsByClassName('ar_filter_options')[0].getElementsByClassName('option')[0].textContent.replaceAll('Included', '');
+    //#endregion
+
+    //#region CREATE-PDF-DOC
+    async function generateAndDownloadPDF(filename = 'Ferla-Your-Bike.pdf') {
+        const element = getElementFromDOM('ar_summary');
+
+        const body = document.getElementById('content');
+        const originalBodyStyle = body.style.cssText;
+        const screenWidth = 595;
+        const originalWidth = window.innerWidth;
+
+        if (!element) {
+            console.error(`Element with ID "ar_summary" not found.`);
+            return;
+        }
+
+        const options = {
+            margin: 10, // Поля у міліметрах
+            filename: filename, // Ім'я файлу
+            image: { type: 'jpeg', quality: 0.98 }, // Формат і якість зображення
+            html2canvas: {
+                scale: 2,
+                useCORS: true,
+                logging: true,
+                allowTaint: true
+            },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' } // Формат A4
+        };
+
+        try {
+            body.style.width = `${screenWidth}`;
+            body.style.overflow = 'hidden';
+            document.documentElement.style.setProperty('--viewport-width', `${screenWidth}px`);
+
+            Object.defineProperty(window, 'innerWidth', { value: screenWidth, configurable: true });
+
+            await new Promise(resolve => requestAnimationFrame(resolve));
+
+            const pdf = html2pdf().set(options).from(element).toPdf();
+
+            await pdf.save();
+            console.log('PDF successfully generated and downloaded.');
+        } catch (error) {
+            console.error('Error generating PDF:', error);
+        } finally {
+            body.style.cssText = originalBodyStyle;
+            document.documentElement.style.removeProperty('--viewport-width');
+
+            Object.defineProperty(window, 'innerWidth', { value: originalWidth, configurable: true });
+
+            await new Promise(resolve => requestAnimationFrame(resolve));
+        }
+    }
+
     //#endregion
 
     //#region scrollLogic 
@@ -1303,7 +1562,7 @@ function PrepareUI() {
 
     //#region URL CHANGE
     function updateInputWithURL() {
-        console.log('update url');
+        document.getElementById('ar_order_link').setAttribute('value', window.location.href);
         getElementFromDOM('share-box_bottom_input').value = window.location.href;
     }
 
@@ -1368,7 +1627,6 @@ function PrepareUI() {
         <div class="sum-button_price">$${formattedPrice}</div>
         <div class="sum-button_button">Summary</div>
     `;
-
     //#region MODAL CALL REQUEST 
 
     main.insertAdjacentHTML(
@@ -1395,19 +1653,32 @@ function PrepareUI() {
 
     buttonModal.addEventListener('click', () => {
         if (!modalCallRequest.classList.contains('hide-visible')) {
+            document.body.style.overflow = 'auto';
             modalCallRequest.classList.add('hide-visible');
         }
     })
 
     closeButton.addEventListener('click', () => {
         if (!modalCallRequest.classList.contains('hide-visible')) {
+            document.body.style.overflow = 'auto';
             modalCallRequest.classList.add('hide-visible');
         }
     })
     //#endregion
 
-    document.addEventListener('click', (event) => {
+    document.addEventListener('click', async (event) => {
         if (event.target.classList.contains('sum-button_button')) {
+            //#region WEB HOOK
+            webHook(buttons.summary);
+            //#endregion
+
+            //#region IMG CONFIG
+            resetCameraToDefault();
+            captureSingleSceneSnapshot(renderer, scene, camera);
+
+            const imgBike = await captureSingleSceneSnapshot(renderer, scene, camera);;
+            //#endregion
+
             function applyChanges() {
                 const pdfButtonOnPhone = document.getElementsByClassName('sum-button_pdf')[0];
                 getElementFromDOM('ar_conf_container').classList.add('hide-visible');
@@ -1450,6 +1721,7 @@ function PrepareUI() {
                 const sumButtonContainer = getElementFromDOM('sum-button_container');
                 if (sumButtonContainer) sumButtonContainer.remove();
             }
+
             const allTitle = document.getElementsByClassName('ar_summary_list_components_component_title');
             const allPrices = document.getElementsByClassName('ar_summary_list_components_component_price');
             const allListSummary = document.getElementsByClassName('ar_summary_list_item');
@@ -1470,8 +1742,8 @@ function PrepareUI() {
             Array.from(allPrices).forEach(price => {
                 if (!price.textContent) {
                     price.textContent = 'Included';
-                } else {
-                    price.textContent = '$' + price.textContent;
+                } else if (!price.textContent.includes('Included')) {
+                    price.textContent = price.textContent.includes('$') ? price.textContent : '$' + price.textContent;
                 }
             })
 
@@ -1495,13 +1767,19 @@ function PrepareUI() {
 
             if (!document.querySelector('.sum_img') && !document.querySelector('.custom-template')) {
                 const templateHTML = `
-                    <div class="sum_img"></div>
+                    <div class="sum_img" style="background-img: url(${imgBike}) !important"></div>
                     <div class="custom-template">
-                       <h2 class="custom-template_title">Your Ferla Vendor Bike Configuration</h2>
+                       <div class="head-pdf">
+                        <h2 class="head-pdf_title">${titlePDF}</h2>
+                        <img class="head-pdf_img" src="https://3d.ferlabikes.info/wp-content/uploads/2024/12/Red-Logo-Ferla.png"></img>
+                       </div>
+
+                       <h2 class="custom-template_title">Your ${titlePDF} Configuration</h2>
                        <div class="custom-template_price-item">Base Price: $${formatPrice(basePrice)}</div>
                        <div class="custom-template_price-item">Sum of selected options: $${differentePrice}</div>
                        <div class="custom-template_price-total">Total Price: $${formatPrice(amountPrice)}</div>
                     </div>
+                    <div class="shortcode_info">${shortCode.innerHTML}</div>
                   `;
 
                 summary.insertAdjacentHTML('afterbegin', templateHTML);
@@ -1517,19 +1795,18 @@ function PrepareUI() {
             menuConfig.classList.add('hide-visible');
             applyChanges();
             summary.classList.remove('hide-visible');
+            toggleStyleForSummary();
             //#endregion
 
             //#region load img from SUM ***CONFIG_PARAMS***
-            const photSumUrl = CONFIG_PARAMS.getElementsByClassName('ar_filter_options')[0].getElementsByClassName('option')[0].textContent.replaceAll('Included', '');
-
             const style = document.createElement('style');
 
             style.textContent = `
                 .page-header_sum::after {
-                    background-image: url(${photSumUrl});                 
+                    background-image: url(${imgBike});                 
                 }
                 .sum_img {
-                 background-image: url(${photSumUrl});    
+                 background-image: url(${imgBike}) !important;
                 }
             `;
             document.head.appendChild(style);
@@ -1541,6 +1818,7 @@ function PrepareUI() {
                 menuConfig.classList.remove('hide-visible');
                 revertChanges();
                 summary.classList.add('hide-visible');
+                toggleStyleForSummary();
                 //#endregion
             });
 
@@ -1550,16 +1828,56 @@ function PrepareUI() {
                 menuConfig.classList.remove('hide-visible');
                 revertChanges();
                 summary.classList.add('hide-visible');
+                toggleStyleForSummary();
                 //#endregion
             });
 
             //BUTTON CALL-REQUEST DESKTOP
             getElementFromDOM('sum-button_container_call').addEventListener('click', () => {
-
-
                 if (modalCallRequest.classList.contains('hide-visible')) {
+                    document.body.style.overflow = 'hidden'
                     modalCallRequest.classList.remove('hide-visible');
                 }
+
+                webHook(buttons.call);
+            })
+
+            //BUTTON CALL-REQUEST PHONE
+            getElementFromDOM('ar_summary_sum-button_call').addEventListener('click', () => {
+                if (modalCallRequest.classList.contains('hide-visible')) {
+                    document.body.style.overflow = 'hidden'
+                    modalCallRequest.classList.remove('hide-visible');
+                }
+
+                webHook(buttons.call);
+            })
+
+            //BUTTON DOWNLOAD PDF DESKTOP
+            getElementFromDOM('sum-button_container_pdf').addEventListener('click', async () => {
+                try {
+                    document.body.classList.add('loader');
+                    await generateAndDownloadPDF();
+                } catch (error) {
+                    console.log(`ERROR PDF:${error}`)
+                } finally {
+                    document.body.classList.remove('loader');
+                }
+
+                webHook(buttons.pdf);
+            })
+
+            //BUTTON DOWNLOAD PDF PHONE
+            getElementFromDOM('sum-button_pdf').addEventListener('click', async () => {
+                try {
+                    document.body.classList.add('loader');
+                    await generateAndDownloadPDF();
+                } catch (error) {
+                    console.log(`ERROR PDF:${error}`)
+                } finally {
+                    document.body.classList.remove('loader');
+                }
+
+                webHook(buttons.pdf);
             })
         }
     });
@@ -1588,15 +1906,13 @@ function PrepareUI() {
 
             const addedInfo = h1Title.parentNode.insertBefore(addInfo, h1Title.nextSibling);
 
-            let isOpen = false;
-
             const info = document.createElement('div');
             info.className = 'additional-info';
 
             const infoBoard = menuConfig.parentNode.insertBefore(info, menuConfig.nextSibling);
             infoBoard.classList.add('hide-visible');
 
-            info.innerHTML += `<div class='add-info_close'></div>`;
+            info.innerHTML = shortCode.innerHTML + `<div class='add-info_close'></div>`;
 
             getElementFromDOM('add-info_close').addEventListener('click', () => {
                 addedInfo.classList.remove('add-info-active')
@@ -1701,35 +2017,20 @@ function PrepareUI() {
         }
 
         buttonOfForm.addEventListener('click', function () {
+            //ENTER DATA TO LOCALE STORAGE
+            localStorage.setItem('username', `${name.value}`);
+            localStorage.setItem('phone', `${tel.value}`);
+            localStorage.setItem('email', `${email.value}`);
+
+            document.body.classList.add('loader');
             menuConfig.classList.add('menu-visible');
             form.classList.add('hide-visible');
             titleH1.style.visibility = 'visible';
 
-            const dataForFetch = changeDataFetch({
-                productName: document.getElementsByClassName('entry-title')[0].textContent,
-                userName: name,
-                phone: tel,
-                email: email,
-            });
+            //#region WEB HOOK
+            webHook();
+            //#endregion
 
-            fetch('https://hook.us1.make.com/xh8wgbzkjkkh8cj6gbq6s62my1t58xmk', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(dataForFetch),
-            }).then((response) => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            })
-                .then((data) => {
-                    console.log('Успішно відправлено:', data);
-                })
-                .catch((error) => {
-                    console.error('Помилка при відправці:', error);
-                });
         });
     }
     //#endregion
@@ -1878,7 +2179,9 @@ function PrepareUI() {
     //#endregion
 
     //#region endLoading
-    document.getElementsByClassName('page-content')[0].classList.add('no-loader');
+    setTimeout(() => {
+        getElementFromDOM('page-content').classList.add('no-loader');
+    }, 150)
     //#endregion
 }
 
@@ -3276,25 +3579,4 @@ function listenerFocusOptions() {
             }
         }
     }
-}
-
-function changeDataFetch(changes) {
-    let data = {
-        productName: '',
-        userName: '',
-        phone: '',
-        email: '',
-        link: '',
-        stage: false,
-        callButton: false,
-        pdfButton: false,
-    };
-
-    for (const key in changes) {
-        if (changes.hasOwnProperty(key) && data.hasOwnProperty(key)) {
-            data[key] = changes[key];
-        }
-    }
-
-    return data;
 }
