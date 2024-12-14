@@ -3,11 +3,13 @@
 @font-face {
     font-family: 'Visby Round CF';
     src: url('https://raw.githubusercontent.com/olehmar/ferla-workflow/main/fonts/VisbyRoundCF-Regular.otf');
+    font-display: swap;
 }
 
 @font-face {
     font-family: 'Visby Round 500';
     src: url('https://raw.githubusercontent.com/olehmar/ferla-workflow/main/fonts/VisbyRoundCF-Medium.otf');
+    font-display: swap;
 }
 
 body::-webkit-scrollbar {
@@ -17,6 +19,29 @@ body::-webkit-scrollbar {
 //#region SHORTCODE SUMMARY 
 .shortcode_info {
     margin-bottom: 70px;
+}
+
+//#endregion
+
+//#region PDF-html
+.header-forA4 {
+    display: none;
+
+    &_container {
+        &_img {}
+
+        &_title {}
+
+        &_logo {}
+    }
+}
+
+.footer-forA4 {
+    display: none;
+
+    &_table {
+        &_item {}
+    }
 }
 
 //#endregion
@@ -104,10 +129,6 @@ body::-webkit-scrollbar {
 
 //#endregion
 
-#marevo_model {
-    display: none;
-}
-
 .menu-visible {
     opacity: 1 !important;
     transition: opacity 0.3s ease;
@@ -185,6 +206,51 @@ body::-webkit-scrollbar {
 //#endregion
 
 //#region GLOBAL STYLES
+
+#ar-prompt {
+    position: absolute;
+    left: 50%;
+    bottom: 60px;
+    animation: 2s ease-in-out 0s infinite alternate none running elongate;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-fill-mode: none;
+    animation-play-state: running;
+    animation-name: elongate;
+    display: none;
+}
+
+@keyframes elongate {
+    from {
+        transform: translateX(100px);
+    }
+
+    to {
+        transform: translateX(-100px);
+    }
+}
+
+@keyframes circle {
+    from {
+        transform: translateX(-50%) rotate(0deg) translateX(50px) rotate(0deg);
+    }
+
+    to {
+        transform: translateX(-50%) rotate(360deg) translateX(50px) rotate(-360deg);
+    }
+}
+
+#ar-prompt>img {
+    animation: circle 4s linear infinite;
+}
+
+model-viewer {
+    width: 100%;
+    height: 100%;
+}
 
 .custom-template {
     margin-bottom: 150px;
@@ -375,9 +441,12 @@ body::-webkit-scrollbar {
 
 .body {
     font-family: 'Visby Round CF', sans-serif !important;
+    font-smoothing: antialiased;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     position: relative;
+    margin-bottom: 0 !important;
+    box-sizing: content-box !important;
 }
 
 .ar_filter .ar_filter_group .ar_filter_options.type_checkbox .option .component_title {
@@ -933,7 +1002,7 @@ h1 {
         height: 170px;
 
         &_QR {
-            background-image: url(https://3d.ferlabikes.info/wp-content/uploads/2024/11/vaadin_qrcode.svg);
+            // background-image: url(https://3d.ferlabikes.info/wp-content/uploads/2024/11/vaadin_qrcode.svg);
             background-repeat: no-repeat;
             background-size: cover;
             width: 130px;
@@ -1899,10 +1968,10 @@ h1 {
 
 //#region FOOTER 
 .elementor-location-footer {
-    display: none !important;
-    opacity: 0;
-    margin: 0 !important;
-    padding: 0 !important;
+    // display: none !important;
+    // opacity: 0;
+    // margin: 0 !important;
+    // padding: 0 !important;
     visibility: hidden !important;
 }
 
@@ -1957,6 +2026,10 @@ h1 {
 }
 
 @media (max-width: 800px) {
+    .custom-request-modal {
+        margin: 0 20px !important;
+    }
+
     .content_sum {
         padding: 0 20px !important;
     }
@@ -1966,7 +2039,7 @@ h1 {
         flex-direction: column;
         align-items: center;
         width: 100%;
-        margin-top: 30px;
+        margin-top: 10px;
         margin-bottom: 60px !important;
 
         &_title {
@@ -2006,7 +2079,7 @@ h1 {
             font-size: 16px !important;
             @include button;
             display: flex !important;
-            margin-bottom: 40px;
+            margin-bottom: 80px;
             cursor: pointer;
 
             &::before {
@@ -2032,7 +2105,7 @@ h1 {
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
-        height: 280px !important;
+        height: 200px !important;
         display: flex;
         right: 50px;
         top: 0;
@@ -2073,7 +2146,7 @@ h1 {
     }
 
     .page-header {
-        top: 300px;
+        top: 255px;
         right: 50%;
         transform: translate(50%);
 
@@ -2099,10 +2172,11 @@ h1 {
             line-height: 28.8px !important;
             letter-spacing: 0.02em;
             height: auto !important;
-            margin-bottom: 10px !important;
+            margin-bottom: 0 !important;
             width: 100% !important;
             padding: 20px 0 !important;
             border-radius: 5px 5px 75px 5px !important;
+            margin-top: 20px !important;
 
             .entry-title {
                 font-family: 'Visby Round 500' !important;
@@ -2119,6 +2193,10 @@ h1 {
         }
     }
 
+    .component_title {
+        margin-bottom: 5px;
+    }
+
     .configurator3d_post {
         flex-direction: column;
         align-items: center;
@@ -2129,32 +2207,36 @@ h1 {
             width: 100% !important;
             padding: 20px !important;
             height: 400px;
-            margin-top: 100px;
+            margin-top: 60px;
             display: flex;
             align-items: center;
+
+            &_caption {
+                margin-bottom: 15px !important;
+            }
 
             &_group {
                 width: 100% !important;
                 margin-bottom: $margin-bottom-group-phone !important;
+                padding: 15px 22.5px !important;
             }
 
             &_header {
                 gap: 0 !important;
             }
+
+            &_description {
+                margin-bottom: 15px !important;
+            }
         }
 
         .elementor-element-d1e90d0 {
             margin-top: 0 !important;
-
-            .e-con-inner {
-                margin-bottom: 80px !important;
-            }
         }
 
         .ar_conf_container {
-            height: 250px;
+            height: 230px;
             margin: 0;
-            padding-top: $phone-gap;
 
             .ar_model_view {
                 height: 100% !important;
@@ -2206,7 +2288,6 @@ h1 {
 
     body {
         overflow: auto !important;
-        margin-bottom: 80px !important;
     }
 
     .sum-button {
@@ -2215,6 +2296,7 @@ h1 {
         left: 0;
         margin: 0;
         width: auto;
+        height: 60px !important;
 
         border-radius: 5px 5px 0 0;
 
@@ -2256,9 +2338,15 @@ h1 {
     .type_select_no_photo {
         width: 100%;
 
+        &> :not(:last-child) {
+            margin-bottom: 11px !important;
+        }
+
         .option {
             width: 100%;
         }
+
+
     }
 
     .type_checkbox {
@@ -2270,6 +2358,10 @@ h1 {
             .image>img {
                 width: $width-ar-phone !important;
             }
+
+            .component_title {
+                margin-bottom: 10px !important;
+            }
         }
     }
 
@@ -2278,6 +2370,7 @@ h1 {
     //#region inputs COLOR 
 
     .group_custom_id-colors {
+
         .type_select {
             display: flex !important;
             flex-wrap: wrap !important;
@@ -2334,7 +2427,7 @@ h1 {
         }
 
         form {
-            top: 300px;
+            top: 250px;
             left: 50%;
             width: $width-group-phone;
             transform: translate(-50%);
@@ -2521,7 +2614,142 @@ h1 {
 
 @media (min-width: 1400px) {}
 
+.page-break {
+    page-break-before: always;
+    /* Завжди починати з нової сторінки */
+}
+
+.page-break-first {
+    page-break-before: always;
+    margin-top: 0;
+    /* Забезпечує, щоб перша сторінка починалась з верхнього краю */
+}
+
+/* Якщо потрібно уникнути розриву перед певним елементом */
+.page-no-break {
+    page-break-inside: avoid;
+    /* Уникає розриву сторінки всередині цього елемента */
+}
+
 @media screen and (min-width: 550px) and (max-width: 595px) {
+
+
+    .header-forA4 {
+        display: block;
+        margin-bottom: 40px;
+
+        &_container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            &_img {
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                display: flex;
+                width: 87.5px;
+                height: 88px;
+            }
+
+            &_title {
+                font-family: Visby Round CF;
+                font-size: 28px;
+                font-weight: 600;
+                line-height: 33.6px;
+                letter-spacing: 0.02em;
+                text-align: center;
+                text-underline-position: from-font;
+                text-decoration-skip-ink: none;
+                color: $button_color;
+                width: 211px;
+            }
+
+            &_logo {
+                background-image: url(https://3d.ferlabikes.info/wp-content/uploads/2024/12/Vector-2.svg);
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                display: flex;
+                width: 89.83px;
+                height: 21.64px;
+            }
+        }
+    }
+
+
+    .footer-forA4_table_item--phone {
+        display: flex;
+
+        &::before {
+            content: "";
+            background-image: url(https://3d.ferlabikes.info/wp-content/uploads/2024/12/mage_phone-call-fill.webp);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            width: 14px;
+            height: 14px;
+            margin-right: 6px;
+        }
+    }
+
+    .footer-forA4_table_item--adress {
+        display: flex;
+
+        &::before {
+            content: "";
+            background-image: url(https://3d.ferlabikes.info/wp-content/uploads/2024/12/bxs_map.webp);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            width: 14px;
+            height: 14px;
+            margin-right: 6px;
+        }
+    }
+
+    .footer-forA4_table_item--mail {
+        display: flex;
+
+        &::before {
+            content: "";
+            background-image: url(https://3d.ferlabikes.info/wp-content/uploads/2024/12/ic_round-email.webp);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            width: 14px;
+            height: 14px;
+            margin-right: 6px;
+        }
+    }
+
+    .footer-forA4 {
+        display: block;
+
+        &_table {
+            display: flex;
+            list-style: none;
+            justify-content: space-between;
+            padding: 0;
+
+            &_item {
+                display: flex;
+                align-items: center;
+                font-family: Visby Round CF;
+                font-size: 12px;
+                font-weight: 400;
+                line-height: 14.4px;
+                text-align: left;
+                text-underline-position: from-font;
+                text-decoration-skip-ink: none;
+
+
+
+
+            }
+        }
+    }
+
     .sum_img {
         position: absolute;
         background-size: cover;

@@ -153,7 +153,7 @@ SharedParameterList[0].groupOptionAction = function () {
 // loaderForHtml();
 
 function EmptyURLParams() {
-    console.log("Ã°Å¸Å¡â‚¬Ã°Å¸Å¡â‚¬Ã°Å¸Å¡â‚¬Ã°Å¸Å¡â‚¬Ã°Å¸Å¡â‚¬ EmptyURLParams");
+    console.log("ÃƒÂ°Ã…Â¸Ã…Â¡Ã¢â€šÂ¬ÃƒÂ°Ã…Â¸Ã…Â¡Ã¢â€šÂ¬ÃƒÂ°Ã…Â¸Ã…Â¡Ã¢â€šÂ¬ÃƒÂ°Ã…Â¸Ã…Â¡Ã¢â€šÂ¬ÃƒÂ°Ã…Â¸Ã…Â¡Ã¢â€šÂ¬ EmptyURLParams");
     // ParseAllGroups();
     setIsLoaderActive(false);
     blockURLWriter = false;
@@ -434,7 +434,7 @@ function InitializationGroups(callback) {
         switch (typeValue) {
             case "range":
                 inputRange = ar_filter_inputs.querySelector("input");
-                // console.log("Ã°Å¸Å¡â‚¬ ~ InitializationGroups ~ inputRange:", inputRange);
+                // console.log("ÃƒÂ°Ã…Â¸Ã…Â¡Ã¢â€šÂ¬ ~ InitializationGroups ~ inputRange:", inputRange);
 
                 if (inputRange != null) {
                     newSomeGroup.input = inputRange;
@@ -445,14 +445,14 @@ function InitializationGroups(callback) {
                             newSomeGroup.rangeList.push(opt.textContent.trim());
                         });
                         newSomeGroup.rangeList.sort();
-                        // console.log("Ã°Å¸Å¡â‚¬ ~ InitializationGroups ~ newSomeGroup.rangeList:", newSomeGroup.rangeList);
+                        // console.log("ÃƒÂ°Ã…Â¸Ã…Â¡Ã¢â€šÂ¬ ~ InitializationGroups ~ newSomeGroup.rangeList:", newSomeGroup.rangeList);
                     }
                 }
                 break;
             case "number":
             case "text":
                 input = ar_filter_inputs.querySelector("input");
-                // console.log("Ã°Å¸Å¡â‚¬ ~ InitializationGroups ~ input:", input);
+                // console.log("ÃƒÂ°Ã…Â¸Ã…Â¡Ã¢â€šÂ¬ ~ InitializationGroups ~ input:", input);
 
                 if (input != null) {
                     newSomeGroup.input = input;
@@ -460,7 +460,7 @@ function InitializationGroups(callback) {
                 break;
             case "dropdown":
                 select_dropdown = ar_filter_inputs.querySelector("select");
-                // console.log("Ã°Å¸Å¡â‚¬ ~ InitializationGroups ~ select_dropdown:", select_dropdown);
+                // console.log("ÃƒÂ°Ã…Â¸Ã…Â¡Ã¢â€šÂ¬ ~ InitializationGroups ~ select_dropdown:", select_dropdown);
 
                 if (select_dropdown != null) {
                     newSomeGroup.select = select_dropdown;
@@ -575,9 +575,9 @@ function StartSettings() {
 }
 
 function resetCameraToDefault() {
-    camera.position.set(-2.2, 0.6, 2); // Задаємо початкові координати камери
-    camera.fov = 70; // Відновлюємо значення fov
-    camera.updateProjectionMatrix(); // Оновлюємо матрицю камери
+    camera.position.set(-2.2, 0.6, 2); // Ð—Ð°Ð´Ð°Ñ”Ð¼Ð¾ Ð¿Ð¾Ñ‡Ð°Ñ‚ÐºÐ¾Ð²Ñ– ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ð¸ ÐºÐ°Ð¼ÐµÑ€Ð¸
+    camera.fov = 70; // Ð’Ñ–Ð´Ð½Ð¾Ð²Ð»ÑŽÑ”Ð¼Ð¾ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð½Ñ fov
+    camera.updateProjectionMatrix(); // ÐžÐ½Ð¾Ð²Ð»ÑŽÑ”Ð¼Ð¾ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†ÑŽ ÐºÐ°Ð¼ÐµÑ€Ð¸
 
     if (controls) {
         controls.maxPolarAngle = Math.PI / 1.77;
@@ -607,42 +607,42 @@ function Settings3d() {
         floor.position.y = -1;
     }
 
-    const pointLight = new THREE.PointLight(0xffffff, 0.1, 50); // (колір, інтенсивність, радіус)
-    pointLight.position.set(2, 1.5, -3); // Позиція джерела світла
+    const pointLight = new THREE.PointLight(0xffffff, 0.1, 50); // (ÐºÐ¾Ð»Ñ–Ñ€, Ñ–Ð½Ñ‚ÐµÐ½ÑÐ¸Ð²Ð½Ñ–ÑÑ‚ÑŒ, Ñ€Ð°Ð´Ñ–ÑƒÑ)
+    pointLight.position.set(2, 1.5, -3); // ÐŸÐ¾Ð·Ð¸Ñ†Ñ–Ñ Ð´Ð¶ÐµÑ€ÐµÐ»Ð° ÑÐ²Ñ–Ñ‚Ð»Ð°
     scene.add(pointLight);
 
-    // Додавання RectAreaLight з сітками
-    const rectLight = new THREE.RectAreaLight(0xffffff, 1, 10, 10); // прямокутне світло
+    // Ð”Ð¾Ð´Ð°Ð²Ð°Ð½Ð½Ñ RectAreaLight Ð· ÑÑ–Ñ‚ÐºÐ°Ð¼Ð¸
+    const rectLight = new THREE.RectAreaLight(0xffffff, 1, 10, 10); // Ð¿Ñ€ÑÐ¼Ð¾ÐºÑƒÑ‚Ð½Ðµ ÑÐ²Ñ–Ñ‚Ð»Ð¾
     rectLight.position.set(-1.5, -3.8, -3.5);
-    rectLight.rotation.z = Math.PI / 2; // Осьовий оберт для RectAreaLight
-    rectLight.rotation.y = Math.PI / -2; // Осьовий оберт для RectAreaLight
+    rectLight.rotation.z = Math.PI / 2; // ÐžÑÑŒÐ¾Ð²Ð¸Ð¹ Ð¾Ð±ÐµÑ€Ñ‚ Ð´Ð»Ñ RectAreaLight
+    rectLight.rotation.y = Math.PI / -2; // ÐžÑÑŒÐ¾Ð²Ð¸Ð¹ Ð¾Ð±ÐµÑ€Ñ‚ Ð´Ð»Ñ RectAreaLight
     scene.add(rectLight);
 
-    // Створення сітки для rectLight
+    // Ð¡Ñ‚Ð²Ð¾Ñ€ÐµÐ½Ð½Ñ ÑÑ–Ñ‚ÐºÐ¸ Ð´Ð»Ñ rectLight
     // const rectLightHelper = new THREE.Mesh(
-    //     new THREE.PlaneGeometry(0.5, 0.5), // прямокутна сітка для позначення джерела світла
-    //     new THREE.MeshBasicMaterial({ color: 0x0000ff, side: THREE.DoubleSide }) // синій колір
+    //     new THREE.PlaneGeometry(0.5, 0.5), // Ð¿Ñ€ÑÐ¼Ð¾ÐºÑƒÑ‚Ð½Ð° ÑÑ–Ñ‚ÐºÐ° Ð´Ð»Ñ Ð¿Ð¾Ð·Ð½Ð°Ñ‡ÐµÐ½Ð½Ñ Ð´Ð¶ÐµÑ€ÐµÐ»Ð° ÑÐ²Ñ–Ñ‚Ð»Ð°
+    //     new THREE.MeshBasicMaterial({ color: 0x0000ff, side: THREE.DoubleSide }) // ÑÐ¸Ð½Ñ–Ð¹ ÐºÐ¾Ð»Ñ–Ñ€
     // );
-    // rectLightHelper.position.copy(rectLight.position); // Позиція сітки збігається з позицією світла
-    // rectLightHelper.rotation.copy(rectLight.rotation); // Позиція сітки має відповідати орієнтації світла
+    // rectLightHelper.position.copy(rectLight.position); // ÐŸÐ¾Ð·Ð¸Ñ†Ñ–Ñ ÑÑ–Ñ‚ÐºÐ¸ Ð·Ð±Ñ–Ð³Ð°Ñ”Ñ‚ÑŒÑÑ Ð· Ð¿Ð¾Ð·Ð¸Ñ†Ñ–Ñ”ÑŽ ÑÐ²Ñ–Ñ‚Ð»Ð°
+    // rectLightHelper.rotation.copy(rectLight.rotation); // ÐŸÐ¾Ð·Ð¸Ñ†Ñ–Ñ ÑÑ–Ñ‚ÐºÐ¸ Ð¼Ð°Ñ” Ð²Ñ–Ð´Ð¿Ð¾Ð²Ñ–Ð´Ð°Ñ‚Ð¸ Ð¾Ñ€Ñ–Ñ”Ð½Ñ‚Ð°Ñ†Ñ–Ñ— ÑÐ²Ñ–Ñ‚Ð»Ð°
     // scene.add(rectLightHelper);
 
-    const rectLight1 = new THREE.RectAreaLight(0xffffff, 0.3, 10, 10); // інше прямокутне світло
+    const rectLight1 = new THREE.RectAreaLight(0xffffff, 0.3, 10, 10); // Ñ–Ð½ÑˆÐµ Ð¿Ñ€ÑÐ¼Ð¾ÐºÑƒÑ‚Ð½Ðµ ÑÐ²Ñ–Ñ‚Ð»Ð¾
     rectLight1.position.set(1, 2, 3);
-    rectLight1.rotation.z = Math.PI / 2; // Осьовий оберт для RectAreaLight
-    rectLight1.rotation.y = Math.PI / 2; // Осьовий оберт для RectAreaLight
+    rectLight1.rotation.z = Math.PI / 2; // ÐžÑÑŒÐ¾Ð²Ð¸Ð¹ Ð¾Ð±ÐµÑ€Ñ‚ Ð´Ð»Ñ RectAreaLight
+    rectLight1.rotation.y = Math.PI / 2; // ÐžÑÑŒÐ¾Ð²Ð¸Ð¹ Ð¾Ð±ÐµÑ€Ñ‚ Ð´Ð»Ñ RectAreaLight
     scene.add(rectLight1);
 
-    // Створення сітки для rectLight1
+    // Ð¡Ñ‚Ð²Ð¾Ñ€ÐµÐ½Ð½Ñ ÑÑ–Ñ‚ÐºÐ¸ Ð´Ð»Ñ rectLight1
     // const rectLight1Helper = new THREE.Mesh(
-    //     new THREE.PlaneGeometry(0.5, 0.5), // прямокутна сітка для позначення джерела світла
-    //     new THREE.MeshBasicMaterial({ color: 0xffff00, side: THREE.DoubleSide }) // жовтий колір
+    //     new THREE.PlaneGeometry(0.5, 0.5), // Ð¿Ñ€ÑÐ¼Ð¾ÐºÑƒÑ‚Ð½Ð° ÑÑ–Ñ‚ÐºÐ° Ð´Ð»Ñ Ð¿Ð¾Ð·Ð½Ð°Ñ‡ÐµÐ½Ð½Ñ Ð´Ð¶ÐµÑ€ÐµÐ»Ð° ÑÐ²Ñ–Ñ‚Ð»Ð°
+    //     new THREE.MeshBasicMaterial({ color: 0xffff00, side: THREE.DoubleSide }) // Ð¶Ð¾Ð²Ñ‚Ð¸Ð¹ ÐºÐ¾Ð»Ñ–Ñ€
     // );
-    // rectLight1Helper.position.copy(rectLight1.position); // Позиція сітки збігається з позицією світла
-    // rectLight1Helper.rotation.copy(rectLight1.rotation); // Позиція сітки має відповідати орієнтації світла
+    // rectLight1Helper.position.copy(rectLight1.position); // ÐŸÐ¾Ð·Ð¸Ñ†Ñ–Ñ ÑÑ–Ñ‚ÐºÐ¸ Ð·Ð±Ñ–Ð³Ð°Ñ”Ñ‚ÑŒÑÑ Ð· Ð¿Ð¾Ð·Ð¸Ñ†Ñ–Ñ”ÑŽ ÑÐ²Ñ–Ñ‚Ð»Ð°
+    // rectLight1Helper.rotation.copy(rectLight1.rotation); // ÐŸÐ¾Ð·Ð¸Ñ†Ñ–Ñ ÑÑ–Ñ‚ÐºÐ¸ Ð¼Ð°Ñ” Ð²Ñ–Ð´Ð¿Ð¾Ð²Ñ–Ð´Ð°Ñ‚Ð¸ Ð¾Ñ€Ñ–Ñ”Ð½Ñ‚Ð°Ñ†Ñ–Ñ— ÑÐ²Ñ–Ñ‚Ð»Ð°
     // scene.add(rectLight1Helper);
 
-    // Логування всіх елементів для налагодження
+    // Ð›Ð¾Ð³ÑƒÐ²Ð°Ð½Ð½Ñ Ð²ÑÑ–Ñ… ÐµÐ»ÐµÐ¼ÐµÐ½Ñ‚Ñ–Ð² Ð´Ð»Ñ Ð½Ð°Ð»Ð°Ð³Ð¾Ð´Ð¶ÐµÐ½Ð½Ñ
     console.log('camera:', camera, 'dirL:', dirLight, 'rectLight:', rectLight, 'rectLight1:', rectLight1, 'pointLight:', pointLight);
 
     try {
@@ -929,7 +929,7 @@ function changeRangeOptions(groupID) {
         let group = jQuery('#' + groupID);
         let range_option = [];
         let range = group.find('input');
-        // console.log("Ã°Å¸Å¡â‚¬ ~ range:", range);
+        // console.log("ÃƒÂ°Ã…Â¸Ã…Â¡Ã¢â€šÂ¬ ~ range:", range);
         group.find('.option').removeClass('active');
         beforeFilterAction();
         group.find('.option:not(.disable_filter)').each(function () {
@@ -1080,6 +1080,7 @@ function GetMaterialsFromScene(name) {
 
 function GetMobileOperatingSystem() {
     var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    console.log(userAgent);
 
     if (/Macintosh/i.test(userAgent)) {
         return "Macintosh";
@@ -1192,6 +1193,135 @@ function CheckAssign(SharedParameterListItem) {
 
 //#endregion
 
+//#region *** FUNCTIONS HELPER ***
+const buttons = {
+    summary: 'sum',
+    call: 'call',
+    pdf: 'pdf',
+}
+
+function saveSceneAsImage(renderer) {
+    const canvas = renderer.domElement;
+
+    return imageUrl = canvas.toDataURL('image/png');
+}
+
+async function captureSingleSceneSnapshot(renderer, scene, camera) {
+    renderer.setClearColor(0x000000, 0);
+    scene.background = null;
+
+    renderer.render(scene, camera);
+
+    return saveSceneAsImage(renderer);
+}
+
+function getElementFromDOM(cls) {
+    return document.getElementsByClassName(cls)[0];
+}
+
+function addElementToContainer(container, cls, text = false) {
+    const div = document.createElement('div');
+    div.className = cls;
+
+    if (text) {
+        div.textContent = text;
+    }
+
+    const toAdd = getElementFromDOM(container);
+
+    return toAdd.insertAdjacentElement('beforeend', div);
+}
+
+function removeElementFromContainer(containerId, elementId) {
+    const container = getElementFromDOM(containerId);
+    if (container) {
+        const element = getElementFromDOM(elementId);
+        if (element) container.removeChild(element);
+    }
+}
+
+function toggleClickButton(triger, element, cls) {
+    element.classList.add('hide-visible');
+
+    triger.addEventListener('click', () => {
+        if (element.classList.contains('hide-visible')) {
+            return element.classList.remove('hide-visible');
+        }
+
+        return element.classList.add('hide-visible');
+    })
+}
+
+function closeClick(triger, element) {
+    triger.addEventListener('click', () => {
+        return element.classList.add('hide-visible');
+    })
+}
+
+function toggleStyleForSummary() {
+    const maxWidht = 1400;
+    const contentId = document.getElementById('content');
+
+    if (!contentId.style.cssText.includes(`max-width: ${maxWidht}px !important`)) {
+        contentId.style.cssText += `max-width: ${maxWidht}px !important;`;
+    } else {
+        contentId.style.cssText = contentId.style.cssText.replace(`max-width: ${maxWidht}px !important;`, '');
+    }
+}
+
+function webHook(button, close = false) {
+    switch (button) {
+        case buttons.call:
+            localStorage.setItem('callButton', true);
+
+            break;
+
+        case buttons.summary:
+            localStorage.setItem('stage', 'Summary');
+
+            break;
+
+        case buttons.pdf:
+            localStorage.setItem('pdfButton', true);
+
+            break;
+
+        default:
+            break;
+    }
+
+    let data = {
+        productName: document.getElementsByClassName('entry-title')[0].textContent,
+        userName: localStorage.getItem('username'),
+        phone: localStorage.getItem('phone'),
+        email: localStorage.getItem('email'),
+        link: window.location.href,
+        stage: localStorage.getItem('stage') ? localStorage.getItem('stage') : 'Incomplete',
+        callButton: localStorage.getItem('callButton') ? localStorage.getItem('callButton') : false,
+        pdfButton: localStorage.getItem('pdfButton') ? localStorage.getItem('pdfButton') : false,
+        webSiteClose: close,
+    };
+
+    fetch('https://hook.us1.make.com/xh8wgbzkjkkh8cj6gbq6s62my1t58xmk', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    }).then(() => {
+        console.log(data);
+    })
+}
+
+async function makeScreen(capture) {
+    const elementToCapture = getElementFromDOM(capture);
+    const canvas = await html2canvas(elementToCapture);
+    const imageUrl = canvas.toDataURL('image/jpeg');
+
+    return imageUrl;
+}
+//#endregion
+
 //#region UI FUNCTIONS
 
 function PrepareUI() {
@@ -1240,177 +1370,16 @@ function PrepareUI() {
         }
     }
 
-
-
     loadPDFLib();
     loadCanvasLib();
     loadCanvasPDFlib();
-    //#endregion
-
-    //#region *** FUNCTIONS HELPER ***
-    const buttons = {
-        summary: 'sum',
-        call: 'call',
-        pdf: 'pdf',
-    }
-
-    function saveSceneAsImage(renderer) {
-        const canvas = renderer.domElement;
-
-        return imageUrl = canvas.toDataURL('image/png');
-    }
-
-    async function captureSingleSceneSnapshot(renderer, scene, camera) {
-        renderer.setClearColor(0x000000, 0);
-        scene.background = null;
-
-        renderer.render(scene, camera);
-
-        return saveSceneAsImage(renderer);
-    }
-
-    function getElementFromDOM(cls) {
-        return document.getElementsByClassName(cls)[0];
-    }
-
-    function addElementToContainer(container, cls, text = false) {
-        const div = document.createElement('div');
-        div.className = cls;
-
-        if (text) {
-            div.textContent = text;
-        }
-
-        const toAdd = getElementFromDOM(container);
-
-        return toAdd.insertAdjacentElement('beforeend', div);
-    }
-
-    function removeElementFromContainer(containerId, elementId) {
-        const container = getElementFromDOM(containerId);
-        if (container) {
-            const element = getElementFromDOM(elementId);
-            if (element) container.removeChild(element);
-        }
-    }
-
-    function toggleClickButton(triger, element, cls) {
-        element.classList.add('hide-visible');
-
-        triger.addEventListener('click', () => {
-            if (element.classList.contains('hide-visible')) {
-                return element.classList.remove('hide-visible');
-            }
-
-            return element.classList.add('hide-visible');
-        })
-    }
-
-    function closeClick(triger, element) {
-        triger.addEventListener('click', () => {
-            return element.classList.add('hide-visible');
-        })
-    }
-
-    // async function makeScreen(capture, resize = true, size = 1200) {
-    //     if (resize) {
-    //         const elementToCapture = getElementFromDOM(capture);
-    //         const body = document.body;
-    //         const originalBodyStyle = body.style.cssText;
-    //         const screenWidth = size;
-    //         const originalWidth = window.innerWidth;
-
-    //         try {
-    //             body.style.width = `${screenWidth}`;
-    //             body.style.overflow = 'hidden';
-    //             document.documentElement.style.setProperty('--viewport-width', `${screenWidth}px`);
-
-    //             Object.defineProperty(window, 'innerWidth', { value: screenWidth, configurable: true });
-
-    //             await new Promise(resolve => requestAnimationFrame(resolve));
-
-    //             const canvas = await html2canvas(elementToCapture);
-
-    //             const imageUrl = canvas.toDataURL('image/png');
-    //             return imageUrl;
-    //         } finally {
-    //             body.style.cssText = originalBodyStyle;
-    //             document.documentElement.style.removeProperty('--viewport-width');
-
-    //             Object.defineProperty(window, 'innerWidth', { value: originalWidth, configurable: true });
-
-    //             await new Promise(resolve => requestAnimationFrame(resolve));
-    //         }
-    //     } else {
-    //         const elementToCapture = getElementFromDOM(capture);
-    //         const canvas = await html2canvas(elementToCapture);
-    //         const imageUrl = canvas.toDataURL('image/png');
-
-    //         return imageUrl;
-    //     }
-    // }
-
-    function toggleStyleForSummary() {
-        const maxWidht = 1400;
-        const contentId = document.getElementById('content');
-
-        if (!contentId.style.cssText.includes(`max-width: ${maxWidht}px !important`)) {
-            contentId.style.cssText += `max-width: ${maxWidht}px !important;`;
-        } else {
-            contentId.style.cssText = contentId.style.cssText.replace(`max-width: ${maxWidht}px !important;`, '');
-        }
-    }
-
-    function webHook(button, close) {
-        switch (button) {
-            case buttons.call:
-                localStorage.setItem('callButton', true);
-
-                break;
-
-            case buttons.summary:
-                localStorage.setItem('stage', 'Summary');
-
-                break;
-
-            case buttons.pdf:
-                localStorage.setItem('pdfButton', true);
-
-                break;
-
-            default:
-                break;
-        }
-
-        let data = {
-            productName: document.getElementsByClassName('entry-title')[0].textContent,
-            userName: localStorage.getItem('username'),
-            phone: localStorage.getItem('phone'),
-            email: localStorage.getItem('email'),
-            link: window.location.href,
-            stage: localStorage.getItem('stage') ? localStorage.getItem('stage') : 'Incomplete',
-            callButton: localStorage.getItem('callButton') ? localStorage.getItem('callButton') : false,
-            pdfButton: localStorage.getItem('pdfButton') ? localStorage.getItem('pdfButton') : false,
-            webSiteClose: false,
-        };
-
-        fetch('https://hook.us1.make.com/xh8wgbzkjkkh8cj6gbq6s62my1t58xmk', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        }).then(() => {
-            console.log(data);
-        })
-    }
     //#endregion
 
     const shortCode = document.getElementById('configurator_shortcode');
     const main = document.body;
     const menuConfig = getElementFromDOM('ar_filter');
     const summary = getElementFromDOM('ar_summary');
-    const titlePDF = document.getElementsByTagName('h1')[0]?.textContent || 'Документ PDF';
+    const titlePDF = document.getElementsByTagName('h1')[0]?.textContent || 'Ð”Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚ PDF';
 
     summary.classList.add('hide-visible');
 
@@ -1424,9 +1393,9 @@ function PrepareUI() {
     const reclickGroup = getElementFromDOM('group_custom_id-re-click-options');
     const groupName = reclickGroup.getElementsByClassName('ar_filter_caption')[0].textContent;
     const allSummaryName = document.getElementsByClassName('ar_summary_list_group');
-
     const reclickGroupOptions = reclickGroup.getElementsByClassName('ar_filter_options')[0].getElementsByClassName('option');
 
+    //delete included from ar_summary_list
     Array.from(reclickGroupOptions).forEach(option => {
         option.addEventListener('click', (event) => {
             console.log(groupName);
@@ -1435,8 +1404,6 @@ function PrepareUI() {
                 event.stopPropagation();
                 event.preventDefault();
 
-
-                console.log(allSummaryName);
                 Array.from(allSummaryName).forEach(list => {
                     list.textContent = list.textContent.replaceAll('Included', '');
 
@@ -1449,13 +1416,6 @@ function PrepareUI() {
             }
         })
     })
-
-    //#endregion
-
-    //#region CONFIG-PARAMS 
-    const CONFIG_PARAMS = document.getElementsByClassName('group_custom_id-config_params')[0];
-
-    const photSumUrl = CONFIG_PARAMS.getElementsByClassName('ar_filter_options')[0].getElementsByClassName('option')[0].textContent.replaceAll('Included', '');
     //#endregion
 
     //#region CREATE-PDF-DOC
@@ -1468,36 +1428,45 @@ function PrepareUI() {
         const originalWidth = window.innerWidth;
 
         if (!element) {
-            console.error(`Element with ID "ar_summary" not found.`);
+            console.error(`Element with ID ${element} not found.`);
             return;
         }
 
-        const options = {
-            margin: 10, // Поля у міліметрах
-            filename: filename, // Ім'я файлу
-            image: { type: 'jpeg', quality: 0.98 }, // Формат і якість зображення
-            html2canvas: {
-                scale: 2,
-                useCORS: true,
-                logging: true,
-                allowTaint: true
-            },
-            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' } // Формат A4
-        };
-
         try {
+            //prepare html for A4
             body.style.width = `${screenWidth}`;
             body.style.overflow = 'hidden';
             document.documentElement.style.setProperty('--viewport-width', `${screenWidth}px`);
-
             Object.defineProperty(window, 'innerWidth', { value: screenWidth, configurable: true });
-
             await new Promise(resolve => requestAnimationFrame(resolve));
 
-            const pdf = html2pdf().set(options).from(element).toPdf();
+            await html2pdf()
+                .from(element)
+                .set({
+                    margin: 10,
+                    filename: filename,
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 3, logging: true, dpi: 192, letterRendering: true },
+                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'p' },
+                    pagebreak: { after: '.shortcode_info', avoid: 'table' }
+                })
+                .toPdf()
+                .get('pdf').then(function (pdf) {
+                    const totalPages = pdf.internal.getNumberOfPages();
 
-            await pdf.save();
-            console.log('PDF successfully generated and downloaded.');
+                    for (let i = 2; i <= totalPages; i++) {
+                        pdf.setPage(i);
+
+                        // pdf.addHTML(header, 40, 40, { width: pdf.internal.pageSize.width - 20 }, function () {
+                        //     doc.setPage(i);
+                        // });
+
+                        // pdf.addHTML(footer, 10, pdf.internal.pageSize.height - 10, { width: pdf.internal.pageSize.width - 20 }, function () {
+                        //     doc.setPage(i);
+                        // });
+                    }
+                }).save();
+
         } catch (error) {
             console.error('Error generating PDF:', error);
         } finally {
@@ -1512,25 +1481,7 @@ function PrepareUI() {
 
     //#endregion
 
-    //#region scrollLogic 
-    // document.body.style.overflow = 'hidden';
-
-    // menuConfig.addEventListener('wheel', (event) => {
-    //     const scrollTop = menuConfig.scrollTop;
-    //     const scrollHeight = menuConfig.scrollHeight;
-    //     const clientHeight = menuConfig.clientHeight;
-
-    //     const isScrollingDown = event.deltaY > 0;
-
-
-    //     if (isScrollingDown && scrollTop + clientHeight >= scrollHeight) {
-    //         document.body.style.overflow = 'auto';
-    //     }
-    // });
-    //#endregion
-
     //#region SHARE AND AR LOGIC
-
 
     const shareButton = addElementToContainer('ar_conf_container', 'share-button', 'share');
     const arButton = addElementToContainer('ar_conf_container', 'ar-button', 'ar');
@@ -1549,7 +1500,7 @@ function PrepareUI() {
         </div>`);
 
     arConf.insertAdjacentHTML('beforeend', `
-        <div class="ar-box">
+        <div class="ar-box hide-visible">
             <div class= "ar-box_close" ></div >
 
             <h3 class="ar-box_title">Scan the QR code with your phone. Within 1-3 seconds the AR function opens on your
@@ -1573,14 +1524,14 @@ function PrepareUI() {
 
     const originalPushState = history.pushState;
     history.pushState = function (...args) {
-        originalPushState.apply(this, args); // Викликаємо оригінальну функцію
-        updateInputWithURL(); // Оновлюємо вручну після зміни URL
+        originalPushState.apply(this, args);
+        updateInputWithURL();
     };
 
     const originalReplaceState = history.replaceState;
     history.replaceState = function (...args) {
-        originalReplaceState.apply(this, args); // Викликаємо оригінальну функцію
-        updateInputWithURL(); // Оновлюємо вручну після зміни URL
+        originalReplaceState.apply(this, args);
+        updateInputWithURL();
     };
     //#endregion
 
@@ -1603,12 +1554,7 @@ function PrepareUI() {
 
     //#region AR BUTTON 
     if (arButton) {
-        arButton.addEventListener('click', () => {
-            getElementFromDOM('share-box').classList.add('hide-visible');
-        });
-
-        toggleClickButton(getElementFromDOM('ar-button'), getElementFromDOM('ar-box'));
-        closeClick(getElementFromDOM('ar-box_close'), getElementFromDOM('ar-box'));
+        arButton.addEventListener('click', () => { OpenARorQR() });
     }
     //#endregion
     //#endregion
@@ -1765,6 +1711,16 @@ function PrepareUI() {
                 return price.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
             }
 
+            const breakPageFooter = `
+                     <div class="footer-forA4">
+                       <ul class="footer-forA4_table">
+                         <li class="footer-forA4_table_item footer-forA4_table_item--phone">+1 (213) 291-9070</li>
+                         <li class="footer-forA4_table_item footer-forA4_table_item--mail">info@ferlabikes.com</li>
+                         <li class="footer-forA4_table_item footer-forA4_table_item--adress">895 N Todd Ave, Azusa, CA, 91702</li>
+                       </ul>
+                     </div>
+            `
+
             if (!document.querySelector('.sum_img') && !document.querySelector('.custom-template')) {
                 const templateHTML = `
                     <div class="sum_img" style="background-img: url(${imgBike}) !important"></div>
@@ -1779,8 +1735,23 @@ function PrepareUI() {
                        <div class="custom-template_price-item">Sum of selected options: $${differentePrice}</div>
                        <div class="custom-template_price-total">Total Price: $${formatPrice(amountPrice)}</div>
                     </div>
+
                     <div class="shortcode_info">${shortCode.innerHTML}</div>
+
+                   ${breakPageFooter}
+
+                    <div class="header-forA4">
+                       <div class="header-forA4_container">
+                         <div class="header-forA4_container_img" style="background-image: url(${imgBike});"></div> 
+
+                         <div class="header-forA4_container_title">${titlePDF}</div> 
+
+                         <div class="header-forA4_container_logo"></div> 
+                       </div>
+                    </div>
                   `;
+
+                getElementFromDOM('ar_summary_list').insertAdjacentHTML('afterend', breakPageFooter);
 
                 summary.insertAdjacentHTML('afterbegin', templateHTML);
             }
@@ -2142,6 +2113,10 @@ function PrepareUI() {
                             <div class="sum-button_price">$${formattedPrice}</div>
                             <div class="sum-button_button">Summary</div>
                         `;
+
+                        Array.from(allSummaryName).forEach(list => {
+                            list.textContent = list.textContent.replaceAll('Included', '');
+                        });
                     }, 300)
                 })
                 //#endregion
@@ -2161,14 +2136,13 @@ function PrepareUI() {
             const arFilter = document.querySelector('.configurator3d_post');
             const text = pop.nextSibling.nextSibling.textContent;
 
-            // Додаємо текст і клас для стилізації
+            // Ð”Ð¾Ð´Ð°Ñ”Ð¼Ð¾ Ñ‚ÐµÐºÑÑ‚ Ñ– ÐºÐ»Ð°Ñ Ð´Ð»Ñ ÑÑ‚Ð¸Ð»Ñ–Ð·Ð°Ñ†Ñ–Ñ—
             arFilter.setAttribute('data-text', text);
             arFilter.classList.add('show-content');
 
-            // Додаємо подію для видалення класу при кліку
+            // Ð”Ð¾Ð´Ð°Ñ”Ð¼Ð¾ Ð¿Ð¾Ð´Ñ–ÑŽ Ð´Ð»Ñ Ð²Ð¸Ð´Ð°Ð»ÐµÐ½Ð½Ñ ÐºÐ»Ð°ÑÑƒ Ð¿Ñ€Ð¸ ÐºÐ»Ñ–ÐºÑƒ
             arFilter.addEventListener('click', (e) => {
                 if (e.target === arFilter) {
-                    // Перевіряємо, що клік саме в область елемента
                     arFilter.classList.remove('show-content');
                     arFilter.removeAttribute('data-text');
                 }
@@ -2251,7 +2225,7 @@ function ReadURLParameters(callback) {
         }
     }
 
-    // console.log("Ã°Å¸Å¡â‚¬ ~ ReadURLParameters ~ parseParams:", parseParams);
+    // console.log("ÃƒÂ°Ã…Â¸Ã…Â¡Ã¢â€šÂ¬ ~ ReadURLParameters ~ parseParams:", parseParams);
 
     if (!parseParams?.trim()) {
         paramsLoaded = true;
@@ -2269,7 +2243,7 @@ function ReadURLParameters(callback) {
         return;
     }
 
-    // console.log("Ã°Å¸Å¡â‚¬ ~ ReadURLParameters ~ paramArray:", paramArray);
+    // console.log("ÃƒÂ°Ã…Â¸Ã…Â¡Ã¢â€šÂ¬ ~ ReadURLParameters ~ paramArray:", paramArray);
 
     for (let index = 0; index < SharedParameterList.length; index++) {
         const element = SharedParameterList[index];
@@ -2564,22 +2538,22 @@ const copyToClipboard = function () {
 //#region QR
 
 function CreateQR() {
-    var qr = qrcode[0];
-    if (qr == null) { return; }
+    // var qr = qrcode[0];
+    // if (qr == null) { return; }
 
-    while (qr.hasChildNodes()) {
-        qr.removeChild(qr.lastChild);
-    }
+    // while (qr.hasChildNodes()) {
+    //     qr.removeChild(qr.lastChild);
+    // }
 
-    qrScaned = 1;
+    // qrScaned = 1;
 
     var uri = GetURLWithParameters();
     var encoded = encodeURIComponent(uri);
     var qrImg = new Image();
     qrImg.src = 'https://quickchart.io/qr?text=' + encoded + "&size=200";
     qrImg.addEventListener("load", () => {
-        console.log("Ã°Å¸Å¡â‚¬ ~ qrImg.addEventListener ~ qrImg:", qrImg);
-        qr.appendChild(qrImg);
+        console.log("ÃƒÂ°Ã…Â¸Ã…Â¡Ã¢â€šÂ¬ ~ qrImg.addEventListener ~ qrImg:", qrImg);
+        document.getElementsByClassName('ar-box_bottom_QR')[0].style.backgroundImage = `url(${qrImg.src})`;
     });
 }
 
@@ -2628,21 +2602,23 @@ function PrepareAR() {
 }
 
 async function OpenAR() {
-    ComputeMorphedAttributes();
+    // ComputeMorphedAttributes();
     ImportScene(scene);
 }
 
 function OpenARorQR() {
     if (GetMobileOperatingSystem() == "Android" || GetMobileOperatingSystem() == "iOS") {
+        console.log('Mobile AR');
         OpenAR();
         return;
     }
 
     CreateQR();
 
-    jQuery('#marevo_popup_container').toggleClass('active');
-    jQuery('#marevo_popup_ar').toggleClass('active');
-    jQuery('#marevo_popup_share').removeClass('active');
+    //custom part
+    document.getElementsByClassName('ar-box')[0].classList.remove('hide-visible');
+
+    closeClick(getElementFromDOM('ar-box_close'), getElementFromDOM('ar-box'));
 }
 
 //IMPORT
@@ -3140,7 +3116,7 @@ function activeRALcolor() {
 }
 
 function UpdateRALInput(value) {
-    console.log("Ã°Å¸Å¡â‚¬ ~ RALInput ~ value:", value);
+    console.log("ÃƒÂ°Ã…Â¸Ã…Â¡Ã¢â€šÂ¬ ~ RALInput ~ value:", value);
 
     if (value == undefined && value == '') return;
 
@@ -3225,7 +3201,7 @@ function UpdateRALInput(value) {
     const getHex = (ral) => rals["RAL" + ral];
 
     const hex = getHex(value);
-    console.log("Ã°Å¸Å¡â‚¬ ~ UpdateRALInput ~ hex:", hex);
+    console.log("ÃƒÂ°Ã…Â¸Ã…Â¡Ã¢â€šÂ¬ ~ UpdateRALInput ~ hex:", hex);
 
     if (hex != undefined && hex != null && hex != '') {
         jQuery('#RALcode_input').removeClass('error');
@@ -3236,7 +3212,7 @@ function UpdateRALInput(value) {
         setMaterialColor('legs', hex);
         WriteURLParameters();
     } else {
-        console.log("Ã°Å¸Å¡â‚¬ ~ ERROR ~ hex for:", value);
+        console.log("ÃƒÂ°Ã…Â¸Ã…Â¡Ã¢â€šÂ¬ ~ ERROR ~ hex for:", value);
         jQuery('#RALcode_input').val('0');
         jQuery('#RALcode_input').addClass('error');
         jQuery('#RALcode_input_error').addClass('error');
