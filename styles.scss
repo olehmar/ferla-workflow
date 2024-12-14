@@ -2,13 +2,19 @@
 
 @font-face {
     font-family: 'Visby Round CF';
-    src: url('https://raw.githubusercontent.com/olehmar/ferla-workflow/main/fonts/VisbyRoundCF-Regular.otf');
+    src: url('https://raw.githubusercontent.com/olehmar/ferla-workflow/main/fonts/VisbyRoundCF-Regular.ttf');
     font-display: swap;
 }
 
 @font-face {
     font-family: 'Visby Round 500';
-    src: url('https://raw.githubusercontent.com/olehmar/ferla-workflow/main/fonts/VisbyRoundCF-Medium.otf');
+    src: url('https://raw.githubusercontent.com/olehmar/ferla-workflow/main/fonts/VisbyRoundCF-Medium.ttf');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Visby Round 500';
+    src: url('https://raw.githubusercontent.com/olehmar/ferla-workflow/main/fonts/VisbyRoundCF-Medium.ttf');
     font-display: swap;
 }
 
@@ -43,7 +49,6 @@ body::-webkit-scrollbar {
         &_item {}
     }
 }
-
 //#endregion
 
 //#region CATALOG 
@@ -611,6 +616,7 @@ h1 {
         box-shadow: 2px -2px 10px 0px rgba(181, 180, 180, 0.6509803922);
         border-radius: 5px 5px 150px 5px;
         transform: translate(0) !important;
+        box-sizing: border-box;
 
         &::after {
             content: "";
@@ -1526,7 +1532,7 @@ h1 {
                 margin: 0;
                 content: "";
                 position: absolute;
-                bottom: -4px;
+                bottom: -5px;
                 display: flex;
                 width: calc(100% + 8px);
                 height: calc(100% + 8px);
@@ -1743,7 +1749,7 @@ h1 {
 
     .sum-button {
         font-family: 'Visby Round CF' !important;
-
+        
         &_price {
             color: $gray1_color !important;
         }
@@ -1782,6 +1788,7 @@ h1 {
     margin-right: 32px;
     background-color: $white_color;
     font-family: 'Visby Round CF' !important;
+    box-sizing: border-box;
     @include radius;
     @include shadow;
 
